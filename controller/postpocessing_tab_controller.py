@@ -1,5 +1,6 @@
 import bm4d
 import numpy as np
+from PyQt5.QtCore import Qt
 
 from widget.postpocessing_tab_widget import PostProcessingTabWidget
 
@@ -8,8 +9,7 @@ class PostProcessingTabController(PostProcessingTabWidget):
     def __init__(self, *args, **kwargs):
         super(PostProcessingTabController, self).__init__(*args, **kwargs)
 
-        self.run_filter_button.clicked.connect(self.bm4dFilter)
-
+        self.auto_checkbox.stateChanged.connect(self.applyFilter)
 
     def bm4dFilter(self):
         image_data = self.main.image_view_widget.main_matrix.astype(float)
@@ -28,3 +28,7 @@ class PostProcessingTabController(PostProcessingTabWidget):
             self.main.image_view_widget.main_matrix
 
         self.main.history_controller.uptadeOperationsHist(self.main.history_controller.matrix_infos, "BM4D")
+
+    def applyFilter(self, state):
+        if state == Qt.Checked:
+            self.bm4dFilter()

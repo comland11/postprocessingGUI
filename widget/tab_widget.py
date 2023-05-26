@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QGridLayout
 
 
 class TabWidget(QTabWidget):
@@ -34,4 +34,4 @@ class TabWidget(QTabWidget):
         self.reconstruction_layout.addWidget(self.image_art_button)
 
         # Postprocessing layout
-        self.postprocessing_layout = QVBoxLayout(postprocessing_tab)
+        self.postprocessing_layout = QGridLayout(postprocessing_tab)

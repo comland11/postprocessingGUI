@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApp
 
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
+from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.toolbar_controller import ToolBarController
 from widget.history_list_widget import HistoryListWidget
 from controller.tab_controller import TabController
@@ -44,7 +45,7 @@ class MainWindow(QMainWindow):
         self.image_view_widget = ImageViewController(parent=self)
         self.right_layout.addWidget(self.image_view_widget)
 
-        # Add a layout for history
+        # Add history
         self.history_layout = QHBoxLayout()
         self.right_layout.addLayout(self.history_layout)
 
@@ -62,6 +63,9 @@ class MainWindow(QMainWindow):
         self.tab_controller = TabController(parent=self)
         self.left_layout.addWidget(self.tab_controller)
         self.tab_controller.setMaximumSize(500, 1000)
+
+        self.postprocessing_controller = PostProcessingTabController(parent=self)
+        self.tab_controller.postprocessing_layout.addWidget(self.postprocessing_controller)
 
         self.show()
 

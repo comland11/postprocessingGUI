@@ -12,7 +12,7 @@ class TabWidget(QTabWidget):
         postprocessing_tab = QWidget()
 
         # Adding Tabs in the QTabWidget
-        self.addTab(preprocessing_tab, 'Preprocessing')
+        self.addTab(preprocessing_tab, 'PreProcessing')
         self.addTab(reconstruction_tab, 'Reconstruction')
         self.addTab(postprocessing_tab, 'PostProcessing')
 
@@ -22,9 +22,6 @@ class TabWidget(QTabWidget):
 
         self.image_fft_button = QPushButton('FFT')
         self.image_art_button = QPushButton('ART')
-
-        self.image_bm4d_button = QPushButton('BM4D')
-        self.image_gaussian_button = QPushButton('Gaussian')
 
         # Preprocessing layout
         self.preprocessing_layout = QVBoxLayout(preprocessing_tab)
@@ -38,5 +35,3 @@ class TabWidget(QTabWidget):
 
         # Postprocessing layout
         self.postprocessing_layout = QVBoxLayout(postprocessing_tab)
-        self.postprocessing_layout.addWidget(self.image_bm4d_button)
-        self.postprocessing_layout.addWidget(self.image_gaussian_button)

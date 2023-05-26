@@ -44,7 +44,7 @@ class MainWindow(QMainWindow):
         self.image_view_widget = ImageViewController(parent=self)
         self.right_layout.addWidget(self.image_view_widget)
 
-        # Add a history
+        # Add a layout for history
         self.history_layout = QHBoxLayout()
         self.right_layout.addLayout(self.history_layout)
 

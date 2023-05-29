@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QLabel, QCheckBox
+from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QLabel, QCheckBox, QLineEdit, QHBoxLayout
 
 
 class PostProcessingTabWidget(QTabWidget):
@@ -23,12 +23,18 @@ class PostProcessingTabWidget(QTabWidget):
         # CheckBox
         self.auto_checkbox = QCheckBox('Automatic')
 
+        # Text Field
+        self.std_text_field = QLineEdit()
 
         # BM4D layout
         self.bm4d_layout = QVBoxLayout(bm4d_tab)
-        self.bm4d_layout.addWidget(self.std_label)
-        self.bm4d_layout.addWidget(self.run_filter_button)
+        self.std_layout = QHBoxLayout()
+
+        self.bm4d_layout.addLayout(self.std_layout)
+        self.std_layout.addWidget(self.std_label)
+        self.std_layout.addWidget(self.std_text_field)
         self.bm4d_layout.addWidget(self.auto_checkbox)
+        self.bm4d_layout.addWidget(self.run_filter_button)
 
         # Gaussian layout
         self.gaussian_layout = QVBoxLayout(gaussian_tab)

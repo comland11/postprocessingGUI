@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApp
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
 from controller.postpocessing_tab_controller import PostProcessingTabController
+from controller.slider_controller import SliderController
 from controller.toolbar_controller import ToolBarController
 from widget.history_list_widget import HistoryListWidget
 from controller.tab_controller import TabController
@@ -44,6 +45,9 @@ class MainWindow(QMainWindow):
         # Add an image view
         self.image_view_widget = ImageViewController(parent=self)
         self.right_layout.addWidget(self.image_view_widget)
+
+        self.bm4d_slider = SliderController(parent=self)
+        self.right_layout.addWidget(self.bm4d_slider)
 
         # Add history
         self.history_layout = QHBoxLayout()

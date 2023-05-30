@@ -44,4 +44,6 @@ class PostProcessingTabController(PostProcessingTabWidget):
 
         # Add the "BM4D" operation to the history widget and update the operations history
         self.main.history_controller.addItemWithTimestamp("BM4D")
-        self.main.history_controller.uptadeOperationsHist(self.main.history_controller.matrix_infos, "BM4D - " + str(sigma_psd))
+        self.main.history_controller.uptadeOperationsHist(self.main.history_controller.matrix_infos, "BM4D - Standard "
+                                                                                                     "deviation : " +
+                                                          str(sigma_psd))

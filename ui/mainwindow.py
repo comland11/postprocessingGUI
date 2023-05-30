@@ -3,11 +3,11 @@ import qdarkstyle
 
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar
 
+from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
-from controller.postpocessing_tab_controller import PostProcessingTabController
-from controller.slider_controller import SliderController
 from controller.toolbar_controller import ToolBarController
+from controller.slider_controller import SliderController
 from widget.history_list_widget import HistoryListWidget
 from controller.tab_controller import TabController
 
@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Test')
         self.setGeometry(0, 0, 1100, 800)
 
-        # Add a status bar and a menu bar
+        # Status bar and a menu bar adding
         self.setStatusBar(QStatusBar(self))
         self.setMenuBar(QMenuBar(self))
 
@@ -42,14 +42,14 @@ class MainWindow(QMainWindow):
         self.right_layout = QVBoxLayout()
         self.main_layout.addLayout(self.right_layout)
 
-        # Add an image view
+        # Image view adding
         self.image_view_widget = ImageViewController(parent=self)
         self.right_layout.addWidget(self.image_view_widget)
 
         self.bm4d_slider = SliderController(parent=self)
         self.right_layout.addWidget(self.bm4d_slider)
 
-        # Add history
+        # History adding
         self.history_layout = QHBoxLayout()
         self.right_layout.addLayout(self.history_layout)
 
@@ -61,9 +61,11 @@ class MainWindow(QMainWindow):
         self.history_layout.addWidget(self.history_widget)
         self.history_widget.setMaximumHeight(200)
 
+        # Toolbar adding
         self.toolbar_controller = ToolBarController(parent=self)
         self.addToolBar(self.toolbar_controller)
 
+        # Tabar adding
         self.tab_controller = TabController(parent=self)
         self.left_layout.addWidget(self.tab_controller)
         self.tab_controller.setMaximumSize(500, 1000)

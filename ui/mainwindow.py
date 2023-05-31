@@ -7,7 +7,6 @@ from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
 from controller.toolbar_controller import ToolBarController
-from controller.slider_controller import SliderController
 from widget.history_list_widget import HistoryListWidget
 from controller.tab_controller import TabController
 
@@ -45,9 +44,6 @@ class MainWindow(QMainWindow):
         # Image view adding
         self.image_view_widget = ImageViewController(parent=self)
         self.right_layout.addWidget(self.image_view_widget)
-
-        self.bm4d_slider = SliderController(parent=self)
-        self.right_layout.addWidget(self.bm4d_slider)
 
         # History adding
         self.history_layout = QHBoxLayout()

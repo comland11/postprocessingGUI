@@ -10,14 +10,13 @@ class PostProcessingTabController(PostProcessingTabWidget):
 
         # Connect the button click signal to the bm4dFilter method and showSlider method
         self.run_filter_button.clicked.connect(self.bm4dFilter)
-        self.run_filter_button.clicked.connect(self.main.bm4d_slider.showSlider)
 
         self.image_data = None
         self.denoised_image = None
 
     def bm4dFilter(self):
         # Get the image data from the fft in the main tab controller
-        image_data = self.main.tab_controller.image_amp.astype(float)
+        image_data = self.main.image_view_widget.main_matrix.astype(float)
 
         # Rescale the image between 0 and 100
         image_rescaled = np.interp(image_data, (np.min(image_data), np.max(image_data)), (0, 100))
@@ -39,11 +38,21 @@ class PostProcessingTabController(PostProcessingTabWidget):
         self.denoised_image = np.interp(denoised_rescaled, (np.min(denoised_rescaled), np.max(denoised_rescaled)),
                                    (np.min(image_data), np.max(image_data)))
 
-        # Update the slider values
-        self.main.bm4d_slider.setSliderValues()
+        self.main.image_view_widget.main_matrix = self.denoised_image
+        self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
+
+        self.main.history_controller.addItemWithTimestamp("BM4D")
+
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        print(len(self.main.history_controller.hist_dict))
+        print(self.main.history_controller.hist_dict.keys())
 
         # Add the "BM4D" operation to the history widget and update the operations history
-        self.main.history_controller.addItemWithTimestamp("BM4D")
-        self.main.history_controller.uptadeOperationsHist(self.main.history_controller.matrix_infos, "BM4D - Standard "
+
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "BM4D - Standard "
                                                                                                      "deviation : " +
                                                           str(sigma_psd))
+        print(self.main.history_controller.hist_dict)

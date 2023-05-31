@@ -1,8 +1,9 @@
 import scipy as sp
 import numpy as np
 
-
 from PyQt5.QtWidgets import QFileDialog
+from scipy.interpolate import griddata
+
 from widget.toolbar_widget import ToolBarWidget
 
 
@@ -11,6 +12,7 @@ class ToolBarController(ToolBarWidget):
         super(ToolBarController, self).__init__(*args, **kwargs)
 
         # Connect the image_loading_button clicked signal to the rawDataLoading method
+        self.k_space = None
         self.image_loading_button.clicked.connect(self.rawDataLoading)
 
     def rawDataLoading(self):
@@ -26,8 +28,26 @@ class ToolBarController(ToolBarWidget):
         file_path = self.loadFile()
         mat_data = sp.io.loadmat(file_path)
 
-        # Extract the k-space data from the loaded .mat file
-        self.k_space = mat_data['kSpace3D']
+        if mat_data['seqName'] == 'PETRA':
+            kSpace = mat_data['kSpaceRaw']
+            nPoints = np.reshape(mat_data['nPoints'], -1)
+            kCartesian = mat_data['kCartesian']
+            # self.k_space = mat_data['kSpaceArray']
+
+            kxOriginal = np.reshape(np.real(kSpace[:, 0]), -1)
+            kyOriginal = np.reshape(np.real(kSpace[:, 1]), -1)
+            kzOriginal = np.reshape(np.real(kSpace[:, 2]), -1)
+            kxTarget = np.reshape(kCartesian[:, 0], -1)
+            kyTarget = np.reshape(kCartesian[:, 1], -1)
+            kzTarget = np.reshape(kCartesian[:, 2], -1)
+            valCartesian = griddata((kxOriginal, kyOriginal, kzOriginal), np.reshape(kSpace[:, 3], -1),
+                                    (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
+
+            self.k_space = np.reshape(valCartesian, (nPoints[2], nPoints[1], nPoints[0]))
+
+        else:
+            # Extract the k-space data from the loaded .mat file
+            self.k_space = mat_data['kSpace3D']
 
         # Compute the absolute value of the k-space data
         k_space_absolute = np.abs(self.k_space)
@@ -45,8 +65,11 @@ class ToolBarController(ToolBarWidget):
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
+        print(len(self.main.history_controller.hist_dict))
+        print(self.main.history_controller.hist_dict.keys())
+
         # Update the operations history with the "KSpace" operation
-        self.main.history_controller.uptadeOperationsHist(self.main.history_controller.matrix_infos, "Kspace")
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Kspace")
 
     def loadFile(self):
         # Open a file dialog to select a .mat file and return its path

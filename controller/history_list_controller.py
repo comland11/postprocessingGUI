@@ -23,16 +23,10 @@ class HistoryListController(HistoryListWidget):
         # Update the displayed image based on the selected item in the history list
         selected_text = item.text()
         if selected_text in self.hist_dict.keys():
-            value = self.hist_dict.get(selected_text)
-            self.main.image_view_widget.setImage(value)
-        if "BM4D" not in selected_text:
-            self.main.bm4d_slider.setVisible(False)
-            self.main.bm4d_slider
-        else:
-            self.main.bm4d_slider.setVisible(True)
+            self.main.image_view_widget.main_matrix = self.hist_dict.get(selected_text)
+            self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
 
-
-    def uptadeOperationsHist(self, infos, text):
+    def updateOperationsHist(self, infos, text):
         # Update the operations history dictionary with the given information
         if len(self.operations_dict) == 0:
             self.operations_dict[infos] = [text]
@@ -47,6 +41,7 @@ class HistoryListController(HistoryListWidget):
         self.main.history_widget.clear()
         selected_text = item.text()
         values = self.operations_dict.get(selected_text, [])
+        print(values)
 
         for value in values:
             self.main.history_widget.addItem(value)

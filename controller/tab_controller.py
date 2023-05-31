@@ -33,6 +33,9 @@ class TabController(TabWidget):
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
+        print(len(self.main.history_controller.hist_dict))
+        print(self.main.history_controller.hist_dict.keys())
+
 
         # Update the operations history with the "FFT" operation
-        self.main.history_controller.uptadeOperationsHist(self.main.history_controller.matrix_infos, "FFT")
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "FFT")

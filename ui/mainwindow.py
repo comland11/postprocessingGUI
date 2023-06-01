@@ -1,8 +1,10 @@
 import sys
 import qdarkstyle
+from PyQt5.QtCore import QThreadPool
 
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar
 
+from controller.console_controller import ConsoleController
 from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
@@ -22,6 +24,9 @@ class MainWindow(QMainWindow):
         # Set window parameters
         self.setWindowTitle('Test')
         self.setGeometry(0, 0, 1100, 800)
+
+        # Threadpool for parallel running
+        self.threadpool = QThreadPool()
 
         # Status bar and a menu bar adding
         self.setStatusBar(QStatusBar(self))
@@ -64,10 +69,14 @@ class MainWindow(QMainWindow):
         # Tabar adding
         self.tab_controller = TabController(parent=self)
         self.left_layout.addWidget(self.tab_controller)
-        self.tab_controller.setMaximumSize(500, 1000)
+
 
         self.postprocessing_controller = PostProcessingTabController(parent=self)
         self.tab_controller.postprocessing_layout.addWidget(self.postprocessing_controller)
+
+        # Console
+        self.console = ConsoleController()
+        self.left_layout.addWidget(self.console)
 
         self.show()
 

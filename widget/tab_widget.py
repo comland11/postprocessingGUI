@@ -6,6 +6,8 @@ class TabWidget(QTabWidget):
         super(TabWidget, self).__init__(*args, **kwargs)
         self.main = parent
 
+        self.setMaximumWidth(400)
+
         # Tabs
         preprocessing_tab = QWidget()
         reconstruction_tab = QWidget()

@@ -47,12 +47,8 @@ class PostProcessingTabController(PostProcessingTabWidget):
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        print(len(self.main.history_controller.hist_dict))
-        print(self.main.history_controller.hist_dict.keys())
-
         # Add the "BM4D" operation to the history widget and update the operations history
 
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "BM4D - Standard "
                                                                                                      "deviation : " +
                                                           str(sigma_psd))
-        print(self.main.history_controller.hist_dict)

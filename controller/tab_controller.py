@@ -11,7 +11,6 @@ class TabController(TabWidget):
         self.image_fft_button.clicked.connect(self.fftReconstruction)
 
     def fftReconstruction(self):
-
         # Get the k-space data from the toolbar controller
         k_space = self.main.toolbar_controller.k_space
 
@@ -33,9 +32,6 @@ class TabController(TabWidget):
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
-        print(len(self.main.history_controller.hist_dict))
-        print(self.main.history_controller.hist_dict.keys())
-
 
         # Update the operations history with the "FFT" operation
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "FFT")

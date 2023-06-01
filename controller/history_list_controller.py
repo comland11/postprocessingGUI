@@ -20,11 +20,15 @@ class HistoryListController(HistoryListWidget):
         self.addItem(self.matrix_infos)
 
     def updateHistoryFigure(self, item):
+        print(self.operations_dict)
         # Update the displayed image based on the selected item in the history list
         selected_text = item.text()
         if selected_text in self.hist_dict.keys():
             self.main.image_view_widget.main_matrix = self.hist_dict.get(selected_text)
             self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
+
+        self.move_key_and_values_to_end(self.operations_dict, selected_text)
+        print(self.operations_dict)
 
     def updateOperationsHist(self, infos, text):
         # Update the operations history dictionary with the given information
@@ -41,7 +45,16 @@ class HistoryListController(HistoryListWidget):
         self.main.history_widget.clear()
         selected_text = item.text()
         values = self.operations_dict.get(selected_text, [])
-        print(values)
 
         for value in values:
             self.main.history_widget.addItem(value)
+
+    def move_key_and_values_to_end(self, dictionary, key):
+        # Check if the key exists in the dictionary
+        if key in dictionary:
+            # Create a list to store the values associated with the key
+            values = dictionary[key]
+            # Remove the key and its values from the dictionary
+            del dictionary[key]
+            # Add the key and its values to the end of the dictionary
+            dictionary[key] = values

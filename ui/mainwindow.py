@@ -1,8 +1,11 @@
 import sys
 import qdarkstyle
+from PyQt5.QtCore import QThreadPool
 
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar
 
+from controller.console_controller import ConsoleController
+from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
 from controller.toolbar_controller import ToolBarController
@@ -22,7 +25,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Test')
         self.setGeometry(0, 0, 1100, 800)
 
-        # Add a status bar and a menu bar
+        # Threadpool for parallel running
+        self.threadpool = QThreadPool()
+
+        # Status bar and a menu bar adding
         self.setStatusBar(QStatusBar(self))
         self.setMenuBar(QMenuBar(self))
 
@@ -40,11 +46,11 @@ class MainWindow(QMainWindow):
         self.right_layout = QVBoxLayout()
         self.main_layout.addLayout(self.right_layout)
 
-        # Add an image view
+        # Image view adding
         self.image_view_widget = ImageViewController(parent=self)
         self.right_layout.addWidget(self.image_view_widget)
 
-        # Add a layout for history
+        # History adding
         self.history_layout = QHBoxLayout()
         self.right_layout.addLayout(self.history_layout)
 
@@ -56,12 +62,21 @@ class MainWindow(QMainWindow):
         self.history_layout.addWidget(self.history_widget)
         self.history_widget.setMaximumHeight(200)
 
+        # Toolbar adding
         self.toolbar_controller = ToolBarController(parent=self)
         self.addToolBar(self.toolbar_controller)
 
+        # Tabar adding
         self.tab_controller = TabController(parent=self)
         self.left_layout.addWidget(self.tab_controller)
-        self.tab_controller.setMaximumSize(500, 1000)
+
+
+        self.postprocessing_controller = PostProcessingTabController(parent=self)
+        self.tab_controller.postprocessing_layout.addWidget(self.postprocessing_controller)
+
+        # Console
+        self.console = ConsoleController()
+        self.left_layout.addWidget(self.console)
 
         self.show()
 

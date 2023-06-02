@@ -9,6 +9,38 @@ class TabController(TabWidget):
 
         # Connect the image_fft_button clicked signal to the fftReconstruction method
         self.image_fft_button.clicked.connect(self.fftReconstruction)
+        self.image_cosbell_button.clicked.connect(self.cosbellFilter)
+
+    def cosbellFilter(self):
+        order = 0.4
+        mat_data = self.main.toolbar_controller.mat_data
+
+        self.sampled = mat_data['sampled']
+        nPoints = np.reshape(mat_data['nPoints'], -1)
+
+        fov = mat_data['fov']
+        kMax = (nPoints / fov) / 2
+        kMax = kMax[:, 0]
+        k = np.reshape(self.sampled[:, 0], nPoints)
+        teta = k / kMax
+        s = np.reshape(self.sampled[:, 3], nPoints)
+        cosbell = s * (np.cos(teta * (np.pi / 2)) ** order)
+        cosbell = abs(cosbell)
+
+        self.main.image_view_widget.main_matrix = cosbell
+
+        # Update the image view widget with the new main matrix
+        self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
+
+        # Add the "FFT" operation to the history widget
+        self.main.history_controller.addItemWithTimestamp("Cosbell")
+
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        # Update the operations history with the "FFT" operation
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Cosbell")
 
     def fftReconstruction(self):
         # Get the k-space data from the toolbar controller

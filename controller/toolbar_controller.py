@@ -26,13 +26,13 @@ class ToolBarController(ToolBarWidget):
 
         # Prompt the user to select a .mat file
         file_path = self.loadFile()
-        mat_data = sp.io.loadmat(file_path)
+        self.mat_data = sp.io.loadmat(file_path)
 
-        if mat_data['seqName'] == 'PETRA':
-            kSpace = mat_data['kSpaceRaw']
-            nPoints = np.reshape(mat_data['nPoints'], -1)
-            kCartesian = mat_data['kCartesian']
-            # self.k_space = mat_data['kSpaceArray']
+        if self.mat_data['seqName'] == 'PETRA':
+            kSpace = self.mat_data['kSpaceRaw']
+            nPoints = np.reshape(self.mat_data['nPoints'], -1)
+            print(nPoints)
+            kCartesian = self.mat_data['kCartesian']
 
             kxOriginal = np.reshape(np.real(kSpace[:, 0]), -1)
             kyOriginal = np.reshape(np.real(kSpace[:, 1]), -1)
@@ -44,10 +44,11 @@ class ToolBarController(ToolBarWidget):
                                     (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
 
             self.k_space = np.reshape(valCartesian, (nPoints[2], nPoints[1], nPoints[0]))
+            print(nPoints)
 
         else:
             # Extract the k-space data from the loaded .mat file
-            self.k_space = mat_data['kSpace3D']
+            self.k_space = self.mat_data['kSpace3D']
 
         # Compute the absolute value of the k-space data
         k_space_absolute = np.abs(self.k_space)

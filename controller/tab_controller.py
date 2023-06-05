@@ -19,12 +19,12 @@ class TabController(TabWidget):
         nPoints = np.reshape(mat_data['nPoints'], -1)
 
         fov = mat_data['fov']
-        kMax = (nPoints / fov) / 2
-        kMax = kMax[:, 0]
+        kmax = (nPoints / fov) / 2
+        kmax = kmax[:, 0]
         k = np.reshape(self.sampled[:, 0], nPoints)
-        teta = k / kMax
+        theta = k / kmax
         s = np.reshape(self.sampled[:, 3], nPoints)
-        cosbell = s * (np.cos(teta * (np.pi / 2)) ** order)
+        cosbell = s * (np.cos(theta * (np.pi / 2)) ** order)
         cosbell = abs(cosbell)
 
         self.main.image_view_widget.main_matrix = cosbell

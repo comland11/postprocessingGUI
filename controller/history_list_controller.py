@@ -1,5 +1,6 @@
 import datetime as dt
 
+import numpy as np
 from PyQt5.QtWidgets import QMenu
 from widget.history_list_widget import HistoryListWidget
 
@@ -26,9 +27,9 @@ class HistoryListController(HistoryListWidget):
         selected_text = item.text()
         if selected_text in self.hist_dict.keys():
             self.main.image_view_widget.main_matrix = self.hist_dict.get(selected_text)
-            self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
+            self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
-        self.move_key_and_values_to_end(self.operations_dict, selected_text)
+        self.moveKeyAndValuesToEnd(self.operations_dict, selected_text)
 
     def updateOperationsHist(self, infos, text):
         # Update the operations history dictionary with the given information
@@ -49,7 +50,7 @@ class HistoryListController(HistoryListWidget):
         for value in values:
             self.main.history_widget.addItem(value)
 
-    def move_key_and_values_to_end(self, dictionary, key):
+    def moveKeyAndValuesToEnd(self, dictionary, key):
         # Check if the key exists in the dictionary
         if key in dictionary:
             # Create a list to store the values associated with the key
@@ -63,9 +64,12 @@ class HistoryListController(HistoryListWidget):
         context_menu = QMenu(self)
         if self.selectedItems():
             delete_action = context_menu.addAction('Delete')
+            add_action = context_menu.addAction('Add image')
             action = context_menu.exec_(self.mapToGlobal(event.pos()))
             if action == delete_action:
                 self.deleteSelectedItem()
+            if action == add_action:
+                self.addImage()
 
     def deleteSelectedItem(self):
         selected_items = self.selectedItems()
@@ -82,3 +86,14 @@ class HistoryListController(HistoryListWidget):
 
         if selected_item.text() in self.operations_dict:
             del self.operations_dict[selected_item.text()]
+
+    def addImage(self):
+        selected_items = self.selectedItems()
+        if selected_items:
+            selected_item = selected_items[0]
+
+            text = selected_item.text()
+            if text in self.hist_dict:
+                image = self.hist_dict.get(text)
+                self.main.image_view_widget.setImage([np.abs(self.main.image_view_widget.main_matrix), np.abs(image)])
+

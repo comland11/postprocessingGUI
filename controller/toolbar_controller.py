@@ -51,13 +51,13 @@ class ToolBarController(ToolBarWidget):
             self.k_space = self.mat_data['kSpace3D']
 
         # Compute the absolute value of the k-space data
-        k_space_absolute = np.abs(self.k_space)
+        # k_space_absolute = np.abs(self.k_space)
 
         # Update the main matrix of the image view widget with the absolute k-space data
-        self.main.image_view_widget.main_matrix = k_space_absolute
+        self.main.image_view_widget.main_matrix = self.k_space
 
         # Update the image view widget to display the new main matrix
-        self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
+        self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
         # Add the "KSpace" operation to the history
         self.main.history_controller.addItemWithTimestamp("KSpace")

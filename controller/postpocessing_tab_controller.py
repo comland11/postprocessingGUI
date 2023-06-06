@@ -16,7 +16,7 @@ class PostProcessingTabController(PostProcessingTabWidget):
 
     def bm4dFilter(self):
         # Get the image data from the fft in the main tab controller
-        image_data = self.main.image_view_widget.main_matrix.astype(float)
+        image_data = np.abs(self.main.image_view_widget.main_matrix).astype(float)
 
         # Rescale the image between 0 and 100
         image_rescaled = np.interp(image_data, (np.min(image_data), np.max(image_data)), (0, 100))

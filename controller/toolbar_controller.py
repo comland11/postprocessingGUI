@@ -31,7 +31,6 @@ class ToolBarController(ToolBarWidget):
         if self.mat_data['seqName'] == 'PETRA':
             kSpace = self.mat_data['kSpaceRaw']
             nPoints = np.reshape(self.mat_data['nPoints'], -1)
-            print(nPoints)
             kCartesian = self.mat_data['kCartesian']
 
             kxOriginal = np.reshape(np.real(kSpace[:, 0]), -1)
@@ -44,16 +43,12 @@ class ToolBarController(ToolBarWidget):
                                     (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
 
             self.k_space = np.reshape(valCartesian, (nPoints[2], nPoints[1], nPoints[0]))
-            print(nPoints)
 
         else:
             # Extract the k-space data from the loaded .mat file
             self.k_space = self.mat_data['kSpace3D']
 
-        # Compute the absolute value of the k-space data
-        # k_space_absolute = np.abs(self.k_space)
-
-        # Update the main matrix of the image view widget with the absolute k-space data
+        # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = self.k_space
 
         # Update the image view widget to display the new main matrix
@@ -66,7 +61,7 @@ class ToolBarController(ToolBarWidget):
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history with the "KSpace" operation
+        # Update the operations history
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Kspace")
 
     def loadFile(self):

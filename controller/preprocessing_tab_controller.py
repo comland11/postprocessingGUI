@@ -13,8 +13,11 @@ class PreProcessingTabController(PreProcessingTabWidget):
     def cosbellFilter(self):
         text = "Cosbell :"
         order = float(self.order_field.text())
+
+        # Get the mat data from the loaded .mat file in the main toolbar controller
         mat_data = self.main.toolbar_controller.mat_data
 
+        # Extract datas data from the loaded .mat file
         self.sampled = mat_data['sampled']
         nPoints = np.reshape(mat_data['nPoints'], -1)
 
@@ -34,21 +37,21 @@ class PreProcessingTabController(PreProcessingTabWidget):
         theta = k / kmax
         s = np.reshape(self.sampled[:, 3], nPoints[-1::-1])
         cosbell = s * (np.cos(theta * (np.pi / 2)) ** order)
-        # abs_cosbell = np.abs(cosbell)
 
+        # Update the main matrix of the image view widget with the cosbell data
         self.main.image_view_widget.main_matrix = cosbell
 
         # Update the image view widget with the new main matrix
         self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
-        # Add the "FFT" operation to the history widget
+        # Add the "Cosbell" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("Cosbell")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history with the "FFT" operation
+        # Update the operations history
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, text
-                                                          + " Filter order : " +
+                                                          + " Order : " +
                                                           str(order))

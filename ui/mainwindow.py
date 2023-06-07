@@ -2,7 +2,8 @@ import sys
 import qdarkstyle
 from PyQt5.QtCore import QThreadPool
 
-from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar
+from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar, \
+    QSplitter
 
 from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.preprocessing_tab_controller import PreProcessingTabController
@@ -47,9 +48,12 @@ class MainWindow(QMainWindow):
         self.right_layout = QVBoxLayout()
         self.main_layout.addLayout(self.right_layout)
 
+        self.image_view_splitter = QSplitter()
+        self.right_layout.addWidget(self.image_view_splitter)
+
         # Image view adding
         self.image_view_widget = ImageViewController(parent=self)
-        self.right_layout.addWidget(self.image_view_widget)
+        self.image_view_splitter.addWidget(self.image_view_widget)
 
         # History adding
         self.history_layout = QHBoxLayout()

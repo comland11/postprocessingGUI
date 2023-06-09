@@ -71,7 +71,7 @@ class HistoryListController(HistoryListWidget):
         context_menu = QMenu(self)
         if self.selectedItems():
             delete_action = context_menu.addAction('Delete')
-            add_action = context_menu.addAction('Add image')
+            add_action = context_menu.addAction('New image')
             action = context_menu.exec_(self.mapToGlobal(event.pos()))
             if action == delete_action:
                 self.deleteSelectedItem()

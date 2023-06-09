@@ -21,7 +21,7 @@ class PostProcessingTabWidget(QTabWidget):
         self.run_filter_button = QPushButton('Run filter')
 
         # CheckBox
-        self.auto_checkbox = QCheckBox('Automatic')
+        self.auto_checkbox = QCheckBox('Auto')
 
         # Text Field
         self.std_text_field = QLineEdit()

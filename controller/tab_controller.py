@@ -11,20 +11,17 @@ class TabController(TabWidget):
         self.image_fft_button.clicked.connect(self.fftReconstruction)
 
     def fftReconstruction(self):
-        # Get the k-space data from the toolbar controller
-        k_space = self.main.toolbar_controller.k_space
+        # Get the k-space data from the main matrix
+        k_space = self.main.image_view_widget.main_matrix
 
         # Perform inverse FFT shift, inverse FFT, and inverse FFT shift to reconstruct the image in the spatial domain
         image_fft = np.fft.ifftshift(np.fft.ifftn(np.fft.ifftshift(k_space)))
 
-        # Compute the amplitude of the reconstructed image
-        self.image_amp = np.abs(image_fft)
-
-        # Update the main matrix of the image view widget with the amplitude data
-        self.main.image_view_widget.main_matrix = self.image_amp
+        # Update the main matrix of the image view widget with the image fft data
+        self.main.image_view_widget.main_matrix = image_fft
 
         # Update the image view widget with the new main matrix
-        self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
+        self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
         # Add the "FFT" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("FFT")
@@ -33,5 +30,5 @@ class TabController(TabWidget):
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history with the "FFT" operation
+        # Update the operations history
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "FFT")

@@ -31,6 +31,9 @@ class HistoryListController(HistoryListWidget):
         if selected_text in self.hist_dict.keys():
             self.main.image_view_widget.main_matrix = self.hist_dict.get(selected_text)
             self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
+        if self.image_view is not None:
+            self.image_view.close()
+            self.image_view = None
 
         self.moveKeyAndValuesToEnd(self.operations_dict, selected_text)
 
@@ -86,8 +89,9 @@ class HistoryListController(HistoryListWidget):
         if selected_item.text() in self.hist_dict:
             # Remove the selected item from the historical images dictionary
             del self.hist_dict[selected_item.text()]
-            self.main.image_view_widget.clear()
             self.main.history_widget.clear()
+            self.main.image_view_widget.clear()
+            self.image_view.clear()
 
         if selected_item.text() in self.operations_dict:
             # Remove the selected item from the operations history dictionary
@@ -98,17 +102,13 @@ class HistoryListController(HistoryListWidget):
         selected_items = self.selectedItems()
         if selected_items:
             selected_item = selected_items[0]
-
             text = selected_item.text()
             if text in self.hist_dict:
                 image = self.hist_dict.get(text)
 
                 # Check if an instance of ImageViewWidget already exists
-                if self.image_view and isinstance(self.image_view, ImageViewWidget):
-                    # Update the image in the existing instance
-                    self.image_view.setImage(np.abs(image))
-                else:
-                    # Create a new instance of ImageViewWidget
+                if self.image_view is None:
                     self.image_view = ImageViewWidget(parent=self.main)
                     self.main.image_view_splitter.addWidget(self.image_view)
-                    self.image_view.setImage(np.abs(image))
+
+                self.image_view.setImage(np.abs(image))

@@ -27,26 +27,27 @@ class ToolBarController(ToolBarWidget):
         # Prompt the user to select a .mat file
         file_path = self.loadFile()
         self.mat_data = sp.io.loadmat(file_path)
+        nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
         if self.mat_data['seqName'] == 'PETRA':
-            kSpace = self.mat_data['kSpaceRaw']
-            nPoints = np.reshape(self.mat_data['nPoints'], -1)
             kCartesian = self.mat_data['kCartesian']
+            self.k_space_raw = self.mat_data['kSpaceRaw']
 
-            kxOriginal = np.reshape(np.real(kSpace[:, 0]), -1)
-            kyOriginal = np.reshape(np.real(kSpace[:, 1]), -1)
-            kzOriginal = np.reshape(np.real(kSpace[:, 2]), -1)
+            kxOriginal = np.reshape(np.real(self.k_space_raw[:, 0]), -1)
+            kyOriginal = np.reshape(np.real(self.k_space_raw[:, 1]), -1)
+            kzOriginal = np.reshape(np.real(self.k_space_raw[:, 2]), -1)
             kxTarget = np.reshape(kCartesian[:, 0], -1)
             kyTarget = np.reshape(kCartesian[:, 1], -1)
             kzTarget = np.reshape(kCartesian[:, 2], -1)
-            valCartesian = griddata((kxOriginal, kyOriginal, kzOriginal), np.reshape(kSpace[:, 3], -1),
+            valCartesian = griddata((kxOriginal, kyOriginal, kzOriginal), np.reshape(self.k_space_raw[:, 3], -1),
                                     (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
 
             self.k_space = np.reshape(valCartesian, (nPoints[2], nPoints[1], nPoints[0]))
 
         else:
             # Extract the k-space data from the loaded .mat file
-            self.k_space = self.mat_data['kSpace3D']
+            self.k_space = self.mat_data['sampled']
+            self.k_space = np.reshape(self.k_space[:, 3], nPoints[-1::-1])
 
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = self.k_space

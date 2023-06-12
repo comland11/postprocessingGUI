@@ -1,5 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QGridLayout, QHBoxLayout, QCheckBox, QLabel, \
-    QLineEdit
+from PyQt5.QtWidgets import QTabWidget, QWidget, QVBoxLayout
 
 
 class TabWidget(QTabWidget):
@@ -19,16 +18,11 @@ class TabWidget(QTabWidget):
         self.addTab(reconstruction_tab, 'Reconstruction')
         self.addTab(postprocessing_tab, 'PostProcessing')
 
-        self.image_fft_button = QPushButton('FFT')
-        self.image_art_button = QPushButton('ART')
-
         # Preprocessing layout
         self.preprocessing_layout = QVBoxLayout(preprocessing_tab)
 
         # Reconstruction layout
         self.reconstruction_layout = QVBoxLayout(reconstruction_tab)
-        self.reconstruction_layout.addWidget(self.image_fft_button)
-        self.reconstruction_layout.addWidget(self.image_art_button)
 
         # Postprocessing layout
         self.postprocessing_layout = QVBoxLayout(postprocessing_tab)

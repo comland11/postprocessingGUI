@@ -44,10 +44,10 @@ class ToolBarController(ToolBarWidget):
 
             self.k_space = np.reshape(valCartesian, (nPoints[2], nPoints[1], nPoints[0]))
 
-        else:
+        else:  # Cartesian
             # Extract the k-space data from the loaded .mat file
-            self.k_space = self.mat_data['sampled']
-            self.k_space = np.reshape(self.k_space[:, 3], nPoints[-1::-1])
+            self.k_space_raw = self.mat_data['sampled']
+            self.k_space = np.reshape(self.k_space_raw[:, 3], nPoints[-1::-1])
 
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = self.k_space

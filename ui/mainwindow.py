@@ -5,6 +5,7 @@ from PyQt5.QtCore import QThreadPool
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar, \
     QSplitter
 
+from controller.reconstruction_tab_controller import ReconstructionTabController
 from controller.postpocessing_tab_controller import PostProcessingTabController
 from controller.preprocessing_tab_controller import PreProcessingTabController
 from controller.history_list_controller import HistoryListController
@@ -80,6 +81,9 @@ class MainWindow(QMainWindow):
 
         self.preprocessing_controller = PreProcessingTabController(parent=self)
         self.tab_controller.preprocessing_layout.addWidget(self.preprocessing_controller)
+
+        self.reconstruction_controller = ReconstructionTabController(parent=self)
+        self.tab_controller.reconstruction_layout.addWidget(self.reconstruction_controller)
 
         # Console
         self.console = ConsoleController()

@@ -11,7 +11,7 @@ class ReconstructionTabWidget(QTabWidget):
         self.image_art_button = QPushButton('ART')
 
         # Labels
-        self.niter_label = QLabel('Number of iteration')
+        self.niter_label = QLabel('Number of iterations')
         self.lambda_label = QLabel('Lambda')
 
         # Text Fields

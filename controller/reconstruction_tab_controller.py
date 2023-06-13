@@ -1,3 +1,5 @@
+import threading
+
 import numpy as np
 
 from widget.reconstruction_tab_widget import ReconstructionTabWidget
@@ -12,6 +14,10 @@ class ReconstructionTabController(ReconstructionTabWidget):
         self.image_art_button.clicked.connect(self.artReconstruction)
 
     def fftReconstruction(self):
+        thread = threading.Thread(target=self.runFftReconstruction)
+        thread.start()
+
+    def runFftReconstruction(self):
         # Get the k-space data from the main matrix
         k_space = self.main.image_view_widget.main_matrix
 
@@ -20,9 +26,6 @@ class ReconstructionTabController(ReconstructionTabWidget):
 
         # Update the main matrix of the image view widget with the image fft data
         self.main.image_view_widget.main_matrix = image_fft
-
-        # Update the image view widget with the new main matrix
-        self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
         # Add the "FFT" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("FFT")
@@ -35,15 +38,23 @@ class ReconstructionTabController(ReconstructionTabWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "FFT")
 
     def artReconstruction(self):
-        # Get the mat data from the loaded .mat file in the main toolbar controller
+        thread = threading.Thread(target=self.runArtReconstruction)
+        thread.start()
+
+    def runArtReconstruction(self):
+        #  Get the mat data from the loaded .mat file in the main toolbar controller
         mat_data = self.main.toolbar_controller.mat_data
+
+        print('The ART is applying')
 
         # Extract datas data from the loaded .mat file
         self.sampled = self.main.toolbar_controller.k_space_raw
-        fov = np.reshape(mat_data['fov'], -1)
+        fov = np.reshape(mat_data['fov'], -1)*1e-2
         nPoints = np.reshape(mat_data['nPoints'], -1)
-        s = np.reshape(self.sampled[:, 3], nPoints[-1::-1])
-        rho = np.zeros((nPoints[0]*nPoints[1]*nPoints[2]))
+        s = self.sampled[:, 3]
+        rho = np.zeros((nPoints[0] * nPoints[1] * nPoints[2]))
+        lbda = float(self.lambda_text_field.text())
+        niter = int(self.niter_text_field.text())
 
         x = np.linspace(-fov[0] / 2, fov[0] / 2, nPoints[0])
         y = np.linspace(-fov[1] / 2, fov[1] / 2, nPoints[1])
@@ -55,40 +66,35 @@ class ReconstructionTabController(ReconstructionTabWidget):
         y = np.reshape(y, -1)
         z = np.reshape(z, -1)
 
-        NZ = nPoints[2]
-        kk = list(range(NZ))
-        FoVz = fov[2]
-        dz2 = FoVz / NZ
-        a = (-(NZ - 1) / 2 + kk) * dz2
+        for n in range(0, niter):
+            # for t in np.random.permutation(range(len(s))):
+            for t in range(len(s)):
+                mt_z = np.exp(-1j * 2 * np.pi * self.sampled[t, 2] * z)
+                mt_y = np.exp(+1j * 2 * np.pi * self.sampled[t, 1] * y)
+                mt_x = np.exp(-1j * 2 * np.pi * self.sampled[t, 0] * x)
 
-        Ny = nPoints[1]
-        ky = list(range(Ny))
-        FoVy = fov[1]
-        dzy = FoVy / Ny
-        b = (-(Ny - 1) / 2 + ky) * dzy
+                mt = mt_y * mt_z * mt_x
 
-        Nx = nPoints[0]
-        kx = list(range(Nx))
-        FoVx = fov[0]
-        dzx = FoVx / Nx
-        c = (-(Nx - 1) / 2 + kx) * dzx
+                norm = np.dot(mt, np.conj(mt))
+                delta_t = (-s[t] + np.dot(mt, rho)) / norm
 
+                rho = rho - lbda * delta_t * np.conj(mt)
 
-        for t in range(len(s)):
-            Mt_k = np.exp(-1j * (2 * np.pi * self.sampled[t, 2] * z))
-            Mt_j = np.exp(-1j * (2 * np.pi * self.sampled[t, 1] * y))
+                print("Iteration %i of %i" % (t, len(s)))
 
-            Mt_jk = np.reshape((np.transpose(Mt_j) * Mt_k), (1, -1))
-            # Mt = np.reshape((np.exp(-1j * (2 * np.pi * self.sampled[t, 0] * x)) * Mt_jk, (1,  nPoints[0] * nPoints[1] * nPoints[2])))
-            # M = np.exp(-1j * (2 * np.pi * self.sampled[t, 0] * x)) * Mt_k * Mt_j
-            Mt = np.reshape(np.exp(-1j * (2 * np.pi * self.sampled[t, 0] * x)) * Mt_jk, (1, -1))
+        rho = np.reshape(rho, nPoints[-1::-1])
 
-            norm = np.matmul(Mt, np.transpose(Mt))
-            delta_t = (s[t] - np.sum(Mt * rho)) / norm
+        print('The ART is applied')
 
-            delta_t_conj_Mt = np.reshape(np.abs(delta_t) * np.conj(Mt), rho.shape)
-            rho = rho + delta_t_conj_Mt
+        # Update the main matrix of the image view widget with the cosbell data
+        self.main.image_view_widget.main_matrix = rho
 
-            # rho = rho + 1 * np.abs(delta_t) * np.conj(Mt)  # Effectuer l'addition
+        # Add the "Cosbell" operation to the history widget
+        self.main.history_controller.addItemWithTimestamp("ART")
 
-            self.main.image_view_widget.setImage(np.abs(rho))
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        # Update the operations history
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "ART")

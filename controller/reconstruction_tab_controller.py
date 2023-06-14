@@ -67,8 +67,8 @@ class ReconstructionTabController(ReconstructionTabWidget):
         z = np.reshape(z, -1)
 
         for n in range(0, niter):
-            # for t in np.random.permutation(range(len(s))):
-            for t in range(len(s)):
+            for t in np.random.permutation(range(len(s))):
+            # for t in range(len(s)):
                 mt_z = np.exp(-1j * 2 * np.pi * self.sampled[t, 2] * z)
                 mt_y = np.exp(+1j * 2 * np.pi * self.sampled[t, 1] * y)
                 mt_x = np.exp(-1j * 2 * np.pi * self.sampled[t, 0] * x)

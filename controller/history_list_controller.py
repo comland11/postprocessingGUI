@@ -91,7 +91,9 @@ class HistoryListController(HistoryListWidget):
             del self.hist_dict[selected_item.text()]
             self.main.history_widget.clear()
             self.main.image_view_widget.clear()
-            self.image_view.clear()
+            if self.image_view is not None:
+                self.image_view.close()
+                self.image_view = None
 
         if selected_item.text() in self.operations_dict:
             # Remove the selected item from the operations history dictionary

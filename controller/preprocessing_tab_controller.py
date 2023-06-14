@@ -24,10 +24,8 @@ class PreProcessingTabController(PreProcessingTabWidget):
         mat_data = self.main.toolbar_controller.mat_data
 
         # Extract datas data from the loaded .mat file
-        self.sampled = mat_data['sampled']
+        self.sampled = self.main.toolbar_controller.k_space_raw
         nPoints = np.reshape(mat_data['nPoints'], -1)
-
-        print('The Cosbell filter is applying')
 
         if self.readout_checkbox.isChecked():
             k = np.reshape(self.sampled[:, 0], nPoints[-1::-1])
@@ -60,4 +58,3 @@ class PreProcessingTabController(PreProcessingTabWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, text
                                                           + " Order : " +
                                                           str(order))
-        print('The Cosbell filter is applied')

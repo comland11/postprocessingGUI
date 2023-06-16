@@ -1,4 +1,5 @@
 import threading
+from datetime import time
 
 import numpy as np
 
@@ -46,6 +47,7 @@ class ReconstructionTabController(ReconstructionTabWidget):
         mat_data = self.main.toolbar_controller.mat_data
 
         print('The ART is applying')
+        debut = time()
 
         # Extract datas data from the loaded .mat file
         self.sampled = self.main.toolbar_controller.k_space_raw
@@ -67,13 +69,14 @@ class ReconstructionTabController(ReconstructionTabWidget):
         z = np.reshape(z, -1)
 
         for n in range(0, niter):
-            for t in np.random.permutation(range(len(s))):
-            # for t in range(len(s)):
-                mt_z = np.exp(-1j * 2 * np.pi * self.sampled[t, 2] * z)
-                mt_y = np.exp(+1j * 2 * np.pi * self.sampled[t, 1] * y)
-                mt_x = np.exp(-1j * 2 * np.pi * self.sampled[t, 0] * x)
+            # for t in np.random.permutation(range(len(s))):
+            for t in range(len(s)):
+                # mt_z = np.exp(-1j * 2 * np.pi * self.sampled[t, 2] * z)
+                # mt_y = np.exp(+1j * 2 * np.pi * self.sampled[t, 1] * y)
+                # mt_x = np.exp(-1j * 2 * np.pi * self.sampled[t, 0] * x)
 
-                mt = mt_y * mt_z * mt_x
+                # mt = mt_y * mt_z * mt_x
+                mt = np.exp(2 * np.pi * (-1j * self.sampled[t, 0] * x + 1j * self.sampled[t, 1] * y - 1j * self.sampled[t, 2] * z))
 
                 norm = np.dot(mt, np.conj(mt))
                 delta_t = (-s[t] + np.dot(mt, rho)) / norm

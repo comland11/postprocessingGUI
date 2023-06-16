@@ -11,9 +11,11 @@ class PreProcessingTabWidget(QTabWidget):
 
         # Text Field
         self.order_field = QLineEdit()
+        self.order_field.setText('1')
 
         # Checkbox
         self.readout_checkbox = QCheckBox('Readout')
+        self.readout_checkbox.setChecked(True)
         self.phase_checkbox = QCheckBox('Phase')
         self.slice_checkbox = QCheckBox('Slice')
 

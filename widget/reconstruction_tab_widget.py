@@ -16,7 +16,9 @@ class ReconstructionTabWidget(QTabWidget):
 
         # Text Fields
         self.niter_text_field = QLineEdit()
+        self.niter_text_field.setText('1')
         self.lambda_text_field = QLineEdit()
+        self.lambda_text_field.setText('1')
 
         # Layouts
         self.art_layout = QHBoxLayout()

@@ -1,5 +1,4 @@
 import threading
-from datetime import time
 
 import numpy as np
 
@@ -47,7 +46,6 @@ class ReconstructionTabController(ReconstructionTabWidget):
         mat_data = self.main.toolbar_controller.mat_data
 
         print('The ART is applying')
-        debut = time()
 
         # Extract datas data from the loaded .mat file
         self.sampled = self.main.toolbar_controller.k_space_raw

@@ -1,3 +1,5 @@
+import threading
+
 import bm4d
 import numpy as np
 
@@ -15,6 +17,10 @@ class PostProcessingTabController(PostProcessingTabWidget):
         self.denoised_image = None
 
     def bm4dFilter(self):
+        thread = threading.Thread(target=self.RunBm4dFilter)
+        thread.start()
+
+    def RunBm4dFilter(self):
         # Get the image data from the main matrix
         image_data = np.abs(self.main.image_view_widget.main_matrix).astype(float)
 
@@ -31,6 +37,8 @@ class PostProcessingTabController(PostProcessingTabWidget):
             std_value = float(self.std_text_field.text())
             sigma_psd = std_value
 
+        print('The BM4D filter is applying')
+
         # Apply the BM4D filter to the rescaled image
         denoised_rescaled = bm4d.bm4d(image_rescaled, sigma_psd=sigma_psd)
 
@@ -40,9 +48,6 @@ class PostProcessingTabController(PostProcessingTabWidget):
 
         # Update the main matrix of the image view widget with the denoised image data
         self.main.image_view_widget.main_matrix = denoised_image
-
-        # Update the image view widget with the new main matrix
-        self.main.image_view_widget.setImage(self.main.image_view_widget.main_matrix)
 
         # Add the "BM4D" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("BM4D")
@@ -55,3 +60,4 @@ class PostProcessingTabController(PostProcessingTabWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "BM4D - Standard "
                                                                                                      "deviation : " +
                                                           str(sigma_psd))
+        print('The BM4D filter is applied')

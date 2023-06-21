@@ -71,7 +71,7 @@ class HistoryListController(HistoryListWidget):
         context_menu = QMenu(self)
         if self.selectedItems():
             delete_action = context_menu.addAction('Delete')
-            add_action = context_menu.addAction('Add image')
+            add_action = context_menu.addAction('New image')
             action = context_menu.exec_(self.mapToGlobal(event.pos()))
             if action == delete_action:
                 self.deleteSelectedItem()
@@ -91,7 +91,9 @@ class HistoryListController(HistoryListWidget):
             del self.hist_dict[selected_item.text()]
             self.main.history_widget.clear()
             self.main.image_view_widget.clear()
-            self.image_view.clear()
+            if self.image_view is not None:
+                self.image_view.close()
+                self.image_view = None
 
         if selected_item.text() in self.operations_dict:
             # Remove the selected item from the operations history dictionary

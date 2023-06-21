@@ -1,3 +1,5 @@
+import threading
+
 import numpy as np
 
 from widget.preprocessing_tab_widget import PreProcessingTabWidget
@@ -11,6 +13,10 @@ class PreProcessingTabController(PreProcessingTabWidget):
         self.image_cosbell_button.clicked.connect(self.cosbellFilter)
 
     def cosbellFilter(self):
+        thread = threading.Thread(target=self.RunCosbellFilter)
+        thread.start()
+
+    def RunCosbellFilter(self):
         text = "Cosbell :"
         order = float(self.order_field.text())
 
@@ -18,7 +24,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         mat_data = self.main.toolbar_controller.mat_data
 
         # Extract datas data from the loaded .mat file
-        self.sampled = mat_data['sampled']
+        self.sampled = self.main.toolbar_controller.k_space_raw
         nPoints = np.reshape(mat_data['nPoints'], -1)
 
         if self.readout_checkbox.isChecked():
@@ -41,9 +47,6 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the main matrix of the image view widget with the cosbell data
         self.main.image_view_widget.main_matrix = cosbell
 
-        # Update the image view widget with the new main matrix
-        self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
-
         # Add the "Cosbell" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("Cosbell")
 
@@ -52,6 +55,5 @@ class PreProcessingTabController(PreProcessingTabWidget):
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, text
-                                                          + " Order : " +
-                                                          str(order))
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = [text + " Order : "
+                                                                                                   + str(order)]

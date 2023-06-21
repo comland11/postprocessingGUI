@@ -22,6 +22,7 @@ class PostProcessingTabWidget(QTabWidget):
 
         # CheckBox
         self.auto_checkbox = QCheckBox('Auto')
+        self.auto_checkbox.setChecked(True)
 
         # Text Field
         self.std_text_field = QLineEdit()

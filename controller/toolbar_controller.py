@@ -58,7 +58,8 @@ class ToolBarController(ToolBarWidget):
     def rawDataLoading(self):
         # Load raw data from a .mat file and update the image view widget
 
-        # Clear the history widget, history controller, and history dictionaries
+        # Clear the console, history widget, history controller, and history dictionaries
+        self.main.console.console.clear()
         self.main.history_widget.clear()
         self.main.history_controller.clear()
         self.main.history_controller.hist_dict.clear()

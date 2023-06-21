@@ -55,6 +55,5 @@ class PreProcessingTabController(PreProcessingTabWidget):
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, text
-                                                          + " Order : " +
-                                                          str(order))
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = [text + " Order : "
+                                                                                                   + str(order)]

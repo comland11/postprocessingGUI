@@ -37,7 +37,7 @@ class PostProcessingTabController(PostProcessingTabWidget):
             std_value = float(self.std_text_field.text())
             sigma_psd = std_value
 
-        print('The BM4D filter is applying')
+        print('BM4D is loading')
 
         # Apply the BM4D filter to the rescaled image
         denoised_rescaled = bm4d.bm4d(image_rescaled, sigma_psd=sigma_psd)
@@ -60,4 +60,4 @@ class PostProcessingTabController(PostProcessingTabWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "BM4D - Standard "
                                                                                                      "deviation : " +
                                                           str(sigma_psd))
-        print('The BM4D filter is applied')
+        print('BM4D filter has been applied')

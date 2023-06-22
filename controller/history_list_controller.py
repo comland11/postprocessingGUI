@@ -31,10 +31,8 @@ class HistoryListController(HistoryListWidget):
         if selected_text in self.hist_dict.keys():
             self.main.image_view_widget.main_matrix = self.hist_dict.get(selected_text)
             self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
-        if self.image_view is not None:
-            self.image_view.close()
-            self.image_view = None
 
+        self.clearSecondImageView()
         self.moveKeyAndValuesToEnd(self.operations_dict, selected_text)
 
     def updateOperationsHist(self, infos, text):
@@ -91,9 +89,7 @@ class HistoryListController(HistoryListWidget):
             del self.hist_dict[selected_item.text()]
             self.main.history_widget.clear()
             self.main.image_view_widget.clear()
-            if self.image_view is not None:
-                self.image_view.close()
-                self.image_view = None
+            self.clearSecondImageView()
 
         if selected_item.text() in self.operations_dict:
             # Remove the selected item from the operations history dictionary
@@ -114,3 +110,8 @@ class HistoryListController(HistoryListWidget):
                     self.main.image_view_splitter.addWidget(self.image_view)
 
                 self.image_view.setImage(np.abs(image))
+
+    def clearSecondImageView(self):
+        if self.image_view is not None:
+            self.image_view.close()
+            self.image_view = None

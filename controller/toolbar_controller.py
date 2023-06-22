@@ -61,9 +61,10 @@ class ToolBarController(ToolBarWidget):
         # Load raw data from a .mat file and update the image view widget
 
         # Clear the console, history widget, history controller, and history dictionaries
-        self.main.console.console.clear()
         self.main.history_widget.clear()
+        self.main.console.console.clear()
         self.main.history_controller.clear()
+        self.main.history_controller.clearSecondImageView()
         self.main.history_controller.hist_dict.clear()
         self.main.history_controller.operations_dict.clear()
 

@@ -41,4 +41,3 @@ class PreProcessingTabWidget(QTabWidget):
         self.preprocessing_layout.addWidget(self.image_cosbell_button)
         self.preprocessing_layout.addWidget(self.image_padding_button)
         self.setLayout(self.preprocessing_layout)
-

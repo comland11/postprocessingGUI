@@ -60,14 +60,6 @@ class ToolBarController(ToolBarWidget):
     def rawDataLoading(self):
         # Load raw data from a .mat file and update the image view widget
 
-        # Clear the console, history widget, history controller, and history dictionaries
-        self.main.history_widget.clear()
-        self.main.console.console.clear()
-        self.main.history_controller.clear()
-        self.main.history_controller.clearSecondImageView()
-        self.main.history_controller.hist_dict.clear()
-        self.main.history_controller.operations_dict.clear()
-
         # Prompt the user to select a .mat file
         file_path = self.loadFile()
         self.mat_data = sp.io.loadmat(file_path)
@@ -92,6 +84,14 @@ class ToolBarController(ToolBarWidget):
             # Extract the k-space data from the loaded .mat file
             self.k_space_raw = self.mat_data['sampled']
             self.k_space = np.reshape(self.k_space_raw[:, 3], nPoints[-1::-1])
+
+            # Clear the console, history widget, history controller, and history dictionaries
+            self.main.history_widget.clear()
+            self.main.console.console.clear()
+            self.main.history_controller.clear()
+            self.main.history_controller.hist_dict.clear()
+            self.main.history_controller.clearSecondImageView()
+            self.main.history_controller.operations_dict.clear()
 
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = self.k_space

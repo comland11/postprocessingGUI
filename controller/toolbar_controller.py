@@ -1,3 +1,5 @@
+import threading
+
 import scipy as sp
 import numpy as np
 
@@ -17,7 +19,11 @@ class ToolBarController(ToolBarWidget):
         self.partial_acquisition_button.clicked.connect(self.partialAcquisition)
 
     def partialAcquisition(self):
-        self.main.history_widget.clear()
+        thread = threading.Thread(target=self.runPartialAcquisition)
+        thread.start()
+
+    def runPartialAcquisition(self):
+        # self.main.history_widget.clear()
         k_space = self.k_space_raw.copy()
         nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
@@ -33,16 +39,12 @@ class ToolBarController(ToolBarWidget):
         for i in range(len(ksl)):
             if ksl[i] > k0:
                 signal[i] = 0
-                x = 1
 
         k = np.column_stack((krd, kph, ksl, signal))
         k = np.reshape(k[:, 3], nPoints[-1::-1])
 
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = k
-
-        # Update the image view widget to display the new main matrix
-        self.main.image_view_widget.setImage(np.abs(k))
 
         # Add the "KSpace" operation to the history
         self.main.history_controller.addItemWithTimestamp("Partial Acquisition")
@@ -104,7 +106,7 @@ class ToolBarController(ToolBarWidget):
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Kspace")
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "KSpace")
 
     def loadFile(self):
         # Open a file dialog to select a .mat file and return its path

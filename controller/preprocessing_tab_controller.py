@@ -19,7 +19,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
     def RunCosbellFilter(self):
         text = "Cosbell :"
-        order = float(self.order_field.text())
+        cosbell_order = float(self.cosbell_order_field.text())
 
         # Get the mat data from the loaded .mat file in the main toolbar controller
         mat_data = self.main.toolbar_controller.mat_data
@@ -43,7 +43,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         theta = k / kmax
         s = np.reshape(self.sampled[:, 3], nPoints[-1::-1])
-        cosbell = s * (np.cos(theta * (np.pi / 2)) ** order)
+        cosbell = s * (np.cos(theta * (np.pi / 2)) ** cosbell_order)
 
         # Update the main matrix of the image view widget with the cosbell data
         self.main.image_view_widget.main_matrix = cosbell
@@ -57,16 +57,17 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         # Update the operations history
         self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = [text + " Order : "
-                                                                                                   + str(order)]
+                                                                                                   + str(cosbell_order)]
 
     def zeroPadding(self):
+        zero_padding_order = int(self.zero_padding_order_field.text())
         k_space = self.main.image_view_widget.main_matrix
 
         # Get self.k_space shape
         current_shape = k_space.shape
 
         # Determine new shape
-        desired_shape = np.multiply(current_shape, 2)
+        desired_shape = np.multiply(current_shape, zero_padding_order)
 
         pad_width = ((0, desired_shape[0] - current_shape[0]), (0, desired_shape[1] - current_shape[1]),
                      (0, desired_shape[2] - current_shape[2]))

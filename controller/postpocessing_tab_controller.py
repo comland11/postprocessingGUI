@@ -32,15 +32,20 @@ class PostProcessingTabController(PostProcessingTabWidget):
         mad = np.median(np.abs(image_rescaled - med))
 
         if self.auto_checkbox.isChecked():
-            sigma_psd = 1.4826 * mad
+            sigma_psd = (1.4826 * mad)/2
         else:
             std_value = float(self.std_text_field.text())
             sigma_psd = std_value
 
         print('BM4D is loading')
 
+        profile = bm4d.BM4DProfile()  # Default profile
+        stage_arg = bm4d.BM4DStages.ALL_STAGES  # Perform both hard thresholding and Wiener filtering
+        blockmatches = (False, False)  # Do not use previous blockmatches
+
         # Apply the BM4D filter to the rescaled image
-        denoised_rescaled = bm4d.bm4d(image_rescaled, sigma_psd=sigma_psd)
+        denoised_rescaled = bm4d.bm4d(image_rescaled, sigma_psd=sigma_psd, profile=profile, stage_arg=stage_arg,
+                                      blockmatches=blockmatches)
 
         # Restore the denoised image to its original dimensions
         denoised_image = np.interp(denoised_rescaled, (np.min(denoised_rescaled), np.max(denoised_rescaled)),

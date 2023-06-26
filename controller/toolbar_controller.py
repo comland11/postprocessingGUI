@@ -14,6 +14,9 @@ class ToolBarController(ToolBarWidget):
         super(ToolBarController, self).__init__(*args, **kwargs)
 
         # Connect the image_loading_button clicked signal to the rawDataLoading method
+        self.k_space_raw = None
+        self.mat_data = None
+        self.nPoints = None
         self.k_space = None
         self.image_loading_button.clicked.connect(self.rawDataLoading)
         self.partial_acquisition_button.clicked.connect(self.partialAcquisition)
@@ -23,9 +26,8 @@ class ToolBarController(ToolBarWidget):
         thread.start()
 
     def runPartialAcquisition(self):
-        # self.main.history_widget.clear()
         k_space = self.k_space_raw.copy()
-        nPoints = np.reshape(self.mat_data['nPoints'], -1)
+        self.nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
         krd = np.real(k_space[:, 0])
         kph = np.real(k_space[:, 1])
@@ -41,7 +43,7 @@ class ToolBarController(ToolBarWidget):
                 signal[i] = 0
 
         k = np.column_stack((krd, kph, ksl, signal))
-        k = np.reshape(k[:, 3], nPoints[-1::-1])
+        k = np.reshape(k[:, 3], self.nPoints[-1::-1])
 
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = k
@@ -63,7 +65,7 @@ class ToolBarController(ToolBarWidget):
         # Prompt the user to select a .mat file
         file_path = self.loadFile()
         self.mat_data = sp.io.loadmat(file_path)
-        nPoints = np.reshape(self.mat_data['nPoints'], -1)
+        self.nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
         if self.mat_data['seqName'] == 'PETRA':
             kCartesian = self.mat_data['kCartesian']
@@ -78,12 +80,12 @@ class ToolBarController(ToolBarWidget):
             valCartesian = griddata((kxOriginal, kyOriginal, kzOriginal), np.reshape(self.k_space_raw[:, 3], -1),
                                     (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
 
-            self.k_space = np.reshape(valCartesian, (nPoints[2], nPoints[1], nPoints[0]))
+            self.k_space = np.reshape(valCartesian, (self.nPoints[2], self.nPoints[1], self.nPoints[0]))
 
         else:  # Cartesian
             # Extract the k-space data from the loaded .mat file
             self.k_space_raw = self.mat_data['sampled']
-            self.k_space = np.reshape(self.k_space_raw[:, 3], nPoints[-1::-1])
+            self.k_space = np.reshape(self.k_space_raw[:, 3], self.nPoints[-1::-1])
 
             # Clear the console, history widget, history controller, and history dictionaries
             self.main.history_widget.clear()

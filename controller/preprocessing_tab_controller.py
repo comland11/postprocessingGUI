@@ -12,6 +12,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Connect the button click signal to the bm4dFilter method and showSlider method
         self.image_cosbell_button.clicked.connect(self.cosbellFilter)
         self.image_padding_button.clicked.connect(self.zeroPadding)
+        self.new_fov_button.clicked.connect(self.changeFov)
 
     def cosbellFilter(self):
         thread = threading.Thread(target=self.RunCosbellFilter)
@@ -60,6 +61,10 @@ class PreProcessingTabController(PreProcessingTabWidget):
                                                                                                    + str(cosbell_order)]
 
     def zeroPadding(self):
+        thread = threading.Thread(target=self.RunZeroPadding)
+        thread.start()
+
+    def RunZeroPadding(self):
         zero_padding_order = int(self.zero_padding_order_field.text())
         k_space = self.main.image_view_widget.main_matrix
 
@@ -86,3 +91,46 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         # Update the operations history
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Zero Padding")
+
+    def changeFov(self):
+        k = self.main.toolbar_controller.k_space_raw.copy()
+        nPoints = self.main.toolbar_controller.nPoints
+
+        list = self.change_fov_field.text().split(',')
+
+        krd = k[:, 0]
+        kph = k[:, 1]
+        ksl = k[:, 2]
+        s = k[:, 3]
+
+        k = np.column_stack((krd, kph, ksl))
+
+        delta_rd = float(list[0])
+        delta_ph = float(list[1])
+        delta_sl = float(list[2])
+        delta_r = np.array([delta_rd, delta_ph, delta_sl])
+
+        phi = np.exp(-1j * 2 * np.pi * k @ np.reshape(delta_r, (3, 1)))
+        s = np.reshape(s, (np.size(phi, 0), 1)) * phi
+
+        signal = np.column_stack((k, s))
+        new_k_space = np.reshape(signal[:, 3], nPoints[-1::-1])
+
+        # Update the main matrix of the image view widget with the k-space data
+        self.main.image_view_widget.main_matrix = new_k_space
+
+        # Add the "KSpace" operation to the history
+        self.main.history_controller.addItemWithTimestamp("New FOV")
+
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        # Update the operations history
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["New FOV - "
+                                                                                                   + "RD : "
+                                                                                                   + str(delta_rd)
+                                                                                                   + ", PH : "
+                                                                                                   + str(delta_ph)
+                                                                                                   + ", SL : "
+                                                                                                   + str(delta_sl)]

@@ -7,11 +7,15 @@ class PreProcessingTabWidget(QTabWidget):
         self.main = parent
 
         # Label
-        self.order_label = QLabel('Order')
+        self.cosbell_order_label = QLabel('Order')
+        self.zero_padding_order_label = QLabel('Order')
 
         # Text Field
-        self.order_field = QLineEdit()
-        self.order_field.setText('1')
+        self.cosbell_order_field = QLineEdit()
+        self.cosbell_order_field.setText('1')
+
+        self.zero_padding_order_field = QLineEdit()
+        self.zero_padding_order_field.setText('2')
 
         # Checkbox
         self.readout_checkbox = QCheckBox('Readout')
@@ -26,9 +30,13 @@ class PreProcessingTabWidget(QTabWidget):
         self.cosbell_layout.addWidget(self.slice_checkbox)
 
         # Order layout
-        self.order_layout = QHBoxLayout()
-        self.order_layout.addWidget(self.order_label)
-        self.order_layout.addWidget(self.order_field)
+        self.cosbell_order_layout = QHBoxLayout()
+        self.cosbell_order_layout.addWidget(self.cosbell_order_label)
+        self.cosbell_order_layout.addWidget(self.cosbell_order_field)
+
+        self.zero_padding_order_layout = QHBoxLayout()
+        self.zero_padding_order_layout.addWidget(self.zero_padding_order_label)
+        self.zero_padding_order_layout.addWidget(self.zero_padding_order_field)
 
         # Buttons
         self.image_cosbell_button = QPushButton('Cosbell filter')
@@ -37,8 +45,8 @@ class PreProcessingTabWidget(QTabWidget):
         # Main layout
         self.preprocessing_layout = QVBoxLayout()
         self.preprocessing_layout.addLayout(self.cosbell_layout)
-        self.preprocessing_layout.addLayout(self.order_layout)
+        self.preprocessing_layout.addLayout(self.cosbell_order_layout)
         self.preprocessing_layout.addWidget(self.image_cosbell_button)
+        self.preprocessing_layout.addLayout(self.zero_padding_order_layout)
         self.preprocessing_layout.addWidget(self.image_padding_button)
         self.setLayout(self.preprocessing_layout)
-

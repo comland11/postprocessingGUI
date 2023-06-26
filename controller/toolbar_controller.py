@@ -1,3 +1,5 @@
+import threading
+
 import scipy as sp
 import numpy as np
 
@@ -17,7 +19,11 @@ class ToolBarController(ToolBarWidget):
         self.partial_acquisition_button.clicked.connect(self.partialAcquisition)
 
     def partialAcquisition(self):
-        self.main.history_widget.clear()
+        thread = threading.Thread(target=self.runPartialAcquisition)
+        thread.start()
+
+    def runPartialAcquisition(self):
+        # self.main.history_widget.clear()
         k_space = self.k_space_raw.copy()
         nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
@@ -33,16 +39,12 @@ class ToolBarController(ToolBarWidget):
         for i in range(len(ksl)):
             if ksl[i] > k0:
                 signal[i] = 0
-                x = 1
 
         k = np.column_stack((krd, kph, ksl, signal))
         k = np.reshape(k[:, 3], nPoints[-1::-1])
 
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = k
-
-        # Update the image view widget to display the new main matrix
-        self.main.image_view_widget.setImage(np.abs(k))
 
         # Add the "KSpace" operation to the history
         self.main.history_controller.addItemWithTimestamp("Partial Acquisition")
@@ -57,13 +59,6 @@ class ToolBarController(ToolBarWidget):
 
     def rawDataLoading(self):
         # Load raw data from a .mat file and update the image view widget
-
-        # Clear the console, history widget, history controller, and history dictionaries
-        self.main.console.console.clear()
-        self.main.history_widget.clear()
-        self.main.history_controller.clear()
-        self.main.history_controller.hist_dict.clear()
-        self.main.history_controller.operations_dict.clear()
 
         # Prompt the user to select a .mat file
         file_path = self.loadFile()
@@ -90,6 +85,14 @@ class ToolBarController(ToolBarWidget):
             self.k_space_raw = self.mat_data['sampled']
             self.k_space = np.reshape(self.k_space_raw[:, 3], nPoints[-1::-1])
 
+            # Clear the console, history widget, history controller, and history dictionaries
+            self.main.history_widget.clear()
+            self.main.console.console.clear()
+            self.main.history_controller.clear()
+            self.main.history_controller.hist_dict.clear()
+            self.main.history_controller.clearSecondImageView()
+            self.main.history_controller.operations_dict.clear()
+
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = self.k_space
 
@@ -104,7 +107,7 @@ class ToolBarController(ToolBarWidget):
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Kspace")
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "KSpace")
 
     def loadFile(self):
         # Open a file dialog to select a .mat file and return its path

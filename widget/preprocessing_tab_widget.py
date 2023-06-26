@@ -9,6 +9,7 @@ class PreProcessingTabWidget(QTabWidget):
         # Label
         self.cosbell_order_label = QLabel('Order')
         self.zero_padding_order_label = QLabel('Order')
+        self.change_fov_label = QLabel('New FOV (mm)')
 
         # Text Field
         self.cosbell_order_field = QLineEdit()
@@ -16,6 +17,9 @@ class PreProcessingTabWidget(QTabWidget):
 
         self.zero_padding_order_field = QLineEdit()
         self.zero_padding_order_field.setText('2')
+
+        self.change_fov_field = QLineEdit()
+        self.change_fov_field.setPlaceholderText("Readout, Phase, Slice")
 
         # Checkbox
         self.readout_checkbox = QCheckBox('Readout')
@@ -38,9 +42,14 @@ class PreProcessingTabWidget(QTabWidget):
         self.zero_padding_order_layout.addWidget(self.zero_padding_order_label)
         self.zero_padding_order_layout.addWidget(self.zero_padding_order_field)
 
+        self.change_fov_layout = QHBoxLayout()
+        self.change_fov_layout.addWidget(self.change_fov_label)
+        self.change_fov_layout.addWidget(self.change_fov_field)
+
         # Buttons
         self.image_cosbell_button = QPushButton('Cosbell filter')
         self.image_padding_button = QPushButton('Zero padding')
+        self.new_fov_button = QPushButton('Change FOV')
 
         # Main layout
         self.preprocessing_layout = QVBoxLayout()
@@ -49,4 +58,6 @@ class PreProcessingTabWidget(QTabWidget):
         self.preprocessing_layout.addWidget(self.image_cosbell_button)
         self.preprocessing_layout.addLayout(self.zero_padding_order_layout)
         self.preprocessing_layout.addWidget(self.image_padding_button)
+        self.preprocessing_layout.addLayout(self.change_fov_layout)
+        self.preprocessing_layout.addWidget(self.new_fov_button)
         self.setLayout(self.preprocessing_layout)

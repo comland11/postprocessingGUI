@@ -12,11 +12,13 @@ class TabWidget(QTabWidget):
         preprocessing_tab = QWidget()
         reconstruction_tab = QWidget()
         postprocessing_tab = QWidget()
+        visualisation_tab = QWidget()
 
         # Adding Tabs in the QTabWidget
         self.addTab(preprocessing_tab, 'PreProcessing')
         self.addTab(reconstruction_tab, 'Reconstruction')
         self.addTab(postprocessing_tab, 'PostProcessing')
+        self.addTab(visualisation_tab, 'Visualisation')
 
         # Preprocessing layout
         self.preprocessing_layout = QVBoxLayout(preprocessing_tab)
@@ -26,3 +28,6 @@ class TabWidget(QTabWidget):
 
         # Postprocessing layout
         self.postprocessing_layout = QVBoxLayout(postprocessing_tab)
+
+        # Visualisation layout
+        self.visualisation_layout = QVBoxLayout(visualisation_tab)

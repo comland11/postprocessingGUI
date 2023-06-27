@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApp
 
 from controller.reconstruction_tab_controller import ReconstructionTabController
 from controller.postpocessing_tab_controller import PostProcessingTabController
+from controller.visualisation_tab_controller import VisualisationTabController
 from controller.preprocessing_tab_controller import PreProcessingTabController
 from controller.history_list_controller import HistoryListController
 from controller.imageview_controller import ImageViewController
@@ -52,11 +53,11 @@ class MainWindow(QMainWindow):
         self.image_view_splitter = QSplitter()
         self.right_layout.addWidget(self.image_view_splitter)
 
-        # Image view adding
+        # Image view addition
         self.image_view_widget = ImageViewController(parent=self)
         self.image_view_splitter.addWidget(self.image_view_widget)
 
-        # History adding
+        # History addition
         self.history_layout = QHBoxLayout()
         self.right_layout.addLayout(self.history_layout)
 
@@ -68,11 +69,11 @@ class MainWindow(QMainWindow):
         self.history_layout.addWidget(self.history_widget)
         self.history_widget.setMaximumHeight(200)
 
-        # Toolbar adding
+        # Toolbar addition
         self.toolbar_controller = ToolBarController(parent=self)
         self.addToolBar(self.toolbar_controller)
 
-        # Tabar adding
+        # Tab addition
         self.tab_controller = TabController(parent=self)
         self.left_layout.addWidget(self.tab_controller)
 
@@ -85,7 +86,10 @@ class MainWindow(QMainWindow):
         self.reconstruction_controller = ReconstructionTabController(parent=self)
         self.tab_controller.reconstruction_layout.addWidget(self.reconstruction_controller)
 
-        # Console
+        self.visualisation_controller = VisualisationTabController(parent=self)
+        self.tab_controller.visualisation_layout.addWidget(self.visualisation_controller)
+
+        # Console addition
         self.console = ConsoleController()
         self.left_layout.addWidget(self.console)
         self.console.setMaximumHeight(200)

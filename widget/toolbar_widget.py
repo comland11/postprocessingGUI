@@ -9,5 +9,3 @@ class ToolBarWidget(QToolBar):
         self.image_loading_button = QPushButton('File')
         self.addWidget(self.image_loading_button)
 
-        self.partial_acquisition_button = QPushButton('Partial acquisition')
-        self.addWidget(self.partial_acquisition_button)

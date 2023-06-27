@@ -88,6 +88,7 @@ class MainWindow(QMainWindow):
         # Console
         self.console = ConsoleController()
         self.left_layout.addWidget(self.console)
+        self.console.setMaximumHeight(200)
 
         self.show()
 

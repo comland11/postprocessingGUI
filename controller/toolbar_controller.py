@@ -1,5 +1,3 @@
-import threading
-
 import scipy as sp
 import numpy as np
 
@@ -19,45 +17,6 @@ class ToolBarController(ToolBarWidget):
         self.nPoints = None
         self.k_space = None
         self.image_loading_button.clicked.connect(self.rawDataLoading)
-        self.partial_acquisition_button.clicked.connect(self.partialAcquisition)
-
-    def partialAcquisition(self):
-        thread = threading.Thread(target=self.runPartialAcquisition)
-        thread.start()
-
-    def runPartialAcquisition(self):
-        k_space = self.k_space_raw.copy()
-        self.nPoints = np.reshape(self.mat_data['nPoints'], -1)
-
-        krd = np.real(k_space[:, 0])
-        kph = np.real(k_space[:, 1])
-        ksl = np.real(k_space[:, 2])
-        signal = k_space[:, 3]
-
-        ksl_min = ksl.min()
-        ksl_max = ksl.max()
-
-        k0 = 0.65 * (ksl_max - ksl_min) + ksl_min
-        for i in range(len(ksl)):
-            if ksl[i] > k0:
-                signal[i] = 0
-
-        k = np.column_stack((krd, kph, ksl, signal))
-        k = np.reshape(k[:, 3], self.nPoints[-1::-1])
-
-        # Update the main matrix of the image view widget with the k-space data
-        self.main.image_view_widget.main_matrix = k
-
-        # Add the "KSpace" operation to the history
-        self.main.history_controller.addItemWithTimestamp("Partial Acquisition")
-
-        # Update the history dictionary with the new main matrix for the current matrix info
-        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
-            self.main.image_view_widget.main_matrix
-
-        # Update the operations history
-        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["Partial "
-                                                                                                   "Acquisition"]
 
     def rawDataLoading(self):
         # Load raw data from a .mat file and update the image view widget

@@ -10,9 +10,10 @@ class PreProcessingTabController(PreProcessingTabWidget):
         super(PreProcessingTabController, self).__init__(*args, **kwargs)
 
         # Connect the button click signal to the bm4dFilter method and showSlider method
+        self.partial_reconstruction_button.clicked.connect(self.partialReconstruction)
         self.image_cosbell_button.clicked.connect(self.cosbellFilter)
         self.image_padding_button.clicked.connect(self.zeroPadding)
-        self.new_fov_button.clicked.connect(self.changeFov)
+        self.new_fov_button.clicked.connect(self.fovChange)
 
     def cosbellFilter(self):
         thread = threading.Thread(target=self.RunCosbellFilter)
@@ -26,24 +27,24 @@ class PreProcessingTabController(PreProcessingTabWidget):
         mat_data = self.main.toolbar_controller.mat_data
 
         # Extract datas data from the loaded .mat file
-        self.sampled = self.main.toolbar_controller.k_space_raw
+        sampled = self.main.toolbar_controller.k_space_raw
         nPoints = np.reshape(mat_data['nPoints'], -1)
 
         if self.readout_checkbox.isChecked():
-            k = np.reshape(self.sampled[:, 0], nPoints[-1::-1])
+            k = np.reshape(sampled[:, 0], nPoints[-1::-1])
             kmax = np.max(np.abs(k[:]))
             text += ' RD,'
         if self.phase_checkbox.isChecked():
-            k = np.reshape(self.sampled[:, 1], nPoints[-1::-1])
+            k = np.reshape(sampled[:, 1], nPoints[-1::-1])
             kmax = np.max(np.abs(k[:]))
             text += ' PH,'
         if self.slice_checkbox.isChecked():
-            k = np.reshape(self.sampled[:, 2], nPoints[-1::-1])
+            k = np.reshape(sampled[:, 2], nPoints[-1::-1])
             kmax = np.max(np.abs(k[:]))
             text += ' SL,'
 
         theta = k / kmax
-        s = np.reshape(self.sampled[:, 3], nPoints[-1::-1])
+        s = np.reshape(sampled[:, 3], nPoints[-1::-1])
         cosbell = s * (np.cos(theta * (np.pi / 2)) ** cosbell_order)
 
         # Update the main matrix of the image view widget with the cosbell data
@@ -61,26 +62,31 @@ class PreProcessingTabController(PreProcessingTabWidget):
                                                                                                    + str(cosbell_order)]
 
     def zeroPadding(self):
-        thread = threading.Thread(target=self.RunZeroPadding)
+        thread = threading.Thread(target=self.runZeroPadding)
         thread.start()
 
-    def RunZeroPadding(self):
-        zero_padding_order = int(self.zero_padding_order_field.text())
+    def runZeroPadding(self):
+        zero_padding_order = self.zero_padding_order_field.text().split(',')
+        rd_order = int(zero_padding_order[0])
+        ph_order = int(zero_padding_order[1])
+        sl_order = int(zero_padding_order[2])
+
+        # zero_padding_order = int(self.zero_padding_order_field.text())
         k_space = self.main.image_view_widget.main_matrix
 
         # Get self.k_space shape
         current_shape = k_space.shape
 
         # Determine new shape
-        desired_shape = np.multiply(current_shape, zero_padding_order)
+        new_shape = current_shape[0] * sl_order, current_shape[1] * ph_order, current_shape[2] * rd_order
 
-        pad_width = ((0, desired_shape[0] - current_shape[0]), (0, desired_shape[1] - current_shape[1]),
-                     (0, desired_shape[2] - current_shape[2]))
+        pad_width = ((0, new_shape[0] - current_shape[0]), (0, new_shape[1] - current_shape[1]),
+                     (0, new_shape[2] - current_shape[2]))
 
-        self.k_space = np.pad(k_space, pad_width, mode='constant', constant_values=0)
+        padded_image = np.pad(k_space, pad_width, mode='constant', constant_values=0)
 
         # Update the main matrix of the image view widget with the image fft data
-        self.main.image_view_widget.main_matrix = self.k_space
+        self.main.image_view_widget.main_matrix = padded_image
 
         # Add the "FFT" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("Zero Padding")
@@ -92,11 +98,15 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the operations history
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Zero Padding")
 
-    def changeFov(self):
+    def fovChange(self):
+        thread = threading.Thread(target=self.runFovChange)
+        thread.start()
+
+    def runFovChange(self):
         k = self.main.toolbar_controller.k_space_raw.copy()
         nPoints = self.main.toolbar_controller.nPoints
 
-        list = self.change_fov_field.text().split(',')
+        factors = self.change_fov_field.text().split(',')
 
         krd = k[:, 0]
         kph = k[:, 1]
@@ -105,9 +115,9 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         k = np.column_stack((krd, kph, ksl))
 
-        delta_rd = float(list[0])
-        delta_ph = float(list[1])
-        delta_sl = float(list[2])
+        delta_rd = (float(factors[0])) * 10 ** -3
+        delta_ph = (float(factors[1])) * 10 ** -3
+        delta_sl = (float(factors[2])) * 10 ** -3
         delta_r = np.array([delta_rd, delta_ph, delta_sl])
 
         phi = np.exp(-1j * 2 * np.pi * k @ np.reshape(delta_r, (3, 1)))
@@ -134,3 +144,42 @@ class PreProcessingTabController(PreProcessingTabWidget):
                                                                                                    + str(delta_ph)
                                                                                                    + ", SL : "
                                                                                                    + str(delta_sl)]
+
+    def partialReconstruction(self):
+        thread = threading.Thread(target=self.runPartialReconstruction)
+        thread.start()
+
+    def runPartialReconstruction(self):
+        k_space = self.main.toolbar_controller.k_space_raw.copy()
+        nPoints = self.main.toolbar_controller.nPoints
+        percentage = float(self.partial_reconstruction_field.text()) * 10 ** -2
+
+        krd = np.real(k_space[:, 0])
+        kph = np.real(k_space[:, 1])
+        ksl = np.real(k_space[:, 2])
+        signal = k_space[:, 3]
+
+        ksl_min = ksl.min()
+        ksl_max = ksl.max()
+
+        k0 = percentage * (ksl_max - ksl_min) + ksl_min
+        for i in range(len(ksl)):
+            if ksl[i] > k0:
+                signal[i] = 0
+
+        k = np.column_stack((krd, kph, ksl, signal))
+        k = np.reshape(k[:, 3], nPoints[-1::-1])
+
+        # Update the main matrix of the image view widget with the k-space data
+        self.main.image_view_widget.main_matrix = k
+
+        # Add the "KSpace" operation to the history
+        self.main.history_controller.addItemWithTimestamp("Partial Reconstruction")
+
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        # Update the operations history
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["Partial "
+                                                                                                   "Reconstruction"]

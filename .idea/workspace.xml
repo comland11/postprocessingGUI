@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="documentation" />
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="reorganized prepocessing tab into group box , set vector for zero padding, set vector in mm for zero padding, changed console dimension, moved zero padding code from toolbar to preprocessing tab">
+      <change afterPath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/widget/visualisation_tab_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widget/tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/tab_widget.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "zero__padding",
-    "last_opened_file_path": "C:/Users/Portatil PC 6/PycharmProjects/postprocessingGUI",
+    "last_opened_file_path": "C:/Users/Portatil PC 6/PycharmProjects/pythonProject",
     "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
@@ -140,9 +145,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="visualisation_tab_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="postprocessingGUI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controller" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/visualisation_tab_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.mainwindow" />
+        <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.toolbar_controller" />
         <item itemvalue="Python.postpocessing_tab_controller" />
         <item itemvalue="Python.main_controller" />
@@ -375,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687855652329</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="reorganized prepocessing tab into group box , set vector for zero padding, set vector in mm for zero padding, changed console dimension, moved zero padding code from toolbar to preprocessing tab">
+      <created>1687868690081</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1687868690081</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,6 +514,7 @@
     <MESSAGE value="order for zero padding" />
     <MESSAGE value="change the fov" />
     <MESSAGE value="documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
+    <MESSAGE value="reorganized prepocessing tab into group box , set vector for zero padding, set vector in mm for zero padding, changed console dimension, moved zero padding code from toolbar to preprocessing tab" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganized prepocessing tab into group box , set vector for zero padding, set vector in mm for zero padding, changed console dimension, moved zero padding code from toolbar to preprocessing tab" />
   </component>
 </project>

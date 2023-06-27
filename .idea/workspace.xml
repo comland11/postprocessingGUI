@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="documentation">
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/.buildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/.buildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/pygments.css" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/pygments.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.console_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.console_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.imageview_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.imageview_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.postpocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.postpocessing_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.reconstruction_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.reconstruction_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/modules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/ui.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/ui.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/ui.mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/ui.mainwindow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.console_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.console_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.history_list_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.history_list_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.imageview_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.imageview_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.postpocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.postpocessing_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.preprocessing_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.reconstruction_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.reconstruction_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.toolbar_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.toolbar_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/conf.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="66a382d4-e6dc-47c3-b3b2-e777db6a5b5e" />
+        <option name="url" value="https://github.com/comland11/postprocessingGUI.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QK7kac5U3MGtl3Ti9HFyycbiVL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;zero__padding&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Portatil PC 6/Downloads/PhysioMRI_GUI-Experiments&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Python.mainwindow">
+    <configuration name="main_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="postprocessingGUI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controller" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/main_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mainwindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="postprocessingGUI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ui" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui/mainwindow.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="postpocessing_tab_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="postprocessingGUI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controller" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/postpocessing_tab_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="toolbar_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="postprocessingGUI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controller" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/toolbar_controller.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.mainwindow" />
+        <item itemvalue="Python.toolbar_controller" />
+        <item itemvalue="Python.postpocessing_tab_controller" />
+        <item itemvalue="Python.main_controller" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="" />
+      <created>1685090562776</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685090562776</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add some comments">
+      <created>1685090942381</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685090942381</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add some comments">
+      <created>1685111526592</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685111526592</updated>
+    </task>
+    <task id="LOCAL-00003" summary="The bm4d filter is apply when the checkbox is checked">
+      <created>1685112429128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685112429128</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Two ways to run the bm4d filter : manually or automatically &#10;The image is resize between 0 et 100 before applying the bm4d filter &#10;Slider added to see 3d image">
+      <created>1685373958988</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685373958988</updated>
+    </task>
+    <task id="LOCAL-00005" summary="comments added">
+      <created>1685433863950</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685433863950</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Get k-space from radial acquisitions (PETRA)">
+      <created>1685544148818</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685544148818</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Console adding">
+      <created>1685631071104</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1685631071104</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Console adding">
+      <created>1685711384620</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685711384620</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Context menu">
+      <created>1685976833037</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1685976833037</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Cosbell filter + tab reorganisation ( new files : preprocessing_tab_controller et widget)">
+      <created>1686065127995</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686065127995</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Cosbell filter + set comments + multiplot">
+      <created>1686148341800</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686148341800</updated>
+    </task>
+    <task id="LOCAL-00012" summary="set image view, double clic and RARE file loading">
+      <created>1686322607734</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686322607734</updated>
+    </task>
+    <task id="LOCAL-00013" summary="art matrix">
+      <created>1686323631118</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686323631118</updated>
+    </task>
+    <task id="LOCAL-00014" summary="new files reconstruction_tab_controller.py and reconstruction_tab_widget.py">
+      <created>1686583140055</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686583140055</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updates">
+      <created>1686652556777</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686652556777</updated>
+    </task>
+    <task id="LOCAL-00016" summary="parallels threads + art">
+      <created>1686667718540</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686667718540</updated>
+    </task>
+    <task id="LOCAL-00017" summary="updates">
+      <created>1686757612335</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1686757612335</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add default values">
+      <created>1686926595359</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1686926595359</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add default values">
+      <created>1686926622797</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686926622797</updated>
+    </task>
+    <task id="LOCAL-00020" summary="partial acquisition">
+      <created>1687342514889</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1687342514889</updated>
+    </task>
+    <task id="LOCAL-00021" summary="console clearing when a new file is loaded">
+      <created>1687343438810</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1687343438810</updated>
+    </task>
+    <task id="LOCAL-00022" summary="zero padding">
+      <created>1687360481732</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1687360481732</updated>
+    </task>
+    <task id="LOCAL-00023" summary="updates">
+      <created>1687426317387</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1687426317387</updated>
+    </task>
+    <task id="LOCAL-00024" summary="updates">
+      <created>1687443450896</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1687443450896</updated>
+    </task>
+    <task id="LOCAL-00025" summary="updates">
+      <created>1687444053427</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1687444053427</updated>
+    </task>
+    <task id="LOCAL-00026" summary="order for zero padding">
+      <created>1687521486127</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1687521486127</updated>
+    </task>
+    <task id="LOCAL-00027" summary="change the fov">
+      <created>1687786737493</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1687786737493</updated>
+    </task>
+    <task id="LOCAL-00028" summary="documentation">
+      <created>1687792778207</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1687792778207</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7a2f972a-651a-4212-a952-48ae715cc203" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="bm4d" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="7a2f972a-651a-4212-a952-48ae715cc203">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add some comments" />
+    <MESSAGE value="The bm4d filter is apply when the checkbox is checked" />
+    <MESSAGE value="Two ways to run the bm4d filter : manually or automatically &#10;The image is resize between 0 et 100 before applying the bm4d filter &#10;Slider added to see 3d image" />
+    <MESSAGE value="comments added" />
+    <MESSAGE value="Get k-space from radial acquisitions (PETRA)" />
+    <MESSAGE value="Console adding" />
+    <MESSAGE value="Context menu" />
+    <MESSAGE value="Cosbell filter + tab reorganisation ( new files : preprocessing_tab_controller et widget)" />
+    <MESSAGE value="Cosbell filter + set comments + multiplot" />
+    <MESSAGE value="set image view, double clic and RARE file loading" />
+    <MESSAGE value="art matrix" />
+    <MESSAGE value="new files reconstruction_tab_controller.py and reconstruction_tab_widget.py" />
+    <MESSAGE value="parallels threads + art" />
+    <MESSAGE value="add default values" />
+    <MESSAGE value="partial acquisition" />
+    <MESSAGE value="console clearing when a new file is loaded" />
+    <MESSAGE value="zero padding" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="order for zero padding" />
+    <MESSAGE value="change the fov" />
+    <MESSAGE value="documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
+  </component>
+</project>

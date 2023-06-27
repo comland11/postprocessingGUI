@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ui.mainwindow &#8212; PostProcessing GUI 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for ui.mainwindow</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">qdarkstyle</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtCore</span> <span class="kn">import</span> <span class="n">QThreadPool</span>
+
+<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHBoxLayout</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QStatusBar</span><span class="p">,</span> <span class="n">QMenuBar</span><span class="p">,</span> \
+    <span class="n">QSplitter</span>
+
+<span class="kn">from</span> <span class="nn">controller.reconstruction_tab_controller</span> <span class="kn">import</span> <span class="n">ReconstructionTabController</span>
+<span class="kn">from</span> <span class="nn">controller.postpocessing_tab_controller</span> <span class="kn">import</span> <span class="n">PostProcessingTabController</span>
+<span class="kn">from</span> <span class="nn">controller.preprocessing_tab_controller</span> <span class="kn">import</span> <span class="n">PreProcessingTabController</span>
+<span class="kn">from</span> <span class="nn">controller.history_list_controller</span> <span class="kn">import</span> <span class="n">HistoryListController</span>
+<span class="kn">from</span> <span class="nn">controller.imageview_controller</span> <span class="kn">import</span> <span class="n">ImageViewController</span>
+<span class="kn">from</span> <span class="nn">controller.console_controller</span> <span class="kn">import</span> <span class="n">ConsoleController</span>
+<span class="kn">from</span> <span class="nn">controller.toolbar_controller</span> <span class="kn">import</span> <span class="n">ToolBarController</span>
+<span class="kn">from</span> <span class="nn">widget.history_list_widget</span> <span class="kn">import</span> <span class="n">HistoryListWidget</span>
+<span class="kn">from</span> <span class="nn">controller.tab_controller</span> <span class="kn">import</span> <span class="n">TabController</span>
+
+
+<div class="viewcode-block" id="MainWindow"><a class="viewcode-back" href="../../ui.mainwindow.html#ui.mainwindow.MainWindow">[docs]</a><span class="k">class</span> <span class="nc">MainWindow</span><span class="p">(</span><span class="n">QMainWindow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Set stylesheet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">styleSheet</span> <span class="o">=</span> <span class="n">qdarkstyle</span><span class="o">.</span><span class="n">load_stylesheet_pyqt5</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">styleSheet</span><span class="p">)</span>
+
+        <span class="c1"># Set window parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+
+        <span class="c1"># Threadpool for parallel running</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threadpool</span> <span class="o">=</span> <span class="n">QThreadPool</span><span class="p">()</span>
+
+        <span class="c1"># Status bar and a menu bar adding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setStatusBar</span><span class="p">(</span><span class="n">QStatusBar</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setMenuBar</span><span class="p">(</span><span class="n">QMenuBar</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+        <span class="c1"># Set the central widget</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_widget</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_widget</span><span class="p">)</span>
+
+        <span class="c1"># Set layouts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_widget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_layout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left_layout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right_layout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_view_splitter</span> <span class="o">=</span> <span class="n">QSplitter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_view_splitter</span><span class="p">)</span>
+
+        <span class="c1"># Image view adding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_view_widget</span> <span class="o">=</span> <span class="n">ImageViewController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_view_splitter</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_view_widget</span><span class="p">)</span>
+
+        <span class="c1"># History adding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history_layout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_controller</span> <span class="o">=</span> <span class="n">HistoryListController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history_controller</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_widget</span> <span class="o">=</span> <span class="n">HistoryListWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history_widget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_widget</span><span class="o">.</span><span class="n">setMaximumHeight</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+        <span class="c1"># Toolbar adding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">toolbar_controller</span> <span class="o">=</span> <span class="n">ToolBarController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">addToolBar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="p">)</span>
+
+        <span class="c1"># Tabar adding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tab_controller</span> <span class="o">=</span> <span class="n">TabController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_controller</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">postprocessing_controller</span> <span class="o">=</span> <span class="n">PostProcessingTabController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tab_controller</span><span class="o">.</span><span class="n">postprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">postprocessing_controller</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_controller</span> <span class="o">=</span> <span class="n">PreProcessingTabController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tab_controller</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_controller</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_controller</span> <span class="o">=</span> <span class="n">ReconstructionTabController</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tab_controller</span><span class="o">.</span><span class="n">reconstruction_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_controller</span><span class="p">)</span>
+
+        <span class="c1"># Console</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">console</span> <span class="o">=</span> <span class="n">ConsoleController</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">console</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+
+    <span class="n">ui</span> <span class="o">=</span> <span class="n">MainWindow</span><span class="p">()</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">PostProcessing GUI</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">postprocessingGUI</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, D. Comlan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

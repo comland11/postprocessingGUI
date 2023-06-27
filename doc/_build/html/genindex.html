@@ -1,0 +1,688 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 --><title>Index - PostProcessing GUI 1.0 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PostProcessing GUI 1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">PostProcessing GUI 1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">postprocessingGUI</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of postprocessingGUI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="controller.html">controller package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of controller package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller.console_controller.html">controller.console_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.history_list_controller.html">controller.history_list_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.imageview_controller.html">controller.imageview_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.postpocessing_tab_controller.html">controller.postpocessing_tab_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.preprocessing_tab_controller.html">controller.preprocessing_tab_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.reconstruction_tab_controller.html">controller.reconstruction_tab_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.tab_controller.html">controller.tab_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controller.toolbar_controller.html">controller.toolbar_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ui.html">ui package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of ui package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ui.mainwindow.html">ui.mainwindow module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="widget.html">widget package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of widget package</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="widget.console_widget.html">widget.console_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.history_list_widget.html">widget.history_list_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.imageview_widget.html">widget.imageview_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.postpocessing_tab_widget.html">widget.postpocessing_tab_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.preprocessing_tab_widget.html">widget.preprocessing_tab_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.reconstruction_tab_widget.html">widget.reconstruction_tab_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.tab_widget.html">widget.tab_widget module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.toolbar_widget.html">widget.toolbar_widget module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#W"><strong>W</strong></a> | <a href="#Z"><strong>Z</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.addImage">addImage() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.addItemWithTimestamp">addItemWithTimestamp() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+        <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.artReconstruction">artReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController.bm4dFilter">bm4dFilter() (controller.postpocessing_tab_controller.PostProcessingTabController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.changeFov">changeFov() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.clearSecondImageView">clearSecondImageView() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+        <li><a href="controller.console_controller.html#controller.console_controller.ConsoleController">ConsoleController (class in controller.console_controller)</a>
+</li>
+        <li><a href="widget.console_widget.html#widget.console_widget.ConsoleWidget">ConsoleWidget (class in widget.console_widget)</a>
+</li>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.contextMenuEvent">contextMenuEvent() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+        <li>
+    controller
+
+        <ul>
+          <li><a href="controller.html#module-controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.console_controller
+
+        <ul>
+          <li><a href="controller.console_controller.html#module-controller.console_controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.history_list_controller
+
+        <ul>
+          <li><a href="controller.history_list_controller.html#module-controller.history_list_controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.imageview_controller
+
+        <ul>
+          <li><a href="controller.imageview_controller.html#module-controller.imageview_controller">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    controller.postpocessing_tab_controller
+
+        <ul>
+          <li><a href="controller.postpocessing_tab_controller.html#module-controller.postpocessing_tab_controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.preprocessing_tab_controller
+
+        <ul>
+          <li><a href="controller.preprocessing_tab_controller.html#module-controller.preprocessing_tab_controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.reconstruction_tab_controller
+
+        <ul>
+          <li><a href="controller.reconstruction_tab_controller.html#module-controller.reconstruction_tab_controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.tab_controller
+
+        <ul>
+          <li><a href="controller.tab_controller.html#module-controller.tab_controller">module</a>
+</li>
+        </ul></li>
+        <li>
+    controller.toolbar_controller
+
+        <ul>
+          <li><a href="controller.toolbar_controller.html#module-controller.toolbar_controller">module</a>
+</li>
+        </ul></li>
+        <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.cosbellFilter">cosbellFilter() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.deleteSelectedItem">deleteSelectedItem() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream">EmittingStream (class in controller.console_controller)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.fftReconstruction">fftReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.flush">flush() (controller.console_controller.EmittingStream method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController">HistoryListController (class in controller.history_list_controller)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="widget.history_list_widget.html#widget.history_list_widget.HistoryListWidget">HistoryListWidget (class in widget.history_list_widget)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.imageview_controller.html#controller.imageview_controller.ImageViewController">ImageViewController (class in controller.imageview_controller)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="widget.imageview_widget.html#widget.imageview_widget.ImageViewWidget">ImageViewWidget (class in widget.imageview_widget)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.loadFile">loadFile() (controller.toolbar_controller.ToolBarController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow">MainWindow (class in ui.mainwindow)</a>
+</li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="controller.html#module-controller">controller</a>
+</li>
+          <li><a href="controller.console_controller.html#module-controller.console_controller">controller.console_controller</a>
+</li>
+          <li><a href="controller.history_list_controller.html#module-controller.history_list_controller">controller.history_list_controller</a>
+</li>
+          <li><a href="controller.imageview_controller.html#module-controller.imageview_controller">controller.imageview_controller</a>
+</li>
+          <li><a href="controller.postpocessing_tab_controller.html#module-controller.postpocessing_tab_controller">controller.postpocessing_tab_controller</a>
+</li>
+          <li><a href="controller.preprocessing_tab_controller.html#module-controller.preprocessing_tab_controller">controller.preprocessing_tab_controller</a>
+</li>
+          <li><a href="controller.reconstruction_tab_controller.html#module-controller.reconstruction_tab_controller">controller.reconstruction_tab_controller</a>
+</li>
+          <li><a href="controller.tab_controller.html#module-controller.tab_controller">controller.tab_controller</a>
+</li>
+          <li><a href="controller.toolbar_controller.html#module-controller.toolbar_controller">controller.toolbar_controller</a>
+</li>
+          <li><a href="ui.html#module-ui">ui</a>
+</li>
+          <li><a href="ui.mainwindow.html#module-ui.mainwindow">ui.mainwindow</a>
+</li>
+          <li><a href="widget.html#module-widget">widget</a>
+</li>
+          <li><a href="widget.console_widget.html#module-widget.console_widget">widget.console_widget</a>
+</li>
+          <li><a href="widget.history_list_widget.html#module-widget.history_list_widget">widget.history_list_widget</a>
+</li>
+          <li><a href="widget.imageview_widget.html#module-widget.imageview_widget">widget.imageview_widget</a>
+</li>
+          <li><a href="widget.postpocessing_tab_widget.html#module-widget.postpocessing_tab_widget">widget.postpocessing_tab_widget</a>
+</li>
+          <li><a href="widget.preprocessing_tab_widget.html#module-widget.preprocessing_tab_widget">widget.preprocessing_tab_widget</a>
+</li>
+          <li><a href="widget.reconstruction_tab_widget.html#module-widget.reconstruction_tab_widget">widget.reconstruction_tab_widget</a>
+</li>
+          <li><a href="widget.tab_widget.html#module-widget.tab_widget">widget.tab_widget</a>
+</li>
+          <li><a href="widget.toolbar_widget.html#module-widget.toolbar_widget">widget.toolbar_widget</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.moveKeyAndValuesToEnd">moveKeyAndValuesToEnd() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.partialAcquisition">partialAcquisition() (controller.toolbar_controller.ToolBarController method)</a>
+</li>
+        <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController">PostProcessingTabController (class in controller.postpocessing_tab_controller)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="widget.postpocessing_tab_widget.html#widget.postpocessing_tab_widget.PostProcessingTabWidget">PostProcessingTabWidget (class in widget.postpocessing_tab_widget)</a>
+</li>
+        <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController">PreProcessingTabController (class in controller.preprocessing_tab_controller)</a>
+</li>
+        <li><a href="widget.preprocessing_tab_widget.html#widget.preprocessing_tab_widget.PreProcessingTabWidget">PreProcessingTabWidget (class in widget.preprocessing_tab_widget)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.rawDataLoading">rawDataLoading() (controller.toolbar_controller.ToolBarController method)</a>
+</li>
+        <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController">ReconstructionTabController (class in controller.reconstruction_tab_controller)</a>
+</li>
+        <li><a href="widget.reconstruction_tab_widget.html#widget.reconstruction_tab_widget.ReconstructionTabWidget">ReconstructionTabWidget (class in widget.reconstruction_tab_widget)</a>
+</li>
+        <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.runArtReconstruction">runArtReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController.RunBm4dFilter">RunBm4dFilter() (controller.postpocessing_tab_controller.PostProcessingTabController method)</a>
+</li>
+        <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.RunCosbellFilter">RunCosbellFilter() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+        <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.runFftReconstruction">runFftReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
+</li>
+        <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.runPartialAcquisition">runPartialAcquisition() (controller.toolbar_controller.ToolBarController method)</a>
+</li>
+        <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.RunZeroPadding">RunZeroPadding() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.tab_controller.html#controller.tab_controller.TabController">TabController (class in controller.tab_controller)</a>
+</li>
+        <li><a href="widget.tab_widget.html#widget.tab_widget.TabWidget">TabWidget (class in widget.tab_widget)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.textWritten">textWritten (controller.console_controller.EmittingStream attribute)</a>
+</li>
+        <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController">ToolBarController (class in controller.toolbar_controller)</a>
+</li>
+        <li><a href="widget.toolbar_widget.html#widget.toolbar_widget.ToolBarWidget">ToolBarWidget (class in widget.toolbar_widget)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    ui
+
+        <ul>
+          <li><a href="ui.html#module-ui">module</a>
+</li>
+        </ul></li>
+        <li>
+    ui.mainwindow
+
+        <ul>
+          <li><a href="ui.mainwindow.html#module-ui.mainwindow">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateHistoryFigure">updateHistoryFigure() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateHistoryTable">updateHistoryTable() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+        <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateOperationsHist">updateOperationsHist() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    widget
+
+        <ul>
+          <li><a href="widget.html#module-widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.console_widget
+
+        <ul>
+          <li><a href="widget.console_widget.html#module-widget.console_widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.history_list_widget
+
+        <ul>
+          <li><a href="widget.history_list_widget.html#module-widget.history_list_widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.imageview_widget
+
+        <ul>
+          <li><a href="widget.imageview_widget.html#module-widget.imageview_widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.postpocessing_tab_widget
+
+        <ul>
+          <li><a href="widget.postpocessing_tab_widget.html#module-widget.postpocessing_tab_widget">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    widget.preprocessing_tab_widget
+
+        <ul>
+          <li><a href="widget.preprocessing_tab_widget.html#module-widget.preprocessing_tab_widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.reconstruction_tab_widget
+
+        <ul>
+          <li><a href="widget.reconstruction_tab_widget.html#module-widget.reconstruction_tab_widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.tab_widget
+
+        <ul>
+          <li><a href="widget.tab_widget.html#module-widget.tab_widget">module</a>
+</li>
+        </ul></li>
+        <li>
+    widget.toolbar_widget
+
+        <ul>
+          <li><a href="widget.toolbar_widget.html#module-widget.toolbar_widget">module</a>
+</li>
+        </ul></li>
+        <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.write">write() (controller.console_controller.EmittingStream method)</a>
+</li>
+        <li><a href="controller.console_controller.html#controller.console_controller.ConsoleController.write_console">write_console() (controller.console_controller.ConsoleController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Z" class="genindex-section">
+  <h2>Z</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.zeroPadding">zeroPadding() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, D. Comlan
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

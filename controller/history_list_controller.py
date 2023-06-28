@@ -1,5 +1,4 @@
 import datetime as dt
-
 import numpy as np
 from PyQt5.QtWidgets import QMenu
 from widget.imageview_widget import ImageViewWidget
@@ -7,9 +6,29 @@ from widget.history_list_widget import HistoryListWidget
 
 
 class HistoryListController(HistoryListWidget):
-    def __init__(self, *args, **kwargs):
-        super(HistoryListController, self).__init__(*args, **kwargs)
+    """
+    Controller class for the history list widget.
 
+    Inherits from HistoryListWidget.
+
+    Attributes:
+        hist_dict: Dictionary to store historical images.
+        operations_dict: Dictionary to store operations' history.
+        matrix_infos: Information about the matrix.
+        image_view: Reference to the ImageViewWidget.
+
+    """
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize the HistoryListController.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
+
+        super(HistoryListController, self).__init__(*args, **kwargs)
         self.hist_dict = {}  # Dictionary to store historical images
         self.operations_dict = {}  # Dictionary to store operations history
         self.matrix_infos = None
@@ -20,13 +39,23 @@ class HistoryListController(HistoryListWidget):
         self.itemClicked.connect(self.updateHistoryTable)
 
     def addItemWithTimestamp(self, text):
-        # Add an item with a timestamp to the history list
+        """
+        Add an item with a timestamp to the history list.
+
+        Args:
+            text (str): The text to be added to the history list.
+        """
         current_time = dt.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         self.matrix_infos = f"{current_time} - {text}"
         self.addItem(self.matrix_infos)
 
     def updateHistoryFigure(self, item):
-        # Update the displayed image based on the selected item in the history list
+        """
+        Update the displayed image based on the selected item in the history list.
+
+        Args:
+            item (QListWidgetItem): The selected item in the history list.
+        """
         selected_text = item.text()
         if selected_text in self.hist_dict.keys():
             self.main.image_view_widget.main_matrix = self.hist_dict.get(selected_text)
@@ -36,7 +65,13 @@ class HistoryListController(HistoryListWidget):
         self.moveKeyAndValuesToEnd(self.operations_dict, selected_text)
 
     def updateOperationsHist(self, infos, text):
-        # Update the operations history dictionary with the given information
+        """
+        Update the operations history dictionary with the given information.
+
+        Args:
+            infos (str): Information for the operations' history.
+            text (str): Text to be added to the operations' history.
+        """
         if len(self.operations_dict) == 0:
             self.operations_dict[infos] = [text]
         else:
@@ -46,7 +81,12 @@ class HistoryListController(HistoryListWidget):
             self.operations_dict[infos] = new_value
 
     def updateHistoryTable(self, item):
-        # Update the operations history table based on the selected item in the history list
+        """
+        Update the operations history table based on the selected item in the history list.
+
+        Args:
+            item (QListWidgetItem): The selected item in the history list.
+        """
         self.main.history_widget.clear()
         selected_text = item.text()
         values = self.operations_dict.get(selected_text, [])
@@ -55,17 +95,25 @@ class HistoryListController(HistoryListWidget):
             self.main.history_widget.addItem(value)
 
     def moveKeyAndValuesToEnd(self, dictionary, key):
-        # Check if the key exists in the dictionary
+        """
+        Move the given key and its associated values to the end of the dictionary.
+
+        Args:
+            dictionary (dict): The dictionary containing the key and values.
+            key (str): The key to be moved to the end of the dictionary.
+        """
         if key in dictionary:
-            # Create a list to store the values associated with the key
             values = dictionary[key]
-            # Remove the key and its values from the dictionary
             del dictionary[key]
-            # Add the key and its values to the end of the dictionary
             dictionary[key] = values
 
     def contextMenuEvent(self, event):
-        # Create a context menu for right-click event
+        """
+        Create a context menu for the right-click event.
+
+        Args:
+            event (QContextMenuEvent): The context menu event.
+        """
         context_menu = QMenu(self)
         if self.selectedItems():
             delete_action = context_menu.addAction('Delete')
@@ -77,26 +125,27 @@ class HistoryListController(HistoryListWidget):
                 self.addImage()
 
     def deleteSelectedItem(self):
-        # Delete the selected item from the history list
+        """
+        Delete the selected item from the history list.
+        """
         selected_items = self.selectedItems()
         if selected_items:
             selected_item = selected_items[0]
-
             self.takeItem(self.row(selected_item))
 
         if selected_item.text() in self.hist_dict:
-            # Remove the selected item from the historical images dictionary
             del self.hist_dict[selected_item.text()]
             self.main.history_widget.clear()
             self.main.image_view_widget.clear()
             self.clearSecondImageView()
 
         if selected_item.text() in self.operations_dict:
-            # Remove the selected item from the operations history dictionary
             del self.operations_dict[selected_item.text()]
 
     def addImage(self):
-        # Add an image to a new image view
+        """
+        Add an image to a new image view.
+        """
         selected_items = self.selectedItems()
         if selected_items:
             selected_item = selected_items[0]
@@ -104,7 +153,6 @@ class HistoryListController(HistoryListWidget):
             if text in self.hist_dict:
                 image = self.hist_dict.get(text)
 
-                # Check if an instance of ImageViewWidget already exists
                 if self.image_view is None:
                     self.image_view = ImageViewWidget(parent=self.main)
                     self.main.image_view_splitter.addWidget(self.image_view)
@@ -112,6 +160,9 @@ class HistoryListController(HistoryListWidget):
                 self.image_view.setImage(np.abs(image))
 
     def clearSecondImageView(self):
+        """
+        Clear the second image view.
+        """
         if self.image_view is not None:
             self.image_view.close()
             self.image_view = None

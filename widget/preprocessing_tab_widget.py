@@ -2,7 +2,24 @@ from PyQt5.QtWidgets import QPushButton, QTabWidget, QVBoxLayout, QLabel, QCheck
 
 
 class PreProcessingTabWidget(QTabWidget):
+    """
+    PreProcessingTabWidget class for displaying a tab widget for image pre-processing options.
+
+    Inherits from QTabWidget provided by PyQt5 to display a tab widget for image pre-processing options.
+
+    Attributes:
+        main: The parent widget.
+    """
+
     def __init__(self, parent, *args, **kwargs):
+        """
+        Initialize the PreProcessingTabWidget.
+
+        Args:
+            parent: The parent widget.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super(PreProcessingTabWidget, self).__init__(*args, **kwargs)
         self.main = parent
 
@@ -98,16 +115,10 @@ class PreProcessingTabWidget(QTabWidget):
         self.partial_reconstruction_group = QGroupBox("Partial Reconstruction")
         self.partial_reconstruction_group.setLayout(self.partial_reconstruction_layout)
 
-
         # Main layout
         self.preprocessing_layout = QVBoxLayout()
-        # self.preprocessing_layout.addLayout(self.cosbell_layout)
-        # self.preprocessing_layout.addLayout(self.cosbell_order_layout)
-        self.preprocessing_layout.addWidget(self.cosbell_group)
-        # self.preprocessing_layout.addLayout(self.zero_padding_order_layout)
         self.preprocessing_layout.addWidget(self.zero_padding_group)
-        # self.preprocessing_layout.addLayout(self.change_fov_layout)
+        self.preprocessing_layout.addWidget(self.cosbell_group)
         self.preprocessing_layout.addWidget(self.new_fov_group)
-        # self.preprocessing_layout.addLayout(self.partial_reconstruction_layout)
         self.preprocessing_layout.addWidget(self.partial_reconstruction_group)
         self.setLayout(self.preprocessing_layout)

@@ -1,12 +1,30 @@
 import threading
-
 import numpy as np
-
 from widget.reconstruction_tab_widget import ReconstructionTabWidget
 
 
 class ReconstructionTabController(ReconstructionTabWidget):
+    """
+    Controller class for the ReconstructionTabWidget.
+
+    Inherits from ReconstructionTabWidget to provide additional functionality for image reconstruction.
+
+    Attributes:
+        image_fft_button: QPushButton for performing FFT reconstruction.
+        image_art_button: QPushButton for performing ART reconstruction.
+    """
+
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the ReconstructionTabController.
+
+        Connects the image_fft_button clicked signal to the fftReconstruction method.
+        Connects the image_art_button clicked signal to the artReconstruction method.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super(ReconstructionTabController, self).__init__(*args, **kwargs)
 
         # Connect the image_fft_button clicked signal to the fftReconstruction method
@@ -14,10 +32,23 @@ class ReconstructionTabController(ReconstructionTabWidget):
         self.image_art_button.clicked.connect(self.artReconstruction)
 
     def fftReconstruction(self):
+        """
+        Perform FFT reconstruction in a separate thread.
+
+        Creates a new thread and runs the runFftReconstruction method in that thread.
+        """
         thread = threading.Thread(target=self.runFftReconstruction)
         thread.start()
 
     def runFftReconstruction(self):
+        """
+        Perform FFT reconstruction.
+
+        Retrieves the k-space data from the main matrix of the image view widget.
+        Performs inverse FFT shift, inverse FFT, and inverse FFT shift to reconstruct the image in the spatial domain.
+        Updates the main matrix of the image view widget with the reconstructed image.
+        Adds the "FFT" operation to the history widget and updates the history dictionary and operations history.
+        """
         # Get the k-space data from the main matrix
         k_space = self.main.image_view_widget.main_matrix
 
@@ -38,18 +69,32 @@ class ReconstructionTabController(ReconstructionTabWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "FFT")
 
     def artReconstruction(self):
+        """
+        Perform ART reconstruction in a separate thread.
+
+        Creates a new thread and runs the runArtReconstruction method in that thread.
+        """
         thread = threading.Thread(target=self.runArtReconstruction)
         thread.start()
 
     def runArtReconstruction(self):
-        #  Get the mat data from the loaded .mat file in the main toolbar controller
+        """
+        Perform ART reconstruction.
+
+        Retrieves the mat data from the loaded .mat file in the main toolbar controller.
+        Extracts the necessary data from the mat file.
+        Performs the ART reconstruction algorithm.
+        Updates the main matrix of the image view widget with the reconstructed image.
+        Adds the "ART" operation to the history widget and updates the history dictionary and operations history.
+        """
+        # Get the mat data from the loaded .mat file in the main toolbar controller
         mat_data = self.main.toolbar_controller.mat_data
 
         print('The ART is applying')
 
         # Extract datas data from the loaded .mat file
         self.sampled = self.main.toolbar_controller.k_space_raw
-        fov = np.reshape(mat_data['fov'], -1)*1e-2
+        fov = np.reshape(mat_data['fov'], -1) * 1e-2
         nPoints = np.reshape(mat_data['nPoints'], -1)
         s = self.sampled[:, 3]
         rho = np.zeros((nPoints[0] * nPoints[1] * nPoints[2]))

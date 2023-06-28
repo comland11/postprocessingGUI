@@ -2,7 +2,24 @@ from PyQt5.QtWidgets import QPushButton, QTabWidget, QVBoxLayout, QLabel, QLineE
 
 
 class ReconstructionTabWidget(QTabWidget):
+    """
+    ReconstructionTabWidget class for displaying a tab widget for image reconstruction options.
+
+    Inherits from QTabWidget provided by PyQt5 to display a tab widget for image reconstruction options.
+
+    Attributes:
+        main: The parent widget.
+    """
+
     def __init__(self, parent, *args, **kwargs):
+        """
+        Initialize the ReconstructionTabWidget.
+
+        Args:
+            parent: The parent widget.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super(ReconstructionTabWidget, self).__init__(*args, **kwargs)
         self.main = parent
 

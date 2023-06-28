@@ -18,7 +18,39 @@ from controller.tab_controller import TabController
 
 
 class MainWindow(QMainWindow):
+    """
+    Main window class for the application.
+
+    Inherits from QMainWindow to provide the main application window.
+
+    Attributes:
+        threadpool (QThreadPool): Thread pool for parallel running.
+        main_widget (QWidget): Central widget for the main window.
+        main_layout (QHBoxLayout): Main layout for the main window.
+        left_layout (QVBoxLayout): Layout for the left side of the main window.
+        right_layout (QVBoxLayout): Layout for the right side of the main window.
+        image_view_layout (QVBoxLayout): Layout for the image view widgets.
+        image_view_splitter (QSplitter): Splitter widget for the image view widgets.
+        image_view_widget (ImageViewController): Image view widget for displaying images.
+        history_layout (QHBoxLayout): Layout for the history list and history controller.
+        history_controller (HistoryListController): Controller for the history list.
+        history_widget (HistoryListWidget): Widget for displaying the history list.
+        toolbar_controller (ToolBarController): Controller for the toolbar.
+        tab_controller (TabController): Controller for the tab widget.
+        postprocessing_controller (PostProcessingTabController): Controller for the post-processing tab.
+        preprocessing_controller (PreProcessingTabController): Controller for the pre-processing tab.
+        reconstruction_controller (ReconstructionTabController): Controller for the reconstruction tab.
+        visualisation_controller (VisualisationTabController): Controller for the visualisation tab.
+        console (ConsoleController): Controller for the console.
+    """
+
     def __init__(self):
+        """
+        Initialize the MainWindow.
+
+        Args:
+            None
+        """
         super().__init__()
 
         # Set stylesheet
@@ -50,8 +82,11 @@ class MainWindow(QMainWindow):
         self.right_layout = QVBoxLayout()
         self.main_layout.addLayout(self.right_layout)
 
+        self.image_view_layout = QVBoxLayout()
+        self.right_layout.addLayout(self.image_view_layout)
+
         self.image_view_splitter = QSplitter()
-        self.right_layout.addWidget(self.image_view_splitter)
+        self.image_view_layout.addWidget(self.image_view_splitter)
 
         # Image view addition
         self.image_view_widget = ImageViewController(parent=self)

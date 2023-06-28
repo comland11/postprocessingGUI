@@ -1,14 +1,32 @@
 import scipy as sp
 import numpy as np
-
 from PyQt5.QtWidgets import QFileDialog
 from scipy.interpolate import griddata
-
 from widget.toolbar_widget import ToolBarWidget
 
 
 class ToolBarController(ToolBarWidget):
+    """
+    Controller class for the ToolBarWidget.
+
+    Inherits from ToolBarWidget to provide additional functionality for managing tool bar actions.
+
+    Attributes:
+        k_space_raw (ndarray): Raw k-space data loaded from a .mat file.
+        mat_data (dict): Data loaded from a .mat file.
+        nPoints (ndarray): Array containing the number of points in each dimension.
+        k_space (ndarray): Processed k-space data.
+        image_loading_button: QPushButton for loading the file and getting the k-space.
+    """
+
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the ToolBarController.
+
+        Args:
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super(ToolBarController, self).__init__(*args, **kwargs)
 
         # Connect the image_loading_button clicked signal to the rawDataLoading method
@@ -19,8 +37,9 @@ class ToolBarController(ToolBarWidget):
         self.image_loading_button.clicked.connect(self.rawDataLoading)
 
     def rawDataLoading(self):
-        # Load raw data from a .mat file and update the image view widget
-
+        """
+        Load raw data from a .mat file and update the image view widget.
+        """
         # Prompt the user to select a .mat file
         file_path = self.loadFile()
         self.mat_data = sp.io.loadmat(file_path)
@@ -71,7 +90,12 @@ class ToolBarController(ToolBarWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "KSpace")
 
     def loadFile(self):
-        # Open a file dialog to select a .mat file and return its path
+        """
+        Open a file dialog to select a .mat file and return its path.
+
+        Returns:
+            str: The path of the selected .mat file.
+        """
         options = QFileDialog.Options()
         options |= QFileDialog.ReadOnly
         default_dir = "C:/Users/Portatil PC 6/PycharmProjects/pythonProject1/Results"

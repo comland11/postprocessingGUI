@@ -2,7 +2,24 @@ from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QLabe
 
 
 class PostProcessingTabWidget(QTabWidget):
+    """
+    PostProcessingTabWidget class for displaying a tab widget for post-processing options.
+
+    Inherits from QTabWidget provided by PyQt5 to display a tab widget for post-processing options.
+
+    Attributes:
+        main: The parent widget.
+    """
+
     def __init__(self, parent, *args, **kwargs):
+        """
+        Initialize the PostProcessingTabWidget.
+
+        Args:
+            parent: The parent widget.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super(PostProcessingTabWidget, self).__init__(*args, **kwargs)
         self.main = parent
 

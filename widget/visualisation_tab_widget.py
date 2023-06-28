@@ -2,28 +2,45 @@ from PyQt5.QtWidgets import QTabWidget, QPushButton, QLabel, QLineEdit, QHBoxLay
 
 
 class VisualisationTabWidget(QTabWidget):
+    """
+    VisualisationTabWidget class for displaying a tab widget for visualization settings.
+
+    Inherits from QTabWidget provided by PyQt5 to display a tab widget for visualization settings.
+
+    Attributes:
+        main: The parent widget.
+    """
+
     def __init__(self, parent, *args, **kwargs):
+        """
+        Initialize the VisualisationTabWidget.
+
+        Args:
+            parent: The parent widget.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+        """
         super(VisualisationTabWidget, self).__init__(*args, **kwargs)
         self.main = parent
 
         # Button
-        self.visualisation_button = QPushButton('Run')
+        self.visualisation_button = QPushButton('Show slices')
 
         # Labels
-        self.number_label = QLabel('From ... To ...')
-        self.column_label = QLabel('Columns number')
+        self.range_label = QLabel('Slices')
+        self.column_label = QLabel('Step and columns number')
 
         # Text Fields
-        self.number_text_field = QLineEdit()
-        self.number_text_field.setPlaceholderText("N0, Nend")
+        self.range_text_field = QLineEdit()
+        self.range_text_field.setPlaceholderText("First, Last")
 
         self.column_text_field = QLineEdit()
-        self.column_text_field.setText('1')
+        self.column_text_field.setPlaceholderText("Step, Columns")
 
         # Layouts
         self.number_layout = QHBoxLayout()
-        self.number_layout.addWidget(self.number_label)
-        self.number_layout.addWidget(self.number_text_field)
+        self.number_layout.addWidget(self.range_label)
+        self.number_layout.addWidget(self.range_text_field)
 
         self.column_layout = QHBoxLayout()
         self.column_layout.addWidget(self.column_label)

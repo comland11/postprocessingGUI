@@ -4,97 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="new files for visualisation">
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="docstring addition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/console_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/console_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/history_list_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/history_list_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/imageview_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/imageview_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/postpocessing_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/postpocessing_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/toolbar_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/toolbar_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.console_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.console_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.imageview_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.imageview_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.postpocessing_tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.postpocessing_tab_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.preprocessing_tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.preprocessing_tab_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.reconstruction_tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.reconstruction_tab_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.tab_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/ui.mainwindow.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/ui.mainwindow.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.console_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.console_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.history_list_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.history_list_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.imageview_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.imageview_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.postpocessing_tab_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.postpocessing_tab_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.preprocessing_tab_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.preprocessing_tab_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.reconstruction_tab_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.reconstruction_tab_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.tab_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.tab_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/widget.toolbar_widget.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/widget.toolbar_widget.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/.buildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/.buildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/console_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/console_controller.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/imageview_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/imageview_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/postpocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/postpocessing_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/preprocessing_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/reconstruction_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/reconstruction_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/console_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/console_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/history_list_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/history_list_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/imageview_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/imageview_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/postpocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/postpocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/reconstruction_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/reconstruction_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/toolbar_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/toolbar_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_sources/controller.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_sources/controller.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_sources/widget.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_sources/widget.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.console_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.console_controller.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.imageview_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.imageview_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.postpocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.postpocessing_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.reconstruction_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.reconstruction_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/modules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/py-modindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/ui.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/ui.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/ui.mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/ui.mainwindow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.console_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.console_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.history_list_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.history_list_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.imageview_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.imageview_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.postpocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.postpocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.preprocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.reconstruction_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.reconstruction_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/widget.toolbar_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/widget.toolbar_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/controller.rst" beforeDir="false" afterPath="$PROJECT_DIR$/doc/controller.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/widget.rst" beforeDir="false" afterPath="$PROJECT_DIR$/doc/widget.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/console_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/console_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/history_list_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/history_list_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/imageview_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/imageview_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/postpocessing_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/postpocessing_tab_widget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/widget/preprocessing_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/preprocessing_tab_widget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/widget/reconstruction_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/reconstruction_tab_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/tab_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/toolbar_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/toolbar_widget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/widget/visualisation_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/visualisation_tab_widget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +65,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "zero__padding",
-    "last_opened_file_path": "C:/Users/Portatil PC 6/PycharmProjects/postprocessingGUI",
+    "last_opened_file_path": "C:/Users/Portatil PC 6/PycharmProjects/pythonProject",
     "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
@@ -510,7 +432,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687876969118</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="docstring addition">
+      <created>1687963839383</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1687963839383</updated>
+    </task>
+    <task id="LOCAL-00036" summary="docstring addition">
+      <created>1687964002935</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1687964002935</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -617,15 +553,26 @@
     <MESSAGE value="documentation" />
     <MESSAGE value="reorganized prepocessing tab into group box , set vector for zero padding, set vector in mm for zero padding, changed console dimension, moved zero padding code from toolbar to preprocessing tab" />
     <MESSAGE value="new files for visualisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="new files for visualisation" />
+    <MESSAGE value="docstring addition" />
+    <option name="LAST_COMMIT_MESSAGE" value="docstring addition" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/controller/visualisation_tab_controller.py</url>
-          <line>55</line>
-          <option name="timeStamp" value="4" />
+          <line>45</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/controller/visualisation_tab_controller.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/controller/visualisation_tab_controller.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

@@ -12,7 +12,7 @@ class HistoryListController(HistoryListWidget):
     Inherits from HistoryListWidget.
 
     Attributes:
-        hist_dict: Dictionary to store historical images.
+        hist_dict: Dictionary to store images.
         operations_dict: Dictionary to store operations' history.
         matrix_infos: Information about the matrix.
         image_view: Reference to the ImageViewWidget.

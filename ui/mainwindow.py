@@ -82,7 +82,7 @@ class MainWindow(QMainWindow):
         self.right_layout = QVBoxLayout()
         self.main_layout.addLayout(self.right_layout)
 
-        self.image_view_layout = QVBoxLayout()
+        self.image_view_layout = QHBoxLayout()
         self.right_layout.addLayout(self.image_view_layout)
 
         self.image_view_splitter = QSplitter()

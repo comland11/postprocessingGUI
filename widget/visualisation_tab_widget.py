@@ -28,14 +28,14 @@ class VisualisationTabWidget(QTabWidget):
 
         # Labels
         self.range_label = QLabel('Slices')
-        self.column_label = QLabel('Step and columns number')
+        self.column_label = QLabel('Rows and columns')
 
         # Text Fields
         self.range_text_field = QLineEdit()
-        self.range_text_field.setPlaceholderText("First, Last")
+        self.range_text_field.setPlaceholderText('First, Last')
 
         self.column_text_field = QLineEdit()
-        self.column_text_field.setPlaceholderText("Step, Columns")
+        self.column_text_field.setPlaceholderText('Rows, Columns')
 
         # Layouts
         self.number_layout = QHBoxLayout()

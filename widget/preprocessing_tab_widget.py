@@ -62,6 +62,7 @@ class PreProcessingTabWidget(QTabWidget):
 
         self.zero_padding_order_field = QLineEdit()
         self.zero_padding_order_field.setPlaceholderText("Readout, Phase, Slice")
+        self.zero_padding_order_field.setText('2,2,2')
 
         self.zero_padding_order_layout = QHBoxLayout()
         self.zero_padding_order_layout.addWidget(self.zero_padding_order_label)
@@ -86,13 +87,13 @@ class PreProcessingTabWidget(QTabWidget):
         self.change_fov_layout.addWidget(self.change_fov_label)
         self.change_fov_layout.addWidget(self.change_fov_field)
 
-        self.new_fov_button = QPushButton('Change FOV')
+        self.new_fov_button = QPushButton('Shift FOV')
 
         self.new_fov_layout = QVBoxLayout()
         self.new_fov_layout.addLayout(self.change_fov_layout)
         self.new_fov_layout.addWidget(self.new_fov_button)
 
-        self.new_fov_group = QGroupBox("FOV Change")
+        self.new_fov_group = QGroupBox("FOV Shift")
         self.new_fov_group.setLayout(self.new_fov_layout)
 
         # Partial Reconstruction

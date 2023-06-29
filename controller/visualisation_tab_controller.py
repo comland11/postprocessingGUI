@@ -45,26 +45,34 @@ class VisualisationTabController(VisualisationTabWidget):
         slices = self.range_text_field.text().split(',')
         n0 = int(slices[0])
         n_end = int(slices[1])
+        # slices_number = n_end - n0 + 1
+        selected_slices = image[n0:n_end + 1]
 
-        aaa = self.column_text_field.text().split(',')
-        step = int(aaa[0])
-        column_number = int(aaa[1])
+        rows_columns = self.column_text_field.text().split(',')
+        rows_number = int(rows_columns[0])
+        columns_number = int(rows_columns[1])
 
-        # num_slices = n_end - n0
-        # step = int(num_slices / (total_slices - 1))
-        selected_slices = image[n0:n_end + 1:step]
-        row_count = (len(selected_slices) + column_number - 1) // column_number
+        slice_height, slice_width = image.shape[1], image.shape[2]
+
+        image_matrix = np.zeros((slice_height * rows_number, slice_width * columns_number), dtype=np.complex128)
 
         i = 0
-        for row in range(row_count):
-            for col in range(column_number):
-                if i < len(selected_slices):
-                    image_widget = ImageView()
-                    image_widget.setImage(abs(selected_slices[i]))
-                    # image_widget.ui.histogram.hide()
-                    # image_widget.ui.roiBtn.hide()
-                    # image_widget.ui.menuBtn.hide()
-                    self.layout.addWidget(image_widget, row, col)
-                    i += 1
+        while i < len(selected_slices):
+            row = i // columns_number
+            col = i % columns_number
+            row_start = row * slice_height
+            row_end = row_start + slice_height
+            col_start = col * slice_width
+            col_end = col_start + slice_width
 
-        self.main.image_view_layout.addLayout(self.layout)
+            image_matrix[row_start:row_end, col_start:col_end] = image[i]
+
+            i += 1
+
+        image_view = ImageView()
+        # image_view.ui.histogram.hide()
+        # image_view.ui.roiBtn.hide()
+        # image_view.ui.menuBtn.hide()
+        image_view.setImage(abs(image_matrix))
+        image_view.setMinimumSize(400, 400)
+        self.main.image_view_layout.addWidget(image_view)

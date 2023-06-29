@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QTabWidget, QVBoxLayout, QLabel, QLineEdit, QHBoxLayout
+from PyQt5.QtWidgets import QPushButton, QTabWidget, QVBoxLayout, QLabel, QLineEdit, QHBoxLayout, QGroupBox
 
 
 class ReconstructionTabWidget(QTabWidget):
@@ -38,15 +38,27 @@ class ReconstructionTabWidget(QTabWidget):
         self.lambda_text_field.setText('1')
 
         # Layouts
-        self.art_layout = QHBoxLayout()
-        self.art_layout.addWidget(self.niter_label)
-        self.art_layout.addWidget(self.niter_text_field)
-        self.art_layout.addWidget(self.lambda_label)
-        self.art_layout.addWidget(self.lambda_text_field)
+        self.order_layout = QHBoxLayout()
+        self.order_layout.addWidget(self.niter_label)
+        self.order_layout.addWidget(self.niter_text_field)
+        self.order_layout.addWidget(self.lambda_label)
+        self.order_layout.addWidget(self.lambda_text_field)
+
+        self.art_layout = QVBoxLayout()
+        self.art_layout.addLayout(self.order_layout)
+        self.art_layout.addWidget(self.image_art_button)
+
+        self.art_group = QGroupBox('ART')
+        self.art_group.setLayout(self.art_layout)
+
+        self.fft_layout = QVBoxLayout()
+        self.fft_layout.addWidget(self.image_fft_button)
+
+        self.fft_group = QGroupBox('FFT')
+        self.fft_group.setLayout(self.fft_layout)
 
         self.reconstruction_layout = QVBoxLayout()
-        self.reconstruction_layout.addLayout(self.art_layout)
-        self.reconstruction_layout.addWidget(self.image_art_button)
-        self.reconstruction_layout.addWidget(self.image_fft_button)
+        self.reconstruction_layout.addWidget(self.art_group)
+        self.reconstruction_layout.addWidget(self.fft_group)
 
         self.setLayout(self.reconstruction_layout)

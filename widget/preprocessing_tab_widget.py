@@ -62,7 +62,7 @@ class PreProcessingTabWidget(QTabWidget):
 
         self.zero_padding_order_field = QLineEdit()
         self.zero_padding_order_field.setPlaceholderText("Readout, Phase, Slice")
-        self.zero_padding_order_field.setText('2,2,2')
+        # self.zero_padding_order_field.setText('2,2,2')
 
         self.zero_padding_order_layout = QHBoxLayout()
         self.zero_padding_order_layout.addWidget(self.zero_padding_order_label)

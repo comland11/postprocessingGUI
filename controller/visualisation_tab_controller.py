@@ -50,12 +50,12 @@ class VisualisationTabController(VisualisationTabWidget):
 
         slice_height, slice_width = image.shape[1], image.shape[2]
 
-        image_matrix = np.zeros((slice_height * rows_number, slice_width * columns_number), dtype=np.complex128)
+        image_matrix = np.zeros((slice_height * columns_number, slice_width * rows_number), dtype=np.complex128)
 
         i = 0
         while i < len(selected_slices):
-            row = i // rows_number
-            col = i % rows_number
+            row = i // columns_number
+            col = i % columns_number
             row_start = row * slice_height
             row_end = row_start + slice_height
             col_start = col * slice_width
@@ -69,12 +69,7 @@ class VisualisationTabController(VisualisationTabWidget):
             self.image_view = ImageViewWidget(parent=self.main)
             self.main.image_view_layout.addWidget(self.image_view)
 
-        # self.image_view = ImageView()
-        # image_view.ui.histogram.hide()
-        # image_view.ui.roiBtn.hide()
-        # image_view.ui.menuBtn.hide()
         self.image_view.setImage(abs(image_matrix))
-        # self.main.image_view_layout.addWidget(self.image_view)
 
     def clear2DImage(self):
         """

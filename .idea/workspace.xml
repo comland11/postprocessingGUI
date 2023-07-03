@@ -4,20 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="docstring addition">
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="2D matrix for comparison">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/history_list_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/history_list_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/toolbar_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/toolbar_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.preprocessing_tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.preprocessing_tab_controller.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/preprocessing_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/reconstruction_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/reconstruction_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/objects.inv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/mainwindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/widget/preprocessing_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/preprocessing_tab_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/reconstruction_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/reconstruction_tab_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/visualisation_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/visualisation_tab_widget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,17 +68,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "zero__padding",
-    "last_opened_file_path": "C:/Users/Portatil PC 6/PycharmProjects/pythonProject",
-    "settings.editor.selected.configurable": "settings.sync"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;image__comparison&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Portatil PC 6/PycharmProjects/pythonProject&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.mainwindow">
-    <configuration name="main_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="history_list_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="postprocessingGUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -82,7 +90,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/main_controller.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/history_list_controller.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,10 +186,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.mainwindow" />
+        <item itemvalue="Python.history_list_controller" />
         <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.toolbar_controller" />
         <item itemvalue="Python.postpocessing_tab_controller" />
-        <item itemvalue="Python.main_controller" />
       </list>
     </recent_temporary>
   </component>
@@ -446,7 +454,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687964002935</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="2D matrix for comparison, group box for reconstruction tab">
+      <created>1688047658576</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1688047658576</updated>
+    </task>
+    <task id="LOCAL-00038" summary="2D matrix for comparison">
+      <created>1688371111122</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1688371111122</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -530,7 +552,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add some comments" />
     <MESSAGE value="The bm4d filter is apply when the checkbox is checked" />
     <MESSAGE value="Two ways to run the bm4d filter : manually or automatically &#10;The image is resize between 0 et 100 before applying the bm4d filter &#10;Slider added to see 3d image" />
     <MESSAGE value="comments added" />
@@ -554,27 +575,12 @@
     <MESSAGE value="reorganized prepocessing tab into group box , set vector for zero padding, set vector in mm for zero padding, changed console dimension, moved zero padding code from toolbar to preprocessing tab" />
     <MESSAGE value="new files for visualisation" />
     <MESSAGE value="docstring addition" />
-    <option name="LAST_COMMIT_MESSAGE" value="docstring addition" />
+    <MESSAGE value="2D matrix for comparison, group box for reconstruction tab" />
+    <MESSAGE value="2D matrix for comparison" />
+    <option name="LAST_COMMIT_MESSAGE" value="2D matrix for comparison" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/controller/visualisation_tab_controller.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/controller/visualisation_tab_controller.py</url>
-          <line>59</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/controller/visualisation_tab_controller.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

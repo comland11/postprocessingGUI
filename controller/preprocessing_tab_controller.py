@@ -105,8 +105,8 @@ class PreProcessingTabController(PreProcessingTabWidget):
         Run the zero-padding operation.
 
         Retrieves the necessary parameters and performs the zero-padding on the loaded image.
-        Updates the main matrix of the image view widget with the padded image, adds the operation to the history widget,
-        and updates the operations history.
+        Updates the main matrix of the image view widget with the padded image, adds the operation to the history
+        widget,and updates the operations history.
         """
         zero_padding_order = self.zero_padding_order_field.text().split(',')
         rd_order = int(zero_padding_order[0])
@@ -155,8 +155,8 @@ class PreProcessingTabController(PreProcessingTabWidget):
         Run the FOV change operation.
 
         Retrieves the necessary parameters and performs the FOV change on the loaded image.
-        Updates the main matrix of the image view widget with the new FOV image, adds the operation to the history widget,
-        and updates the operations history.
+        Updates the main matrix of the image view widget with the new FOV image, adds the operation to the history
+        widget, and updates the operations history.
         """
         k = self.main.toolbar_controller.k_space_raw.copy()
         nPoints = self.main.toolbar_controller.nPoints

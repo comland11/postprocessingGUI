@@ -62,6 +62,7 @@ class HistoryListController(HistoryListWidget):
             self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
         self.clearSecondImageView()
+        self.main.visualisation_controller.clear2DImage()
         self.moveKeyAndValuesToEnd(self.operations_dict, selected_text)
 
     def updateOperationsHist(self, infos, text):

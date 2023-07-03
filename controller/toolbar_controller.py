@@ -9,7 +9,7 @@ class ToolBarController(ToolBarWidget):
     """
     Controller class for the ToolBarWidget.
 
-    Inherits from ToolBarWidget to provide additional functionality for managing tool bar actions.
+    Inherits from ToolBarWidget to provide additional functionality for managing toolbar actions.
 
     Attributes:
         k_space_raw (ndarray): Raw k-space data loaded from a .mat file.
@@ -70,6 +70,7 @@ class ToolBarController(ToolBarWidget):
             self.main.console.console.clear()
             self.main.history_controller.clear()
             self.main.history_controller.hist_dict.clear()
+            self.main.visualisation_controller.clear2DImage()
             self.main.history_controller.clearSecondImageView()
             self.main.history_controller.operations_dict.clear()
 

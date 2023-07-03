@@ -119,11 +119,14 @@ class HistoryListController(HistoryListWidget):
         if self.selectedItems():
             delete_action = context_menu.addAction('Delete')
             add_action = context_menu.addAction('New image')
+            phase_action = context_menu.addAction('Plot phase')
             action = context_menu.exec_(self.mapToGlobal(event.pos()))
             if action == delete_action:
                 self.deleteSelectedItem()
             if action == add_action:
                 self.addImage()
+            if action == phase_action:
+                self.plotPhase()
 
     def deleteSelectedItem(self):
         """
@@ -167,3 +170,15 @@ class HistoryListController(HistoryListWidget):
         if self.image_view is not None:
             self.image_view.close()
             self.image_view = None
+
+    def plotPhase(self):
+        selected_items = self.selectedItems()
+        if selected_items:
+            selected_item = selected_items[0]
+            text = selected_item.text()
+            if text in self.hist_dict:
+                image = self.hist_dict.get(text)
+                if self.image_view is None:
+                    self.image_view = ImageViewWidget(parent=self.main)
+                    self.main.image_view_splitter.addWidget(self.image_view)
+            self.image_view.setImage(np.angle(image))

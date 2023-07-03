@@ -7,25 +7,15 @@
     <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="2D matrix for comparison">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/history_list_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/history_list_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/toolbar_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/toolbar_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.preprocessing_tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.preprocessing_tab_controller.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/preprocessing_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/reconstruction_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/reconstruction_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.preprocessing_tab_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/genindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/objects.inv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widget/preprocessing_tab_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/widget/preprocessing_tab_widget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -468,7 +458,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688371111122</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="2D matrix for comparison">
+      <created>1688381843555</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1688381843555</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

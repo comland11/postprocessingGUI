@@ -252,11 +252,14 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">():</span>
             <span class="n">delete_action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="s1">&#39;Delete&#39;</span><span class="p">)</span>
             <span class="n">add_action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="s1">&#39;New image&#39;</span><span class="p">)</span>
+            <span class="n">phase_action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="s1">&#39;Plot phase&#39;</span><span class="p">)</span>
             <span class="n">action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">exec_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapToGlobal</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()))</span>
             <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">delete_action</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">deleteSelectedItem</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">add_action</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">addImage</span><span class="p">()</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addImage</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">phase_action</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">plotPhase</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="HistoryListController.deleteSelectedItem"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.deleteSelectedItem">[docs]</a>    <span class="k">def</span> <span class="nf">deleteSelectedItem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -299,7 +302,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="HistoryListController.plotPhase"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.plotPhase">[docs]</a>    <span class="k">def</span> <span class="nf">plotPhase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">selected_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+            <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">:</span>
+                <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="n">ImageViewWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_splitter</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">image</span><span class="p">))</span></div></div>
 </pre></div>
 
             <div class="clearer"></div>

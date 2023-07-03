@@ -1,7 +1,6 @@
-import threading
 import numpy as np
 from PyQt5.QtWidgets import QGridLayout
-from pyqtgraph import ImageView
+from widget.imageview_widget import ImageViewWidget
 from widget.visualisation_tab_widget import VisualisationTabWidget
 
 
@@ -28,10 +27,7 @@ class VisualisationTabController(VisualisationTabWidget):
         self.layout = QGridLayout()
         # Connect the visualisation_button clicked signal to the imageVisualisation method
         self.visualisation_button.clicked.connect(self.imageVisualisation)
-
-    # def imageVisualisation(self):
-    #    thread = threading.Thread(target=self.runFftReconstruction)
-    #    thread.start()
+        self.image_view = None
 
     def imageVisualisation(self):
         """
@@ -58,21 +54,32 @@ class VisualisationTabController(VisualisationTabWidget):
 
         i = 0
         while i < len(selected_slices):
-            row = i // columns_number
-            col = i % columns_number
+            row = i // rows_number
+            col = i % rows_number
             row_start = row * slice_height
             row_end = row_start + slice_height
             col_start = col * slice_width
             col_end = col_start + slice_width
 
-            image_matrix[row_start:row_end, col_start:col_end] = image[i]
+            image_matrix[col_start:col_end, row_start:row_end] = image[i]
 
             i += 1
 
-        image_view = ImageView()
+        if self.image_view is None:
+            self.image_view = ImageViewWidget(parent=self.main)
+            self.main.image_view_layout.addWidget(self.image_view)
+
+        # self.image_view = ImageView()
         # image_view.ui.histogram.hide()
         # image_view.ui.roiBtn.hide()
         # image_view.ui.menuBtn.hide()
-        image_view.setImage(abs(image_matrix))
-        image_view.setMinimumSize(400, 400)
-        self.main.image_view_layout.addWidget(image_view)
+        self.image_view.setImage(abs(image_matrix))
+        # self.main.image_view_layout.addWidget(self.image_view)
+
+    def clear2DImage(self):
+        """
+        Clear the second image view.
+        """
+        if self.image_view is not None:
+            self.image_view.close()
+            self.image_view = None

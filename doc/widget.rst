@@ -15,6 +15,7 @@ Submodules
    widget.reconstruction_tab_widget
    widget.tab_widget
    widget.toolbar_widget
+   widget.visualisation_tab_widget
 
 Module contents
 ---------------

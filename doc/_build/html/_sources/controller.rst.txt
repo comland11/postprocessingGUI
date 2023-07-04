@@ -15,6 +15,7 @@ Submodules
    controller.reconstruction_tab_controller
    controller.tab_controller
    controller.toolbar_controller
+   controller.visualisation_tab_controller
 
 Module contents
 ---------------

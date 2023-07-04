@@ -1,72 +1,135 @@
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; PostProcessing GUI 1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; PostProcessing GUI 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic_mod.css?v=0.7.0-1" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
+    <script src="_static/js/petite-vue.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
-</head>
+  </head><body data-dark_mode_code_blocks="true">
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<div id="top_nav">
+    
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            PostProcessing GUI
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="index.html" title="Go to homepage">PostProcessing GUI 1.0 documentation</a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">postprocessingGUI</a></li>
 </ul>
 
         </div>
       </div>
-    </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PostProcessing GUI</a>
-      </nav>
 
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
 
 <h1 id="index">Index</h1>
 
@@ -79,12 +142,16 @@
  | <a href="#F"><strong>F</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  | <a href="#Z"><strong>Z</strong></a>
  
@@ -114,10 +181,16 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.changeFov">changeFov() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+      <li><a href="controller.visualisation_tab_controller.html#controller.visualisation_tab_controller.VisualisationTabController.clear2DImage">clear2DImage() (controller.visualisation_tab_controller.VisualisationTabController method)</a>
 </li>
       <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.clearSecondImageView">clearSecondImageView() (controller.history_list_controller.HistoryListController method)</a>
 </li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.console">console (ui.mainwindow.MainWindow attribute)</a>
+
+      <ul>
+        <li><a href="widget.console_widget.html#widget.console_widget.ConsoleWidget.console">(widget.console_widget.ConsoleWidget attribute)</a>
+</li>
+      </ul></li>
       <li><a href="controller.console_controller.html#controller.console_controller.ConsoleController">ConsoleController (class in controller.console_controller)</a>
 </li>
       <li><a href="widget.console_widget.html#widget.console_widget.ConsoleWidget">ConsoleWidget (class in widget.console_widget)</a>
@@ -189,6 +262,13 @@
         <li><a href="controller.toolbar_controller.html#module-controller.toolbar_controller">module</a>
 </li>
       </ul></li>
+      <li>
+    controller.visualisation_tab_controller
+
+      <ul>
+        <li><a href="controller.visualisation_tab_controller.html#module-controller.visualisation_tab_controller">module</a>
+</li>
+      </ul></li>
       <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.cosbellFilter">cosbellFilter() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
 </li>
   </ul></td>
@@ -198,6 +278,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.deleteSelectedItem">deleteSelectedItem() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController.denoised_image">denoised_image (controller.postpocessing_tab_controller.PostProcessingTabController attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -219,16 +303,26 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.flush">flush() (controller.console_controller.EmittingStream method)</a>
 </li>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.fovChange">fovChange() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController">HistoryListController (class in controller.history_list_controller)</a>
+      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.hist_dict">hist_dict (controller.history_list_controller.HistoryListController attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.history_controller">history_controller (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.history_layout">history_layout (ui.mainwindow.MainWindow attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.history_widget">history_widget (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController">HistoryListController (class in controller.history_list_controller)</a>
+</li>
       <li><a href="widget.history_list_widget.html#widget.history_list_widget.HistoryListWidget">HistoryListWidget (class in widget.history_list_widget)</a>
 </li>
   </ul></td>
@@ -237,17 +331,55 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controller.imageview_controller.html#controller.imageview_controller.ImageViewController">ImageViewController (class in controller.imageview_controller)</a>
+      <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.image_art_button">image_art_button (controller.reconstruction_tab_controller.ReconstructionTabController attribute)</a>
+</li>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.image_cosbell_button">image_cosbell_button (controller.preprocessing_tab_controller.PreProcessingTabController attribute)</a>
+</li>
+      <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController.image_data">image_data (controller.postpocessing_tab_controller.PostProcessingTabController attribute)</a>
+</li>
+      <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.image_fft_button">image_fft_button (controller.reconstruction_tab_controller.ReconstructionTabController attribute)</a>
+</li>
+      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.image_loading_button">image_loading_button (controller.toolbar_controller.ToolBarController attribute)</a>
+</li>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.image_padding_button">image_padding_button (controller.preprocessing_tab_controller.PreProcessingTabController attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.image_view">image_view (controller.history_list_controller.HistoryListController attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.image_view_layout">image_view_layout (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.image_view_splitter">image_view_splitter (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.image_view_widget">image_view_widget (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="controller.imageview_controller.html#controller.imageview_controller.ImageViewController">ImageViewController (class in controller.imageview_controller)</a>
+</li>
       <li><a href="widget.imageview_widget.html#widget.imageview_widget.ImageViewWidget">ImageViewWidget (class in widget.imageview_widget)</a>
+</li>
+      <li><a href="controller.visualisation_tab_controller.html#controller.visualisation_tab_controller.VisualisationTabController.imageVisualisation">imageVisualisation() (controller.visualisation_tab_controller.VisualisationTabController method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.k_space">k_space (controller.toolbar_controller.ToolBarController attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.k_space_raw">k_space_raw (controller.toolbar_controller.ToolBarController attribute)</a>
 </li>
   </ul></td>
 </tr></table>
 
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.left_layout">left_layout (ui.mainwindow.MainWindow attribute)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.loadFile">loadFile() (controller.toolbar_controller.ToolBarController method)</a>
 </li>
@@ -257,7 +389,33 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="widget.history_list_widget.html#widget.history_list_widget.HistoryListWidget.main">main (widget.history_list_widget.HistoryListWidget attribute)</a>
+
+      <ul>
+        <li><a href="widget.imageview_widget.html#widget.imageview_widget.ImageViewWidget.main">(widget.imageview_widget.ImageViewWidget attribute)</a>
+</li>
+        <li><a href="widget.postpocessing_tab_widget.html#widget.postpocessing_tab_widget.PostProcessingTabWidget.main">(widget.postpocessing_tab_widget.PostProcessingTabWidget attribute)</a>
+</li>
+        <li><a href="widget.preprocessing_tab_widget.html#widget.preprocessing_tab_widget.PreProcessingTabWidget.main">(widget.preprocessing_tab_widget.PreProcessingTabWidget attribute)</a>
+</li>
+        <li><a href="widget.reconstruction_tab_widget.html#widget.reconstruction_tab_widget.ReconstructionTabWidget.main">(widget.reconstruction_tab_widget.ReconstructionTabWidget attribute)</a>
+</li>
+        <li><a href="widget.tab_widget.html#widget.tab_widget.TabWidget.main">(widget.tab_widget.TabWidget attribute)</a>
+</li>
+        <li><a href="widget.toolbar_widget.html#widget.toolbar_widget.ToolBarWidget.main">(widget.toolbar_widget.ToolBarWidget attribute)</a>
+</li>
+        <li><a href="widget.visualisation_tab_widget.html#widget.visualisation_tab_widget.VisualisationTabWidget.main">(widget.visualisation_tab_widget.VisualisationTabWidget attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.main_layout">main_layout (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.main_widget">main_widget (ui.mainwindow.MainWindow attribute)</a>
+</li>
       <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow">MainWindow (class in ui.mainwindow)</a>
+</li>
+      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.mat_data">mat_data (controller.toolbar_controller.ToolBarController attribute)</a>
+</li>
+      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.matrix_infos">matrix_infos (controller.history_list_controller.HistoryListController attribute)</a>
 </li>
       <li>
     module
@@ -281,6 +439,8 @@
 </li>
         <li><a href="controller.toolbar_controller.html#module-controller.toolbar_controller">controller.toolbar_controller</a>
 </li>
+        <li><a href="controller.visualisation_tab_controller.html#module-controller.visualisation_tab_controller">controller.visualisation_tab_controller</a>
+</li>
         <li><a href="ui.html#module-ui">ui</a>
 </li>
         <li><a href="ui.mainwindow.html#module-ui.mainwindow">ui.mainwindow</a>
@@ -303,6 +463,8 @@
 </li>
         <li><a href="widget.toolbar_widget.html#module-widget.toolbar_widget">widget.toolbar_widget</a>
 </li>
+        <li><a href="widget.visualisation_tab_widget.html#module-widget.visualisation_tab_widget">widget.visualisation_tab_widget</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -311,16 +473,44 @@
   </ul></td>
 </tr></table>
 
-<h2 id="P">P</h2>
+<h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.partialAcquisition">partialAcquisition() (controller.toolbar_controller.ToolBarController method)</a>
-</li>
-      <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController">PostProcessingTabController (class in controller.postpocessing_tab_controller)</a>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.new_fov_button">new_fov_button (controller.preprocessing_tab_controller.PreProcessingTabController attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.nPoints">nPoints (controller.toolbar_controller.ToolBarController attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.operations_dict">operations_dict (controller.history_list_controller.HistoryListController attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.partial_reconstruction_button">partial_reconstruction_button (controller.preprocessing_tab_controller.PreProcessingTabController attribute)</a>
+</li>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.partialReconstruction">partialReconstruction() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+      <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.plotPhase">plotPhase() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.postprocessing_controller">postprocessing_controller (ui.mainwindow.MainWindow attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController">PostProcessingTabController (class in controller.postpocessing_tab_controller)</a>
+</li>
       <li><a href="widget.postpocessing_tab_widget.html#widget.postpocessing_tab_widget.PostProcessingTabWidget">PostProcessingTabWidget (class in widget.postpocessing_tab_widget)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.preprocessing_controller">preprocessing_controller (ui.mainwindow.MainWindow attribute)</a>
 </li>
       <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController">PreProcessingTabController (class in controller.preprocessing_tab_controller)</a>
 </li>
@@ -334,23 +524,31 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.rawDataLoading">rawDataLoading() (controller.toolbar_controller.ToolBarController method)</a>
 </li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.reconstruction_controller">reconstruction_controller (ui.mainwindow.MainWindow attribute)</a>
+</li>
       <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController">ReconstructionTabController (class in controller.reconstruction_tab_controller)</a>
 </li>
       <li><a href="widget.reconstruction_tab_widget.html#widget.reconstruction_tab_widget.ReconstructionTabWidget">ReconstructionTabWidget (class in widget.reconstruction_tab_widget)</a>
 </li>
-      <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.runArtReconstruction">runArtReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.right_layout">right_layout (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController.run_filter_button">run_filter_button (controller.postpocessing_tab_controller.PostProcessingTabController attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.runArtReconstruction">runArtReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
+</li>
       <li><a href="controller.postpocessing_tab_controller.html#controller.postpocessing_tab_controller.PostProcessingTabController.RunBm4dFilter">RunBm4dFilter() (controller.postpocessing_tab_controller.PostProcessingTabController method)</a>
 </li>
-      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.RunCosbellFilter">RunCosbellFilter() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.runCosbellFilter">runCosbellFilter() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
 </li>
       <li><a href="controller.reconstruction_tab_controller.html#controller.reconstruction_tab_controller.ReconstructionTabController.runFftReconstruction">runFftReconstruction() (controller.reconstruction_tab_controller.ReconstructionTabController method)</a>
 </li>
-      <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.runPartialAcquisition">runPartialAcquisition() (controller.toolbar_controller.ToolBarController method)</a>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.runFovChange">runFovChange() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
 </li>
-      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.RunZeroPadding">RunZeroPadding() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.runPartialReconstruction">runPartialReconstruction() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
+</li>
+      <li><a href="controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.runZeroPadding">runZeroPadding() (controller.preprocessing_tab_controller.PreProcessingTabController method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -358,13 +556,19 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.tab_controller">tab_controller (ui.mainwindow.MainWindow attribute)</a>
+</li>
       <li><a href="controller.tab_controller.html#controller.tab_controller.TabController">TabController (class in controller.tab_controller)</a>
 </li>
       <li><a href="widget.tab_widget.html#widget.tab_widget.TabWidget">TabWidget (class in widget.tab_widget)</a>
 </li>
+      <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.textWritten">textWritten (controller.console_controller.EmittingStream attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.textWritten">textWritten (controller.console_controller.EmittingStream attribute)</a>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.threadpool">threadpool (ui.mainwindow.MainWindow attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.toolbar_controller">toolbar_controller (ui.mainwindow.MainWindow attribute)</a>
 </li>
       <li><a href="controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController">ToolBarController (class in controller.toolbar_controller)</a>
 </li>
@@ -397,6 +601,22 @@
       <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateHistoryTable">updateHistoryTable() (controller.history_list_controller.HistoryListController method)</a>
 </li>
       <li><a href="controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateOperationsHist">updateOperationsHist() (controller.history_list_controller.HistoryListController method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.visualisation_tab_controller.html#controller.visualisation_tab_controller.VisualisationTabController.visualisation_button">visualisation_button (controller.visualisation_tab_controller.VisualisationTabController attribute)</a>
+</li>
+      <li><a href="ui.mainwindow.html#ui.mainwindow.MainWindow.visualisation_controller">visualisation_controller (ui.mainwindow.MainWindow attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="controller.visualisation_tab_controller.html#controller.visualisation_tab_controller.VisualisationTabController">VisualisationTabController (class in controller.visualisation_tab_controller)</a>
+</li>
+      <li><a href="widget.visualisation_tab_widget.html#widget.visualisation_tab_widget.VisualisationTabWidget">VisualisationTabWidget (class in widget.visualisation_tab_widget)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -439,8 +659,6 @@
         <li><a href="widget.postpocessing_tab_widget.html#module-widget.postpocessing_tab_widget">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     widget.preprocessing_tab_widget
 
@@ -448,6 +666,8 @@
         <li><a href="widget.preprocessing_tab_widget.html#module-widget.preprocessing_tab_widget">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     widget.reconstruction_tab_widget
 
@@ -469,6 +689,13 @@
         <li><a href="widget.toolbar_widget.html#module-widget.toolbar_widget">module</a>
 </li>
       </ul></li>
+      <li>
+    widget.visualisation_tab_widget
+
+      <ul>
+        <li><a href="widget.visualisation_tab_widget.html#module-widget.visualisation_tab_widget">module</a>
+</li>
+      </ul></li>
       <li><a href="controller.console_controller.html#controller.console_controller.EmittingStream.write">write() (controller.console_controller.EmittingStream method)</a>
 </li>
       <li><a href="controller.console_controller.html#controller.console_controller.ConsoleController.write_console">write_console() (controller.console_controller.ConsoleController method)</a>
@@ -486,31 +713,32 @@
 
 
 
-           </div>
+            <div class="clearer"></div>
           </div>
-          <footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2023, D. Comlan.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+    
 
-</body>
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, D. Comlan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
 </html>

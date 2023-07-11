@@ -65,17 +65,21 @@ class ToolBarController(ToolBarWidget):
             self.k_space_raw = self.mat_data['sampled']
             self.k_space = np.reshape(self.k_space_raw[:, 3], self.nPoints[-1::-1])
 
-            # Clear the console, history widget, history controller, and history dictionaries
-            self.main.history_widget.clear()
-            self.main.console.console.clear()
-            self.main.history_controller.clear()
-            self.main.history_controller.hist_dict.clear()
-            self.main.visualisation_controller.clear2DImage()
-            self.main.history_controller.clearSecondImageView()
-            self.main.history_controller.operations_dict.clear()
+        # Clear the console, history widget, history controller, and history dictionaries
+        self.main.history_widget.clear()
+        self.main.console.console.clear()
+        self.main.history_controller.clear()
+        self.main.history_controller.hist_dict.clear()
+        self.main.visualisation_controller.clear2DImage()
+        self.main.history_controller.clearSecondImageView()
+        self.main.history_controller.operations_dict.clear()
+
+        # Calculate logarithmic scale
+        small_value = 1e-10
+        k_space_log = np.log10(self.k_space + small_value)
 
         # Update the main matrix of the image view widget with the k-space data
-        self.main.image_view_widget.main_matrix = self.k_space
+        self.main.image_view_widget.main_matrix = k_space_log
 
         # Update the image view widget to display the new main matrix
         self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))

@@ -50,7 +50,7 @@ class ReconstructionTabController(ReconstructionTabWidget):
         Adds the "FFT" operation to the history widget and updates the history dictionary and operations history.
         """
         # Get the k-space data from the main matrix
-        k_space = self.main.image_view_widget.main_matrix
+        k_space = 10 ** self.main.image_view_widget.main_matrix
 
         # Perform inverse FFT shift, inverse FFT, and inverse FFT shift to reconstruct the image in the spatial domain
         image_fft = np.fft.ifftshift(np.fft.ifftn(np.fft.ifftshift(k_space)))

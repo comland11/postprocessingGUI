@@ -5,16 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="2D matrix for comparison">
+      <change afterPath="$PROJECT_DIR$/scripts/regridding.jl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/regridding.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/postprocessingGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/postprocessingGUI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/history_list_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/history_list_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/toolbar_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/toolbar_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/console_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/console_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/history_list_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/history_list_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/imageview_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/imageview_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/postpocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/postpocessing_tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/tab_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/toolbar_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/toolbar_widget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/basic_mod.css" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/basic_mod.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto-mono/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto-mono/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/js/petite-vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/js/petite-vue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/js/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/js/theme.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="image_comparison" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,8 +74,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;image__comparison&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Portatil PC 6/PycharmProjects/pythonProject&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Portatil PC 6/PycharmProjects/postprocessingGUI/venv&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RunManager" selected="Python.mainwindow">
@@ -176,10 +187,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.mainwindow" />
-        <item itemvalue="Python.history_list_controller" />
         <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.toolbar_controller" />
         <item itemvalue="Python.postpocessing_tab_controller" />
+        <item itemvalue="Python.history_list_controller" />
       </list>
     </recent_temporary>
   </component>

@@ -77,8 +77,12 @@ class PreProcessingTabController(PreProcessingTabWidget):
         s = np.reshape(sampled[:, 3], nPoints[-1::-1])
         cosbell = s * (np.cos(theta * (np.pi / 2)) ** cosbell_order)
 
+        # Calculate logarithmic scale
+        small_value = 1e-10
+        cosbell_log = np.log10(cosbell + small_value)
+
         # Update the main matrix of the image view widget with the cosbell data
-        self.main.image_view_widget.main_matrix = cosbell
+        self.main.image_view_widget.main_matrix = cosbell_log
 
         # Add the "Cosbell" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("Cosbell")
@@ -113,7 +117,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         ph_order = int(zero_padding_order[1])
         sl_order = int(zero_padding_order[2])
 
-        k_space = self.main.image_view_widget.main_matrix
+        k_space = 10**self.main.image_view_widget.main_matrix
 
         # Get self.k_space shape
         current_shape = k_space.shape
@@ -124,10 +128,13 @@ class PreProcessingTabController(PreProcessingTabWidget):
         pad_width = ((0, new_shape[0] - current_shape[0]), (0, new_shape[1] - current_shape[1]),
                      (0, new_shape[2] - current_shape[2]))
 
-        padded_image = np.pad(k_space, pad_width, mode='constant', constant_values=0)
+        padded_image = np.pad(k_space, pad_width, mode='constant', constant_values=1e-10)
+
+        # Calculate logarithmic scale
+        padded_image_log = np.log10(padded_image)
 
         # Update the main matrix of the image view widget with the padded image
-        self.main.image_view_widget.main_matrix = padded_image
+        self.main.image_view_widget.main_matrix = padded_image_log
 
         # Add the "Zero Padding" operation to the history widget
         self.main.history_controller.addItemWithTimestamp("Zero Padding")
@@ -181,8 +188,12 @@ class PreProcessingTabController(PreProcessingTabWidget):
         signal = np.column_stack((k, s))
         new_k_space = np.reshape(signal[:, 3], nPoints[-1::-1])
 
+        # Calculate logarithmic scale
+        small_value = 1e-10
+        new_k_space_log = np.log10(new_k_space + small_value)
+
         # Update the main matrix of the image view widget with the k-space data
-        self.main.image_view_widget.main_matrix = new_k_space
+        self.main.image_view_widget.main_matrix = new_k_space_log
 
         # Add the "New FOV" operation to the history
         self.main.history_controller.addItemWithTimestamp("New FOV")
@@ -237,8 +248,12 @@ class PreProcessingTabController(PreProcessingTabWidget):
         k = np.column_stack((krd, kph, ksl, signal))
         k = np.reshape(k[:, 3], nPoints[-1::-1])
 
+        # Calculate logarithmic scale
+        small_value = 1e-10
+        k_log = np.log10(k + small_value)
+
         # Update the main matrix of the image view widget with the k-space data
-        self.main.image_view_widget.main_matrix = k
+        self.main.image_view_widget.main_matrix = k_log
 
         # Add the "Partial Reconstruction" operation to the history
         self.main.history_controller.addItemWithTimestamp("Partial Reconstruction")

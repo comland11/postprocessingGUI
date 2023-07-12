@@ -41,7 +41,6 @@ class VisualisationTabController(VisualisationTabWidget):
         slices = self.range_text_field.text().split(',')
         n0 = int(slices[0])
         n_end = int(slices[1])
-        # slices_number = n_end - n0 + 1
         selected_slices = image[n0:n_end + 1]
 
         rows_columns = self.column_text_field.text().split(',')

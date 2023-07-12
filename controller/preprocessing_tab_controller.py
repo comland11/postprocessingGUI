@@ -110,14 +110,14 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         Retrieves the necessary parameters and performs the zero-padding on the loaded image.
         Updates the main matrix of the image view widget with the padded image, adds the operation to the history
-        widget,and updates the operations history.
+        widget, and updates the operations history.
         """
         zero_padding_order = self.zero_padding_order_field.text().split(',')
         rd_order = int(zero_padding_order[0])
         ph_order = int(zero_padding_order[1])
         sl_order = int(zero_padding_order[2])
 
-        k_space = 10**self.main.image_view_widget.main_matrix
+        k_space = 10 ** self.main.image_view_widget.main_matrix
 
         # Get self.k_space shape
         current_shape = k_space.shape

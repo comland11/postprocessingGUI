@@ -4,29 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="2D matrix for comparison">
-      <change afterPath="$PROJECT_DIR$/scripts/regridding.jl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/regridding.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/postprocessingGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/postprocessingGUI.iml" afterDir="false" />
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="phase + log scale">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/preprocessing_tab_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/toolbar_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/toolbar_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/console_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/console_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/history_list_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/history_list_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/imageview_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/imageview_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/postpocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/postpocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/toolbar_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/toolbar_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/basic_mod.css" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/basic_mod.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto-mono/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto-mono/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/fonts/roboto/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/js/petite-vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/js/petite-vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_static/js/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_static/js/theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,15 +50,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;image__comparison&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Portatil PC 6/PycharmProjects/postprocessingGUI/venv&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "image__comparison",
+    "last_opened_file_path": "C:/Users/Portatil PC 6/Downloads/postprocessingGUI-main/postprocessingGUI-main",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.mainwindow">
     <configuration name="history_list_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="postprocessingGUI" />
@@ -476,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688381843555</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="phase + log scale">
+      <created>1689065823420</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1689065823420</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -560,7 +548,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="The bm4d filter is apply when the checkbox is checked" />
     <MESSAGE value="Two ways to run the bm4d filter : manually or automatically &#10;The image is resize between 0 et 100 before applying the bm4d filter &#10;Slider added to see 3d image" />
     <MESSAGE value="comments added" />
     <MESSAGE value="Get k-space from radial acquisitions (PETRA)" />
@@ -585,10 +572,23 @@
     <MESSAGE value="docstring addition" />
     <MESSAGE value="2D matrix for comparison, group box for reconstruction tab" />
     <MESSAGE value="2D matrix for comparison" />
-    <option name="LAST_COMMIT_MESSAGE" value="2D matrix for comparison" />
+    <MESSAGE value="phase + log scale" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase + log scale" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/controller/reconstruction_tab_controller.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/controller/toolbar_controller.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

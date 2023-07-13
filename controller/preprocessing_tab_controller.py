@@ -36,7 +36,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         """
         Apply the Cosbell filter operation using threading.
 
-        Starts a new thread to execute the RunCosbellFilter method.
+        Starts a new thread to execute the runCosbellFilter method.
         """
         thread = threading.Thread(target=self.runCosbellFilter)
         thread.start()
@@ -55,7 +55,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Get the mat data from the loaded .mat file in the main toolbar controller
         mat_data = self.main.toolbar_controller.mat_data
 
-        # Extract datas data from the loaded .mat file
+        # Extract data from the loaded .mat file
         sampled = self.main.toolbar_controller.k_space_raw
         nPoints = np.reshape(mat_data['nPoints'], -1)
 
@@ -125,13 +125,37 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Determine new shape
         new_shape = current_shape[0] * sl_order, current_shape[1] * ph_order, current_shape[2] * rd_order
 
-        pad_width = ((0, new_shape[0] - current_shape[0]), (0, new_shape[1] - current_shape[1]),
-                     (0, new_shape[2] - current_shape[2]))
+        # pad_width = ((0, new_shape[0] - current_shape[0]), (0, new_shape[1] - current_shape[1]),
+        #             (0, new_shape[2] - current_shape[2]))
 
-        padded_image = np.pad(k_space, pad_width, mode='constant', constant_values=1e-10)
+        # padded_image = np.pad(k_space, pad_width, mode='constant', constant_values=1e-10)
+
+        # Create an image matrix filled with zeros
+        image_matrix = np.zeros(new_shape, dtype=np.complex128)
+
+        image_height = current_shape[0]
+        image_width = current_shape[1]
+        image_depth = current_shape[2]
+
+        # Calculate the centering offsets
+        col_offset = (new_shape[0] - image_height) // 2
+        row_offset = (new_shape[1] - image_width) // 2
+        depth_offset = (new_shape[2] - image_depth) // 2
+
+        # Calculate the start and end indices to center the k_space within the image_matrix
+        col_start = col_offset
+        col_end = col_start + image_height
+        row_start = row_offset
+        row_end = row_start + image_width
+        depth_start = depth_offset
+        depth_end = depth_start + image_depth
+
+        # Copy the k_space into the image_matrix at the center
+        image_matrix[col_start:col_end, row_start:row_end, depth_start:depth_end] = k_space
 
         # Calculate logarithmic scale
-        padded_image_log = np.log10(padded_image)
+        small_value = 1e-10
+        padded_image_log = np.log10(image_matrix + small_value)
 
         # Update the main matrix of the image view widget with the padded image
         self.main.image_view_widget.main_matrix = padded_image_log
@@ -203,13 +227,13 @@ class PreProcessingTabController(PreProcessingTabWidget):
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["New FOV - "
-                                                                                                   + "RD : "
-                                                                                                   + str(delta_rd)
-                                                                                                   + ", PH : "
-                                                                                                   + str(delta_ph)
-                                                                                                   + ", SL : "
-                                                                                                   + str(delta_sl)]
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["New FOV - " +
+                                                                                                   "RD : " +
+                                                                                                   str(delta_rd) +
+                                                                                                   ", PH : " +
+                                                                                                   str(delta_ph) +
+                                                                                                   ", SL : " +
+                                                                                                   str(delta_sl)]
 
     def partialReconstruction(self):
         """

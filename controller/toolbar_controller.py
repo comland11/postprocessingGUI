@@ -1,7 +1,10 @@
+import subprocess
 import scipy as sp
 import numpy as np
-from PyQt5.QtWidgets import QFileDialog
+import matlab.engine
+
 from scipy.interpolate import griddata
+from PyQt5.QtWidgets import QFileDialog
 from widget.toolbar_widget import ToolBarWidget
 
 
@@ -49,16 +52,25 @@ class ToolBarController(ToolBarWidget):
             kCartesian = self.mat_data['kCartesian']
             self.k_space_raw = self.mat_data['kSpaceRaw']
 
-            kxOriginal = np.reshape(np.real(self.k_space_raw[:, 0]), -1)
-            kyOriginal = np.reshape(np.real(self.k_space_raw[:, 1]), -1)
-            kzOriginal = np.reshape(np.real(self.k_space_raw[:, 2]), -1)
-            kxTarget = np.reshape(kCartesian[:, 0], -1)
-            kyTarget = np.reshape(kCartesian[:, 1], -1)
-            kzTarget = np.reshape(kCartesian[:, 2], -1)
-            valCartesian = griddata((kxOriginal, kyOriginal, kzOriginal), np.reshape(self.k_space_raw[:, 3], -1),
-                                    (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
+            eng = matlab.engine.start_matlab()
 
-            self.k_space = np.reshape(valCartesian, (self.nPoints[2], self.nPoints[1], self.nPoints[0]))
+            eng.workspace['kSpaceRaw'] = matlab.double(self.k_space_raw.tolist(), is_complex=True)
+            eng.workspace['kCartesian'] = matlab.double(kCartesian.tolist(), is_complex=True)
+            eng.workspace['nPoints'] = matlab.double(self.nPoints.tolist(), is_complex=True)
+
+            # Chemin vers votre script MATLAB
+            matlab_script_path = 'C:/Users/Portatil PC 6/PycharmProjects/postprocessingGUI/scripts/test.m'
+
+            # Exécuter le script MATLAB
+            eng.run(matlab_script_path, nargout=0)
+
+            k_space = eng.workspace['k_space']
+
+            # Fermer le moteur MATLAB
+            eng.quit()
+
+            k_space = np.array(k_space)
+            self.k_space = k_space
 
         else:  # Cartesian
             # Extract the k-space data from the loaded .mat file

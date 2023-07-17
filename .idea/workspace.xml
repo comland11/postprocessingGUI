@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="phase + log scale">
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="set docstring and zero padding">
+      <change afterPath="$PROJECT_DIR$/scripts/test.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/postprocessingGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/postprocessingGUI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/reconstruction_tab_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/visualisation_tab_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/toolbar_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/toolbar_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/regridding.jl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/regridding.m" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +59,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "image__comparison",
-    "last_opened_file_path": "C:/Users/Portatil PC 6/Downloads/postprocessingGUI-main/postprocessingGUI-main",
+    "last_opened_file_path": "C:/Users/Portatil PC 6/Downloads/postprocessingGUI-main",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -168,8 +172,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.mainwindow" />
-        <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.toolbar_controller" />
+        <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.postpocessing_tab_controller" />
         <item itemvalue="Python.history_list_controller" />
       </list>
@@ -464,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1689065823420</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="updates">
+      <created>1689165734433</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1689165734433</updated>
+    </task>
+    <task id="LOCAL-00042" summary="set docstring and zero padding">
+      <created>1689258458606</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1689258458606</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -548,7 +566,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Two ways to run the bm4d filter : manually or automatically &#10;The image is resize between 0 et 100 before applying the bm4d filter &#10;Slider added to see 3d image" />
     <MESSAGE value="comments added" />
     <MESSAGE value="Get k-space from radial acquisitions (PETRA)" />
     <MESSAGE value="Console adding" />
@@ -563,7 +580,6 @@
     <MESSAGE value="partial acquisition" />
     <MESSAGE value="console clearing when a new file is loaded" />
     <MESSAGE value="zero padding" />
-    <MESSAGE value="updates" />
     <MESSAGE value="order for zero padding" />
     <MESSAGE value="change the fov" />
     <MESSAGE value="documentation" />
@@ -573,20 +589,22 @@
     <MESSAGE value="2D matrix for comparison, group box for reconstruction tab" />
     <MESSAGE value="2D matrix for comparison" />
     <MESSAGE value="phase + log scale" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase + log scale" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="set docstring and zero padding" />
+    <option name="LAST_COMMIT_MESSAGE" value="set docstring and zero padding" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/controller/reconstruction_tab_controller.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/controller/preprocessing_tab_controller.py</url>
+          <line>127</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/controller/toolbar_controller.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="3" />
+          <line>80</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

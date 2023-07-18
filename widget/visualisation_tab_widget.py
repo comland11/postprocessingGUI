@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QTabWidget, QPushButton, QLabel, QLineEdit, QHBoxLayout, QVBoxLayout
+from PyQt5.QtWidgets import QTabWidget, QPushButton, QLabel, QLineEdit, QHBoxLayout, QVBoxLayout, QGroupBox
 
 
 class VisualisationTabWidget(QTabWidget):
@@ -23,6 +23,7 @@ class VisualisationTabWidget(QTabWidget):
         super(VisualisationTabWidget, self).__init__(*args, **kwargs)
         self.main = parent
 
+        # Multiplot
         # Button
         self.visualisation_button = QPushButton('Show slices')
 
@@ -46,9 +47,16 @@ class VisualisationTabWidget(QTabWidget):
         self.column_layout.addWidget(self.column_label)
         self.column_layout.addWidget(self.column_text_field)
 
+        self.multiplot_layout = QVBoxLayout()
+        self.multiplot_layout.addLayout(self.number_layout)
+        self.multiplot_layout.addLayout(self.column_layout)
+        self.multiplot_layout.addWidget(self.visualisation_button)
+
+        self.multiplot_group = QGroupBox("Multiplot")
+        self.multiplot_group.setLayout(self.multiplot_layout)
+
+
         self.visualisation_layout = QVBoxLayout()
-        self.visualisation_layout.addLayout(self.number_layout)
-        self.visualisation_layout.addLayout(self.column_layout)
-        self.visualisation_layout.addWidget(self.visualisation_button)
+        self.visualisation_layout.addWidget(self.multiplot_group)
 
         self.setLayout(self.visualisation_layout)

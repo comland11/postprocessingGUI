@@ -1,3 +1,4 @@
+import time
 import subprocess
 import scipy as sp
 import numpy as np
@@ -48,6 +49,8 @@ class ToolBarController(ToolBarWidget):
         self.mat_data = sp.io.loadmat(file_path)
         self.nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
+        start_time = time.time()
+
         if self.mat_data['seqName'] == 'PETRA':
             kCartesian = self.mat_data['kCartesian']
             self.k_space_raw = self.mat_data['kSpaceRaw']
@@ -97,14 +100,18 @@ class ToolBarController(ToolBarWidget):
         self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
         # Add the "KSpace" operation to the history
-        self.main.history_controller.addItemWithTimestamp("KSpace")
+        self.main.history_controller.addItemWithTimestamp("K Space")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "KSpace")
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "K Space")
+
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print("Time :", execution_time, "s")
 
     def loadFile(self):
         """

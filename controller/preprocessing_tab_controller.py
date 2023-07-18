@@ -30,7 +30,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         self.partial_reconstruction_button.clicked.connect(self.partialReconstruction)
         self.image_cosbell_button.clicked.connect(self.cosbellFilter)
         self.image_padding_button.clicked.connect(self.zeroPadding)
-        self.new_fov_button.clicked.connect(self.fovChange)
+        self.new_fov_button.clicked.connect(self.fovShifting)
 
     def cosbellFilter(self):
         """
@@ -125,11 +125,6 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Determine new shape
         new_shape = current_shape[0] * sl_order, current_shape[1] * ph_order, current_shape[2] * rd_order
 
-        # pad_width = ((0, new_shape[0] - current_shape[0]), (0, new_shape[1] - current_shape[1]),
-        #             (0, new_shape[2] - current_shape[2]))
-
-        # padded_image = np.pad(k_space, pad_width, mode='constant', constant_values=1e-10)
-
         # Create an image matrix filled with zeros
         image_matrix = np.zeros(new_shape, dtype=np.complex128)
 
@@ -172,16 +167,16 @@ class PreProcessingTabController(PreProcessingTabWidget):
                                                           "RD : " + str(rd_order) + ", PH : " + str(ph_order) +
                                                           ", SL : " + str(sl_order))
 
-    def fovChange(self):
+    def fovShifting(self):
         """
         Perform the FOV change operation using threading.
 
         Starts a new thread to execute the runFovChange method.
         """
-        thread = threading.Thread(target=self.runFovChange)
+        thread = threading.Thread(target=self.runFovShifting)
         thread.start()
 
-    def runFovChange(self):
+    def runFovShifting(self):
         """
         Run the FOV change operation.
 

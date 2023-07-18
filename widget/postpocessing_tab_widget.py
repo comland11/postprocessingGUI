@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QLabel, QCheckBox, QLineEdit, QHBoxLayout
+from PyQt5.QtWidgets import QPushButton, QTabWidget, QWidget, QVBoxLayout, QLabel, QCheckBox, QLineEdit, QHBoxLayout, \
+    QGroupBox
 
 
 class PostProcessingTabWidget(QTabWidget):
@@ -26,10 +27,12 @@ class PostProcessingTabWidget(QTabWidget):
         # Tabs
         bm4d_tab = QWidget()
         gaussian_tab = QWidget()
+        interpolation_tab = QWidget()
 
         # Adding Tabs in the QTabWidget
         self.addTab(bm4d_tab, 'BM4D')
         self.addTab(gaussian_tab, 'Gaussian')
+        self.addTab(interpolation_tab, 'Interpolation')
 
         # Label
         self.std_label = QLabel('Standard deviation')
@@ -56,3 +59,35 @@ class PostProcessingTabWidget(QTabWidget):
 
         # Gaussian layout
         self.gaussian_layout = QVBoxLayout(gaussian_tab)
+        self.gaussian_std_layout = QHBoxLayout()
+
+        self.gaussian_label = QLabel('Standard deviation')
+        self.gaussian_text_field = QLineEdit()
+        self.gaussian_std_layout.addWidget(self.gaussian_label)
+        self.gaussian_std_layout.addWidget(self.gaussian_text_field)
+
+        self.gaussian_button = QPushButton('Gaussian')
+        self.gaussian_layout.addLayout(self.gaussian_std_layout)
+        self.gaussian_layout.addWidget(self.gaussian_button)
+
+        # Interpolation
+
+        self.shape_label = QLabel('New Shape')
+        self.shape_text_field = QLineEdit()
+        self.shape_text_field.setPlaceholderText('Readout, Phase, Slice')
+
+        self.shape_layout = QHBoxLayout()
+        self.shape_layout.addWidget(self.shape_label)
+        self.shape_layout.addWidget(self.shape_text_field)
+
+        self.image_resizing_button = QPushButton('Resize image')
+
+        self.image_resizing_layout = QVBoxLayout()
+        self.image_resizing_layout.addLayout(self.shape_layout)
+        self.image_resizing_layout.addWidget(self.image_resizing_button)
+
+        self.image_resizing_group = QGroupBox("Image resizing")
+        self.image_resizing_group.setLayout(self.image_resizing_layout)
+
+        self.interpolation_layout = QVBoxLayout(interpolation_tab)
+        self.interpolation_layout.addWidget(self.image_resizing_group)

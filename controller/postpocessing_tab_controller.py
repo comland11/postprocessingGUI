@@ -2,6 +2,7 @@ import threading
 import bm4d
 import numpy as np
 
+from scipy.ndimage import gaussian_filter
 from widget.postpocessing_tab_widget import PostProcessingTabWidget
 
 
@@ -29,6 +30,8 @@ class PostProcessingTabController(PostProcessingTabWidget):
         super(PostProcessingTabController, self).__init__(*args, **kwargs)
 
         self.run_filter_button.clicked.connect(self.bm4dFilter)
+        self.gaussian_button.clicked.connect(self.gaussianFilter)
+        self.image_resizing_button.clicked.connect(self.runInterpolation)
         self.image_data = None
         self.denoised_image = None
 
@@ -38,10 +41,10 @@ class PostProcessingTabController(PostProcessingTabWidget):
 
         Starts a new thread to execute the RunBm4dFilter method.
         """
-        thread = threading.Thread(target=self.RunBm4dFilter)
+        thread = threading.Thread(target=self.runBm4dFilter)
         thread.start()
 
-    def RunBm4dFilter(self):
+    def runBm4dFilter(self):
         """
         Run the BM4D filter operation.
 
@@ -86,3 +89,54 @@ class PostProcessingTabController(PostProcessingTabWidget):
                                                                                                      "deviation : " +
                                                           str(sigma_psd))
         print('BM4D filter has been applied')
+
+    def gaussianFilter(self):
+        """
+        Perform the Gaussian filter operation using threading.
+
+        Starts a new thread to execute the RunGaussianFilter method.
+        """
+        thread = threading.Thread(target=self.runGaussianFilter)
+        thread.start()
+
+    def runGaussianFilter(self):
+        # image_data = np.abs(self.main.image_view_widget.main_matrix).astype(float)
+        image_data = np.abs(self.main.image_view_widget.main_matrix).astype(float)
+        sigma = float(self.gaussian_text_field.text())
+
+        image_rescaled = np.interp(image_data, (np.min(image_data), np.max(image_data)), (0, 100))
+        filtered_image = gaussian_filter(image_data, sigma=sigma)
+        gaussian_image = np.interp(filtered_image, (np.min(filtered_image), np.max(filtered_image)),
+                                   (np.min(image_data), np.max(image_data)))
+
+        self.main.image_view_widget.main_matrix = gaussian_image
+
+        self.main.history_controller.addItemWithTimestamp("Gaussian")
+
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Gaussian - Standard "
+                                                                                                     "deviation : " +
+                                                          str(sigma))
+
+    def runInterpolation(self):
+        """
+        Performs interpolation on the 3D image with the specified new dimensions.
+        """
+
+        image = 10 ** self.main.image_view_widget.main_matrix
+
+
+        # Update the main matrix of the image view widget with the interpolated image
+        self.main.image_view_widget.main_matrix = image
+
+        # Add the "Interpolation" operation to the history widget
+        self.main.history_controller.addItemWithTimestamp("Interpolation")
+
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        # Update the operations history
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Interpolation")

@@ -143,10 +143,11 @@
 <span class="sd">    Inherits from PreProcessingTabWidget.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        partial_reconstruction_button: QPushButton for applying Partial reconstruction.</span>
-<span class="sd">        image_cosbell_button: QPushButton for applying Cosbell filter.</span>
-<span class="sd">        image_padding_button: QPushButton for applying zero padding.</span>
-<span class="sd">        new_fov_button: QPushButton for changing the field of view.</span>
+<span class="sd">        partial_reconstruction_button (QPushButton): QPushButton for applying partial reconstruction.</span>
+<span class="sd">        image_cosbell_button (QPushButton): QPushButton for applying Cosbell filter.</span>
+<span class="sd">        phase_center_button (QPushButton): QPushButton for getting the phase center.</span>
+<span class="sd">        image_padding_button (QPushButton): QPushButton for applying zero padding.</span>
+<span class="sd">        new_fov_button (QPushButton): QPushButton for changing the field of view.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -183,17 +184,16 @@
 <span class="sd">        Updates the main matrix of the image view widget with the filtered data, adds the operation to the history widget,</span>
 <span class="sd">        and updates the operations history.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Cosbell -&quot;</span>
+        <span class="c1"># Cosbell filter order from the text field</span>
         <span class="n">cosbell_order</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cosbell_order_field</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
 
         <span class="c1"># Get the mat data from the loaded .mat file in the main toolbar controller</span>
         <span class="n">mat_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">mat_data</span>
-
-        <span class="c1"># Extract data from the loaded .mat file</span>
         <span class="n">sampled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">k_space_raw</span>
         <span class="n">nPoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;nPoints&#39;</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># Check which checkboxes are selected</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Cosbell -&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">readout_checkbox</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
             <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">sampled</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">nPoints</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">kmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">k</span><span class="p">[:]))</span>
@@ -218,15 +218,15 @@
         <span class="c1"># Update the main matrix of the image view widget with the cosbell data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="n">cosbell_log</span>
 
-        <span class="c1"># Add the &quot;Cosbell&quot; operation to the history widget</span>
+        <span class="c1"># Add the &quot;Cosbell&quot; operation to the history widget with a timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;Cosbell&quot;</span><span class="p">)</span>
 
         <span class="c1"># Update the history dictionary with the new main matrix for the current matrix info</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
-        <span class="c1"># Update the operations history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot; Order : &quot;</span>
+        <span class="c1"># Update the operations history with the Cosbell operation details</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot; Order: &quot;</span>
                                                                                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cosbell_order</span><span class="p">)]</span></div>
 
 <div class="viewcode-block" id="PreProcessingTabController.zeroPadding"><a class="viewcode-back" href="../../controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.zeroPadding">[docs]</a>    <span class="k">def</span> <span class="nf">zeroPadding</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -246,27 +246,28 @@
 <span class="sd">        Updates the main matrix of the image view widget with the padded image, adds the operation to the history</span>
 <span class="sd">        widget, and updates the operations history.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Zero-padding order for each dimension from the text field</span>
         <span class="n">zero_padding_order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_field</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
         <span class="n">rd_order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">zero_padding_order</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">ph_order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">zero_padding_order</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">sl_order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">zero_padding_order</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
+        <span class="c1"># Get the k_space data and its shape</span>
         <span class="n">k_space</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
-
-        <span class="c1"># Get self.k_space shape</span>
         <span class="n">current_shape</span> <span class="o">=</span> <span class="n">k_space</span><span class="o">.</span><span class="n">shape</span>
 
-        <span class="c1"># Determine new shape</span>
+        <span class="c1"># Determine the new shape after zero-padding</span>
         <span class="n">new_shape</span> <span class="o">=</span> <span class="n">current_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">sl_order</span><span class="p">,</span> <span class="n">current_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ph_order</span><span class="p">,</span> <span class="n">current_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">rd_order</span>
 
         <span class="c1"># Create an image matrix filled with zeros</span>
         <span class="n">image_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">new_shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 
+        <span class="c1"># Get the dimensions of the current image</span>
         <span class="n">image_height</span> <span class="o">=</span> <span class="n">current_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">image_width</span> <span class="o">=</span> <span class="n">current_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">image_depth</span> <span class="o">=</span> <span class="n">current_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
-        <span class="c1"># Calculate the centering offsets</span>
+        <span class="c1"># Calculate the centering offsets for each dimension</span>
         <span class="n">col_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">image_height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="n">row_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">image_width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="n">depth_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">image_depth</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
@@ -289,23 +290,23 @@
         <span class="c1"># Update the main matrix of the image view widget with the padded image</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="n">padded_image_log</span>
 
-        <span class="c1"># Add the &quot;Zero Padding&quot; operation to the history widget</span>
+        <span class="c1"># Add the &quot;Zero Padding&quot; operation to the history widget with a timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;Zero Padding&quot;</span><span class="p">)</span>
 
         <span class="c1"># Update the history dictionary with the new main matrix for the current matrix info</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
-        <span class="c1"># Update the operations history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">updateOperationsHist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">,</span> <span class="s2">&quot;Zero Padding - &quot;</span> <span class="o">+</span>
-                                                          <span class="s2">&quot;RD : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rd_order</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, PH : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ph_order</span><span class="p">)</span> <span class="o">+</span>
-                                                          <span class="s2">&quot;, SL : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sl_order</span><span class="p">))</span></div>
+        <span class="c1"># Update the operations history with the Zero Padding operation details</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">updateOperationsHist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">,</span>
+                                                          <span class="s2">&quot;Zero Padding - RD: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rd_order</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, PH: &quot;</span>
+                                                          <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ph_order</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, SL: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sl_order</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="PreProcessingTabController.fovShifting"><a class="viewcode-back" href="../../controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.fovShifting">[docs]</a>    <span class="k">def</span> <span class="nf">fovShifting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perform the FOV change operation using threading.</span>
 
-<span class="sd">        Starts a new thread to execute the runFovChange method.</span>
+<span class="sd">        Starts a new thread to execute the runFovShifting method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">runFovShifting</span><span class="p">)</span>
         <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
@@ -318,11 +319,14 @@
 <span class="sd">        Updates the main matrix of the image view widget with the new FOV image, adds the operation to the history</span>
 <span class="sd">        widget, and updates the operations history.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the k_space data and its shape</span>
         <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">k_space_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">nPoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">nPoints</span>
 
+        <span class="c1"># Factors for FOV change from the text field</span>
         <span class="n">factors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_fov_field</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
+        <span class="c1"># Extract the k_space components</span>
         <span class="n">krd</span> <span class="o">=</span> <span class="n">k</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">kph</span> <span class="o">=</span> <span class="n">k</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
         <span class="n">ksl</span> <span class="o">=</span> <span class="n">k</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
@@ -330,14 +334,17 @@
 
         <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">krd</span><span class="p">,</span> <span class="n">kph</span><span class="p">,</span> <span class="n">ksl</span><span class="p">))</span>
 
+        <span class="c1"># Convert factors to spatial shifts</span>
         <span class="n">delta_rd</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">factors</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">3</span>
         <span class="n">delta_ph</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">factors</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">3</span>
         <span class="n">delta_sl</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">factors</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">3</span>
         <span class="n">delta_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">delta_rd</span><span class="p">,</span> <span class="n">delta_ph</span><span class="p">,</span> <span class="n">delta_sl</span><span class="p">])</span>
 
+        <span class="c1"># Calculate the phase shift using the spatial shifts</span>
         <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">k</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">delta_r</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">phi</span>
 
+        <span class="c1"># Reassemble the signal with the phase shift</span>
         <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
         <span class="n">new_k_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">signal</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">nPoints</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
@@ -348,20 +355,19 @@
         <span class="c1"># Update the main matrix of the image view widget with the k-space data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="n">new_k_space_log</span>
 
-        <span class="c1"># Add the &quot;New FOV&quot; operation to the history</span>
+        <span class="c1"># Add the &quot;New FOV&quot; operation to the history widget with a timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;New FOV&quot;</span><span class="p">)</span>
 
         <span class="c1"># Update the history dictionary with the new main matrix for the current matrix info</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
-        <span class="c1"># Update the operations history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;New FOV - &quot;</span> <span class="o">+</span>
-                                                                                                   <span class="s2">&quot;RD : &quot;</span> <span class="o">+</span>
+        <span class="c1"># Update the operations history with the New FOV operation details</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;New FOV - RD: &quot;</span> <span class="o">+</span>
                                                                                                    <span class="nb">str</span><span class="p">(</span><span class="n">delta_rd</span><span class="p">)</span> <span class="o">+</span>
-                                                                                                   <span class="s2">&quot;, PH : &quot;</span> <span class="o">+</span>
+                                                                                                   <span class="s2">&quot;, PH: &quot;</span> <span class="o">+</span>
                                                                                                    <span class="nb">str</span><span class="p">(</span><span class="n">delta_ph</span><span class="p">)</span> <span class="o">+</span>
-                                                                                                   <span class="s2">&quot;, SL : &quot;</span> <span class="o">+</span>
+                                                                                                   <span class="s2">&quot;, SL: &quot;</span> <span class="o">+</span>
                                                                                                    <span class="nb">str</span><span class="p">(</span><span class="n">delta_sl</span><span class="p">)]</span></div>
 
 <div class="viewcode-block" id="PreProcessingTabController.partialReconstruction"><a class="viewcode-back" href="../../controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.partialReconstruction">[docs]</a>    <span class="k">def</span> <span class="nf">partialReconstruction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -381,19 +387,25 @@
 <span class="sd">        Updates the main matrix of the image view widget with the partially reconstructed image, adds the operation to</span>
 <span class="sd">        the history widget, and updates the operations history.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the k_space data and its shape</span>
         <span class="n">k_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">k_space_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">nPoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">nPoints</span>
+
+        <span class="c1"># Percentage for partial reconstruction from the text field</span>
         <span class="n">percentage</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_field</span><span class="o">.</span><span class="n">text</span><span class="p">())</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">2</span>
 
+        <span class="c1"># Extract the k_space components</span>
         <span class="n">krd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">k_space</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="n">kph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">k_space</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
         <span class="n">ksl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">k_space</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
         <span class="n">signal</span> <span class="o">=</span> <span class="n">k_space</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
 
+        <span class="c1"># Calculate the threshold k0 based on the percentage</span>
         <span class="n">ksl_min</span> <span class="o">=</span> <span class="n">ksl</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
         <span class="n">ksl_max</span> <span class="o">=</span> <span class="n">ksl</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-
         <span class="n">k0</span> <span class="o">=</span> <span class="n">percentage</span> <span class="o">*</span> <span class="p">(</span><span class="n">ksl_max</span> <span class="o">-</span> <span class="n">ksl_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">ksl_min</span>
+
+        <span class="c1"># Apply partial reconstruction by setting values to 0 for ksl &gt; k0</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ksl</span><span class="p">)):</span>
             <span class="k">if</span> <span class="n">ksl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">k0</span><span class="p">:</span>
                 <span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
@@ -408,28 +420,35 @@
         <span class="c1"># Update the main matrix of the image view widget with the k-space data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="n">k_log</span>
 
-        <span class="c1"># Add the &quot;Partial Reconstruction&quot; operation to the history</span>
+        <span class="c1"># Add the &quot;Partial Reconstruction&quot; operation to the history widget with a timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;Partial Reconstruction&quot;</span><span class="p">)</span>
 
         <span class="c1"># Update the history dictionary with the new main matrix for the current matrix info</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
-        <span class="c1"># Update the operations history</span>
+        <span class="c1"># Update the operations history with the Partial Reconstruction operation details</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Partial &quot;</span>
                                                                                                    <span class="s2">&quot;Reconstruction - &quot;</span>
                                                                                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">percentage</span><span class="p">)]</span></div>
 
 <div class="viewcode-block" id="PreProcessingTabController.phaseCenter"><a class="viewcode-back" href="../../controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.phaseCenter">[docs]</a>    <span class="k">def</span> <span class="nf">phaseCenter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Perform the partial reconstruction operation using threading.</span>
+<span class="sd">        Perform the phase center operation using threading.</span>
 
-<span class="sd">        Starts a new thread to execute the runPartialReconstruction method.</span>
+<span class="sd">        Starts a new thread to execute the runPhaseCenter method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">runPhaseCenter</span><span class="p">)</span>
         <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="PreProcessingTabController.runPhaseCenter"><a class="viewcode-back" href="../../controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter">[docs]</a>    <span class="k">def</span> <span class="nf">runPhaseCenter</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PreProcessingTabController.runPhaseCenter"><a class="viewcode-back" href="../../controller.preprocessing_tab_controller.html#controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter">[docs]</a>    <span class="k">def</span> <span class="nf">runPhaseCenter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the phase center operation.</span>
+
+<span class="sd">        Retrieves the necessary parameters and performs the phase center operation on the loaded image.</span>
+<span class="sd">        Updates the main matrix of the image view widget with the interpolated image, adds the operation to the history</span>
+<span class="sd">        widget, and updates the operations history.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mat_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">toolbar_controller</span><span class="o">.</span><span class="n">mat_data</span>
 
         <span class="c1"># Number of extra lines which has been taken past the center of k-space</span>
@@ -438,15 +457,19 @@
 
         <span class="n">nPoints</span> <span class="o">=</span> <span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;nPoints&#39;</span><span class="p">]</span>
         <span class="n">nPoints_divide</span> <span class="o">=</span> <span class="n">nPoints</span> <span class="o">/</span> <span class="mf">2.0</span>  <span class="c1"># Divide the data per 2</span>
-        <span class="n">middle</span> <span class="o">=</span> <span class="n">nPoints_divide</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">nPoints_divide</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># calcul of n</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="n">nPoints_divide</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">nPoints_divide</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># calculate n</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">middle</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
 
+        <span class="c1"># Get the k_space data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_ref</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_ref</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Create a copy of the signal obtained from the reference image</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_center</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># Set the values of the first &#39;n-m&#39; columns in &#39;sig_center&#39; to 0.0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_center</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">m</span><span class="p">::]</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># Set the values of the columns after &#39;n+m&#39; in &#39;sig_center&#39; to 0.0</span>
+        <span class="c1"># Create a copy of the signal obtained from the reference image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_ref</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># Set the values of the first &#39;n-m&#39; and columns after &#39;n+m&#39; in &#39;sig_center&#39; to 0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_center</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kSpace_center</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">n</span> <span class="o">+</span> <span class="n">m</span><span class="p">::]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
         <span class="c1"># Calculate logarithmic scale</span>
         <span class="n">small_value</span> <span class="o">=</span> <span class="mf">1e-10</span>
@@ -455,14 +478,14 @@
         <span class="c1"># Update the main matrix of the image view widget with the interpolated image</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="n">kSpace_center_log</span>
 
-        <span class="c1"># Add the &quot;Interpolation&quot; operation to the history widget</span>
+        <span class="c1"># Add the &quot;Phase center&quot; operation to the history widget with a timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;Phase center&quot;</span><span class="p">)</span>
 
         <span class="c1"># Update the history dictionary with the new main matrix for the current matrix info</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
-        <span class="c1"># Update the operations history</span>
+        <span class="c1"># Update the operations history with the Phase center operation details</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">updateOperationsHist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">,</span> <span class="s2">&quot;Phase center&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 

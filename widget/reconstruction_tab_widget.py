@@ -21,10 +21,11 @@ class ReconstructionTabWidget(QTabWidget):
             **kwargs: Arbitrary keyword arguments.
         """
         super(ReconstructionTabWidget, self).__init__(*args, **kwargs)
+
+        # The 'main' attribute represents the parent widget, which is used to access the main window or controller.
         self.main = parent
 
-        # Buttons
-        self.image_fft_button = QPushButton('FFT')
+        # ART
         self.image_art_button = QPushButton('ART')
 
         # Labels
@@ -51,6 +52,9 @@ class ReconstructionTabWidget(QTabWidget):
         self.art_group = QGroupBox('ART')
         self.art_group.setLayout(self.art_layout)
 
+        # FFT
+        self.image_fft_button = QPushButton('FFT')
+
         self.fft_layout = QVBoxLayout()
         self.fft_layout.addWidget(self.image_fft_button)
 
@@ -58,7 +62,6 @@ class ReconstructionTabWidget(QTabWidget):
         self.fft_group.setLayout(self.fft_layout)
 
         # POCS
-
         self.nb_points_label = QLabel('Number of points')
         self.nb_points_text_field = QLineEdit()
         self.nb_points_text_field.setText('2')
@@ -85,9 +88,9 @@ class ReconstructionTabWidget(QTabWidget):
         self.pocs_group = QGroupBox("POCS")
         self.pocs_group.setLayout(self.pocs_layout)
 
+        # Main layout
         self.reconstruction_layout = QVBoxLayout()
         self.reconstruction_layout.addWidget(self.art_group)
         self.reconstruction_layout.addWidget(self.fft_group)
         self.reconstruction_layout.addWidget(self.pocs_group)
-
         self.setLayout(self.reconstruction_layout)

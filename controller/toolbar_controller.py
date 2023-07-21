@@ -1,13 +1,29 @@
 import os
 import time
-import subprocess
 import scipy as sp
 import numpy as np
 import matlab.engine
-
-from scipy.interpolate import griddata
 from PyQt5.QtWidgets import QFileDialog
 from widget.toolbar_widget import ToolBarWidget
+
+
+def getPath():
+    """
+    Get the absolute path to the MATLAB script file.
+
+    Returns:
+        str: Absolute path to the MATLAB script file.
+    """
+    # Get the absolute path of the current Python script directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Relative path to the "scripts" directory in your project
+    scripts_dir = os.path.join(current_dir, '..', 'scripts')
+
+    # Absolute path to the "regridding.m" file
+    matlab_script_path = os.path.join(scripts_dir, 'regridding.m')
+
+    return matlab_script_path
 
 
 class ToolBarController(ToolBarWidget):
@@ -62,15 +78,15 @@ class ToolBarController(ToolBarWidget):
             eng.workspace['kCartesian'] = matlab.double(kCartesian.tolist(), is_complex=True)
             eng.workspace['nPoints'] = matlab.double(self.nPoints.tolist(), is_complex=True)
 
-            # Chemin vers votre script MATLAB
-            matlab_script_path = self.getPath()
+            # Path to your MATLAB script
+            matlab_script_path = getPath()
 
-            # Exécuter le script MATLAB
+            # Run the MATLAB script
             eng.run(matlab_script_path, nargout=0)
 
             k_space = eng.workspace['k_space']
 
-            # Fermer le moteur MATLAB
+            # Close the MATLAB engine
             eng.quit()
 
             k_space = np.array(k_space)
@@ -86,7 +102,6 @@ class ToolBarController(ToolBarWidget):
         self.main.console.console.clear()
         self.main.history_controller.clear()
         self.main.history_controller.hist_dict.clear()
-        self.main.visualisation_controller.clear2DImage()
         self.main.history_controller.clearSecondImageView()
         self.main.history_controller.operations_dict.clear()
 
@@ -130,16 +145,3 @@ class ToolBarController(ToolBarWidget):
                                                    options=options)
 
         return file_name
-
-
-    def getPath(self):
-        # Obtenir le chemin absolu du dossier du script Python en cours d'exécution
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-
-        # Chemin relatif vers le dossier "scripts" dans votre projet
-        scripts_dir = os.path.join(current_dir, '..', 'scripts')
-
-        # Chemin absolu vers le fichier regridding.m
-        matlab_script_path = os.path.join(scripts_dir, 'regridding.m')
-
-        return matlab_script_path

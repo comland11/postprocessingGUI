@@ -21,7 +21,12 @@ class ToolBarWidget(QToolBar):
             **kwargs: Arbitrary keyword arguments.
         """
         super(ToolBarWidget, self).__init__(*args, **kwargs)
+
+        # The 'main' attribute represents the parent widget, which is used to access the main window or controller.
         self.main = parent
 
+        # Create a button for image loading
         self.image_loading_button = QPushButton('File')
+
+        # Add the image loading button to the toolbar
         self.addWidget(self.image_loading_button)

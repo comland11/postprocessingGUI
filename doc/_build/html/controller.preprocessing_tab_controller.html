@@ -160,25 +160,56 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.partial_reconstruction_button">
 <span class="sig-name descname"><span class="pre">partial_reconstruction_button</span></span><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.partial_reconstruction_button" title="Permalink to this definition">¶</a></dt>
-<dd><p>QPushButton for applying Partial reconstruction.</p>
+<dd><p>QPushButton for applying partial reconstruction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.image_cosbell_button">
 <span class="sig-name descname"><span class="pre">image_cosbell_button</span></span><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.image_cosbell_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>QPushButton for applying Cosbell filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.phase_center_button">
+<span class="sig-name descname"><span class="pre">phase_center_button</span></span><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.phase_center_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>QPushButton for getting the phase center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.image_padding_button">
 <span class="sig-name descname"><span class="pre">image_padding_button</span></span><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.image_padding_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>QPushButton for applying zero padding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.new_fov_button">
 <span class="sig-name descname"><span class="pre">new_fov_button</span></span><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.new_fov_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>QPushButton for changing the field of view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -192,7 +223,7 @@
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.fovShifting">
 <span class="sig-name descname"><span class="pre">fovShifting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.fovShifting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.fovShifting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the FOV change operation using threading.</p>
-<p>Starts a new thread to execute the runFovChange method.</p>
+<p>Starts a new thread to execute the runFovShifting method.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -205,8 +236,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.phaseCenter">
 <span class="sig-name descname"><span class="pre">phaseCenter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.phaseCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.phaseCenter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform the partial reconstruction operation using threading.</p>
-<p>Starts a new thread to execute the runPartialReconstruction method.</p>
+<dd><p>Perform the phase center operation using threading.</p>
+<p>Starts a new thread to execute the runPhaseCenter method.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -239,7 +270,11 @@ the history widget, and updates the operations history.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter">
 <span class="sig-name descname"><span class="pre">runPhaseCenter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.runPhaseCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Run the phase center operation.</p>
+<p>Retrieves the necessary parameters and performs the phase center operation on the loaded image.
+Updates the main matrix of the image view widget with the interpolated image, adds the operation to the history
+widget, and updates the operations history.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.runZeroPadding">
@@ -279,6 +314,7 @@ widget, and updates the operations history.</p>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController</span></code></a><ul>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.partial_reconstruction_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.partial_reconstruction_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.image_cosbell_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.image_cosbell_button</span></code></a></li>
+<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.phase_center_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.phase_center_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.image_padding_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.image_padding_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.new_fov_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.new_fov_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.cosbellFilter"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.cosbellFilter()</span></code></a></li>

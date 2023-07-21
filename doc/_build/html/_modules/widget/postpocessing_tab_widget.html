@@ -154,17 +154,19 @@
 <span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PostProcessingTabWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># The &#39;main&#39; attribute represents the parent widget, which is used to access the main window or controller.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span>
 
-        <span class="c1"># Tabs</span>
+        <span class="c1"># Create separate tabs for BM4D and Gaussian options</span>
         <span class="n">bm4d_tab</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
         <span class="n">gaussian_tab</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
 
-        <span class="c1"># Adding Tabs in the QTabWidget</span>
+        <span class="c1"># Add the tabs to the QTabWidget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="n">bm4d_tab</span><span class="p">,</span> <span class="s1">&#39;BM4D&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="n">gaussian_tab</span><span class="p">,</span> <span class="s1">&#39;Gaussian&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Label</span>
+        <span class="c1"># Labels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">std_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Standard deviation&#39;</span><span class="p">)</span>
 
         <span class="c1"># Buttons</span>
@@ -174,31 +176,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">auto_checkbox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s1">&#39;Auto&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auto_checkbox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="c1"># Text Field</span>
+        <span class="c1"># Text Fields</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">std_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
 
-        <span class="c1"># BM4D layout</span>
+        <span class="c1"># Layout for BM4D tab</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bm4d_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">bm4d_tab</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">std_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">bm4d_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">std_layout</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">std_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">std_label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">std_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">std_text_field</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bm4d_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">auto_checkbox</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bm4d_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_filter_button</span><span class="p">)</span>
 
-        <span class="c1"># Gaussian layout</span>
+        <span class="c1"># Layout for Gaussian tab</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">gaussian_tab</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_std_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Standard deviation&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_std_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gaussian_label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_std_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gaussian_text_field</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Gaussian&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_gaussian_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Run filter&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gaussian_std_layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gaussian_button</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_gaussian_button</span><span class="p">)</span></div>
 </pre></div>
 
             <div class="clearer"></div>

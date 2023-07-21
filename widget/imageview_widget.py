@@ -21,6 +21,9 @@ class ImageViewWidget(ImageView):
             **kwargs: Arbitrary keyword arguments.
         """
         super(ImageViewWidget, self).__init__(*args, **kwargs)
+
+        # The 'main' attribute represents the parent widget, which is used to access the main window or controller.
         self.main = parent
 
+        # Set the minimum size of the image view widget to 400x400 pixels.
         self.setMinimumSize(400, 400)

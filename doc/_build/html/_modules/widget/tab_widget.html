@@ -154,32 +154,29 @@
 <span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TabWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># The &#39;main&#39; attribute represents the parent widget, which is used to access the main window or controller.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span>
 
+        <span class="c1"># Set the maximum width of the tab widget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setMaximumWidth</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 
-        <span class="c1"># Tabs</span>
+        <span class="c1"># Create separate widgets for each tab</span>
         <span class="n">preprocessing_tab</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
         <span class="n">reconstruction_tab</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
         <span class="n">postprocessing_tab</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
         <span class="n">visualisation_tab</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">()</span>
 
-        <span class="c1"># Adding Tabs in the QTabWidget</span>
+        <span class="c1"># Add the separate widgets as tabs in the QTabWidget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="n">preprocessing_tab</span><span class="p">,</span> <span class="s1">&#39;PreProcessing&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="n">reconstruction_tab</span><span class="p">,</span> <span class="s1">&#39;Reconstruction&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="n">postprocessing_tab</span><span class="p">,</span> <span class="s1">&#39;PostProcessing&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addTab</span><span class="p">(</span><span class="n">visualisation_tab</span><span class="p">,</span> <span class="s1">&#39;Visualisation&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Preprocessing layout</span>
+        <span class="c1"># Create layouts for each tab</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">preprocessing_tab</span><span class="p">)</span>
-
-        <span class="c1"># Reconstruction layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">reconstruction_tab</span><span class="p">)</span>
-
-        <span class="c1"># Postprocessing layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">postprocessing_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">postprocessing_tab</span><span class="p">)</span>
-
-        <span class="c1"># Visualisation layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">(</span><span class="n">visualisation_tab</span><span class="p">)</span></div>
 </pre></div>
 

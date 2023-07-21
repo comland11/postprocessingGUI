@@ -161,32 +161,58 @@
 <dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.image_data">
 <span class="sig-name descname"><span class="pre">image_data</span></span><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.image_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>The input image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.denoised_image">
 <span class="sig-name descname"><span class="pre">denoised_image</span></span><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.denoised_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>The denoised image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.run_filter_button">
 <span class="sig-name descname"><span class="pre">run_filter_button</span></span><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.run_filter_button" title="Permalink to this definition">¶</a></dt>
-<dd><p>QPushButton for applying BM4D filter</p>
+<dd><p>QPushButton for applying BM4D filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.run_gaussian_button">
+<span class="sig-name descname"><span class="pre">run_gaussian_button</span></span><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.run_gaussian_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>QPushButton for applying Gaussian filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QPushButton</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.bm4dFilter">
 <span class="sig-name descname"><span class="pre">bm4dFilter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/postpocessing_tab_controller.html#PostProcessingTabController.bm4dFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.bm4dFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the BM4D filter operation using threading.</p>
-<p>Starts a new thread to execute the RunBm4dFilter method.</p>
+<p>Starts a new thread to execute the runBm4dFilter method.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.gaussianFilter">
 <span class="sig-name descname"><span class="pre">gaussianFilter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/postpocessing_tab_controller.html#PostProcessingTabController.gaussianFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.gaussianFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the Gaussian filter operation using threading.</p>
-<p>Starts a new thread to execute the RunGaussianFilter method.</p>
+<p>Starts a new thread to execute the runGaussianFilter method.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -202,7 +228,11 @@ and updates the operations history.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.postpocessing_tab_controller.PostProcessingTabController.runGaussianFilter">
 <span class="sig-name descname"><span class="pre">runGaussianFilter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/postpocessing_tab_controller.html#PostProcessingTabController.runGaussianFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.postpocessing_tab_controller.PostProcessingTabController.runGaussianFilter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Run the Gaussian filter operation.</p>
+<p>Retrieves the image data, applies the Gaussian filter, restores the filtered image to its original dimensions,
+updates the main matrix of the image view widget, adds the operation to the history widget,
+and updates the operations history.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -227,6 +257,7 @@ and updates the operations history.</p>
 <li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.image_data"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.image_data</span></code></a></li>
 <li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.denoised_image"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.denoised_image</span></code></a></li>
 <li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.run_filter_button"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.run_filter_button</span></code></a></li>
+<li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.run_gaussian_button"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.run_gaussian_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.bm4dFilter"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.bm4dFilter()</span></code></a></li>
 <li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.gaussianFilter"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.gaussianFilter()</span></code></a></li>
 <li><a class="reference internal" href="#controller.postpocessing_tab_controller.PostProcessingTabController.runBm4dFilter"><code class="docutils literal notranslate"><span class="pre">PostProcessingTabController.runBm4dFilter()</span></code></a></li>

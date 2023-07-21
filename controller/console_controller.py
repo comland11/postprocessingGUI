@@ -23,11 +23,11 @@ class ConsoleController(ConsoleWidget):
         Args:
             text (str): The text to be written to the console widget.
         """
-        cursor = self.console.textCursor()
-        cursor.movePosition(cursor.End)
-        cursor.insertText(text)
-        self.console.setTextCursor(cursor)
-        self.console.ensureCursorVisible()
+        cursor = self.console.textCursor()  # Get the text cursor
+        cursor.movePosition(cursor.End)  # Move the cursor to the end of the text
+        cursor.insertText(text)  # Insert the text at the cursor position
+        self.console.setTextCursor(cursor)  # Set the updated cursor
+        self.console.ensureCursorVisible()  # Ensure that the cursor is visible in the console
 
 
 class EmittingStream(QObject):
@@ -37,6 +37,7 @@ class EmittingStream(QObject):
     Inherits from QObject.
     """
 
+    # Signal that will be emitted when text is written
     textWritten = pyqtSignal(str)
 
     def write(self, text):
@@ -46,11 +47,11 @@ class EmittingStream(QObject):
         Args:
             text (str): The text to be written to the stream.
         """
-        self.textWritten.emit(str(text))
+        self.textWritten.emit(str(text))  # Emit the textWritten signal with the text as an argument
 
     @pyqtSlot()
     def flush(self):
         """
         Flush the stream.
         """
-        pass
+        pass  # We don't need to do anything here, as this is just a placeholder for stream flushing

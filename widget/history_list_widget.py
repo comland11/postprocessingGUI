@@ -21,4 +21,6 @@ class HistoryListWidget(QListWidget):
             **kwargs: Arbitrary keyword arguments.
         """
         super(HistoryListWidget, self).__init__(*args, **kwargs)
+
+        # The 'main' attribute represents the parent widget, which is used to access the main window or controller.
         self.main = parent

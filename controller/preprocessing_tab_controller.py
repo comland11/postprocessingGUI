@@ -10,10 +10,11 @@ class PreProcessingTabController(PreProcessingTabWidget):
     Inherits from PreProcessingTabWidget.
 
     Attributes:
-        partial_reconstruction_button: QPushButton for applying Partial reconstruction.
-        image_cosbell_button: QPushButton for applying Cosbell filter.
-        image_padding_button: QPushButton for applying zero padding.
-        new_fov_button: QPushButton for changing the field of view.
+        partial_reconstruction_button (QPushButton): QPushButton for applying partial reconstruction.
+        image_cosbell_button (QPushButton): QPushButton for applying Cosbell filter.
+        phase_center_button (QPushButton): QPushButton for getting the phase center.
+        image_padding_button (QPushButton): QPushButton for applying zero padding.
+        new_fov_button (QPushButton): QPushButton for changing the field of view.
     """
 
     def __init__(self, *args, **kwargs):
@@ -50,17 +51,16 @@ class PreProcessingTabController(PreProcessingTabWidget):
         Updates the main matrix of the image view widget with the filtered data, adds the operation to the history widget,
         and updates the operations history.
         """
-        text = "Cosbell -"
+        # Cosbell filter order from the text field
         cosbell_order = float(self.cosbell_order_field.text())
 
         # Get the mat data from the loaded .mat file in the main toolbar controller
         mat_data = self.main.toolbar_controller.mat_data
-
-        # Extract data from the loaded .mat file
         sampled = self.main.toolbar_controller.k_space_raw
         nPoints = np.reshape(mat_data['nPoints'], -1)
 
         # Check which checkboxes are selected
+        text = "Cosbell -"
         if self.readout_checkbox.isChecked():
             k = np.reshape(sampled[:, 0], nPoints[-1::-1])
             kmax = np.max(np.abs(k[:]))
@@ -85,15 +85,15 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the main matrix of the image view widget with the cosbell data
         self.main.image_view_widget.main_matrix = cosbell_log
 
-        # Add the "Cosbell" operation to the history widget
+        # Add the "Cosbell" operation to the history widget with a timestamp
         self.main.history_controller.addItemWithTimestamp("Cosbell")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history
-        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = [text + " Order : "
+        # Update the operations history with the Cosbell operation details
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = [text + " Order: "
                                                                                                    + str(cosbell_order)]
 
     def zeroPadding(self):
@@ -113,27 +113,28 @@ class PreProcessingTabController(PreProcessingTabWidget):
         Updates the main matrix of the image view widget with the padded image, adds the operation to the history
         widget, and updates the operations history.
         """
+        # Zero-padding order for each dimension from the text field
         zero_padding_order = self.zero_padding_order_field.text().split(',')
         rd_order = int(zero_padding_order[0])
         ph_order = int(zero_padding_order[1])
         sl_order = int(zero_padding_order[2])
 
+        # Get the k_space data and its shape
         k_space = 10 ** self.main.image_view_widget.main_matrix
-
-        # Get self.k_space shape
         current_shape = k_space.shape
 
-        # Determine new shape
+        # Determine the new shape after zero-padding
         new_shape = current_shape[0] * sl_order, current_shape[1] * ph_order, current_shape[2] * rd_order
 
         # Create an image matrix filled with zeros
         image_matrix = np.zeros(new_shape, dtype=np.complex128)
 
+        # Get the dimensions of the current image
         image_height = current_shape[0]
         image_width = current_shape[1]
         image_depth = current_shape[2]
 
-        # Calculate the centering offsets
+        # Calculate the centering offsets for each dimension
         col_offset = (new_shape[0] - image_height) // 2
         row_offset = (new_shape[1] - image_width) // 2
         depth_offset = (new_shape[2] - image_depth) // 2
@@ -156,23 +157,23 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the main matrix of the image view widget with the padded image
         self.main.image_view_widget.main_matrix = padded_image_log
 
-        # Add the "Zero Padding" operation to the history widget
+        # Add the "Zero Padding" operation to the history widget with a timestamp
         self.main.history_controller.addItemWithTimestamp("Zero Padding")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Zero Padding - " +
-                                                          "RD : " + str(rd_order) + ", PH : " + str(ph_order) +
-                                                          ", SL : " + str(sl_order))
+        # Update the operations history with the Zero Padding operation details
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos,
+                                                          "Zero Padding - RD: " + str(rd_order) + ", PH: "
+                                                          + str(ph_order) + ", SL: " + str(sl_order))
 
     def fovShifting(self):
         """
         Perform the FOV change operation using threading.
 
-        Starts a new thread to execute the runFovChange method.
+        Starts a new thread to execute the runFovShifting method.
         """
         thread = threading.Thread(target=self.runFovShifting)
         thread.start()
@@ -185,11 +186,14 @@ class PreProcessingTabController(PreProcessingTabWidget):
         Updates the main matrix of the image view widget with the new FOV image, adds the operation to the history
         widget, and updates the operations history.
         """
+        # Get the k_space data and its shape
         k = self.main.toolbar_controller.k_space_raw.copy()
         nPoints = self.main.toolbar_controller.nPoints
 
+        # Factors for FOV change from the text field
         factors = self.change_fov_field.text().split(',')
 
+        # Extract the k_space components
         krd = k[:, 0]
         kph = k[:, 1]
         ksl = k[:, 2]
@@ -197,14 +201,17 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         k = np.column_stack((krd, kph, ksl))
 
+        # Convert factors to spatial shifts
         delta_rd = (float(factors[0])) * 10 ** -3
         delta_ph = (float(factors[1])) * 10 ** -3
         delta_sl = (float(factors[2])) * 10 ** -3
         delta_r = np.array([delta_rd, delta_ph, delta_sl])
 
+        # Calculate the phase shift using the spatial shifts
         phi = np.exp(-1j * 2 * np.pi * k @ np.reshape(delta_r, (3, 1)))
         s = np.reshape(s, (np.size(phi, 0), 1)) * phi
 
+        # Reassemble the signal with the phase shift
         signal = np.column_stack((k, s))
         new_k_space = np.reshape(signal[:, 3], nPoints[-1::-1])
 
@@ -215,20 +222,19 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = new_k_space_log
 
-        # Add the "New FOV" operation to the history
+        # Add the "New FOV" operation to the history widget with a timestamp
         self.main.history_controller.addItemWithTimestamp("New FOV")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history
-        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["New FOV - " +
-                                                                                                   "RD : " +
+        # Update the operations history with the New FOV operation details
+        self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["New FOV - RD: " +
                                                                                                    str(delta_rd) +
-                                                                                                   ", PH : " +
+                                                                                                   ", PH: " +
                                                                                                    str(delta_ph) +
-                                                                                                   ", SL : " +
+                                                                                                   ", SL: " +
                                                                                                    str(delta_sl)]
 
     def partialReconstruction(self):
@@ -248,19 +254,25 @@ class PreProcessingTabController(PreProcessingTabWidget):
         Updates the main matrix of the image view widget with the partially reconstructed image, adds the operation to
         the history widget, and updates the operations history.
         """
+        # Get the k_space data and its shape
         k_space = self.main.toolbar_controller.k_space_raw.copy()
         nPoints = self.main.toolbar_controller.nPoints
+
+        # Percentage for partial reconstruction from the text field
         percentage = float(self.partial_reconstruction_field.text()) * 10 ** -2
 
+        # Extract the k_space components
         krd = np.real(k_space[:, 0])
         kph = np.real(k_space[:, 1])
         ksl = np.real(k_space[:, 2])
         signal = k_space[:, 3]
 
+        # Calculate the threshold k0 based on the percentage
         ksl_min = ksl.min()
         ksl_max = ksl.max()
-
         k0 = percentage * (ksl_max - ksl_min) + ksl_min
+
+        # Apply partial reconstruction by setting values to 0 for ksl > k0
         for i in range(len(ksl)):
             if ksl[i] > k0:
                 signal[i] = 0
@@ -275,28 +287,35 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the main matrix of the image view widget with the k-space data
         self.main.image_view_widget.main_matrix = k_log
 
-        # Add the "Partial Reconstruction" operation to the history
+        # Add the "Partial Reconstruction" operation to the history widget with a timestamp
         self.main.history_controller.addItemWithTimestamp("Partial Reconstruction")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history
+        # Update the operations history with the Partial Reconstruction operation details
         self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["Partial "
                                                                                                    "Reconstruction - "
                                                                                                    + str(percentage)]
 
     def phaseCenter(self):
         """
-        Perform the partial reconstruction operation using threading.
+        Perform the phase center operation using threading.
 
-        Starts a new thread to execute the runPartialReconstruction method.
+        Starts a new thread to execute the runPhaseCenter method.
         """
         thread = threading.Thread(target=self.runPhaseCenter)
         thread.start()
 
-    def runPhaseCenter (self):
+    def runPhaseCenter(self):
+        """
+        Run the phase center operation.
+
+        Retrieves the necessary parameters and performs the phase center operation on the loaded image.
+        Updates the main matrix of the image view widget with the interpolated image, adds the operation to the history
+        widget, and updates the operations history.
+        """
         mat_data = self.main.toolbar_controller.mat_data
 
         # Number of extra lines which has been taken past the center of k-space
@@ -305,15 +324,19 @@ class PreProcessingTabController(PreProcessingTabWidget):
 
         nPoints = mat_data['nPoints']
         nPoints_divide = nPoints / 2.0  # Divide the data per 2
-        middle = nPoints_divide[len(nPoints_divide) // 2]  # calcul of n
+        middle = nPoints_divide[len(nPoints_divide) // 2]  # calculate n
         n = int(middle[0])
         self.n = n
 
+        # Get the k_space data
         self.kSpace_ref = 10 ** self.main.image_view_widget.main_matrix
 
-        self.kSpace_center = self.kSpace_ref.copy()  # Create a copy of the signal obtained from the reference image
-        self.kSpace_center[:, :, 0:n - m] = 0.0  # Set the values of the first 'n-m' columns in 'sig_center' to 0.0
-        self.kSpace_center[:, :, n + m::] = 0.0  # Set the values of the columns after 'n+m' in 'sig_center' to 0.0
+        # Create a copy of the signal obtained from the reference image
+        self.kSpace_center = self.kSpace_ref.copy()
+
+        # Set the values of the first 'n-m' and columns after 'n+m' in 'sig_center' to 0.0
+        self.kSpace_center[:, :, 0:n - m] = 0.0
+        self.kSpace_center[:, :, n + m::] = 0.0
 
         # Calculate logarithmic scale
         small_value = 1e-10
@@ -322,12 +345,12 @@ class PreProcessingTabController(PreProcessingTabWidget):
         # Update the main matrix of the image view widget with the interpolated image
         self.main.image_view_widget.main_matrix = kSpace_center_log
 
-        # Add the "Interpolation" operation to the history widget
+        # Add the "Phase center" operation to the history widget with a timestamp
         self.main.history_controller.addItemWithTimestamp("Phase center")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
-        # Update the operations history
+        # Update the operations history with the Phase center operation details
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Phase center")

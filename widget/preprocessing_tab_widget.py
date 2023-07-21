@@ -21,17 +21,17 @@ class PreProcessingTabWidget(QTabWidget):
             **kwargs: Arbitrary keyword arguments.
         """
         super(PreProcessingTabWidget, self).__init__(*args, **kwargs)
+
+        # The 'main' attribute represents the parent widget, which is used to access the main window or controller.
         self.main = parent
 
         # Cosbell
-
         self.readout_checkbox = QCheckBox('Readout')
         self.readout_checkbox.setChecked(True)
         self.phase_checkbox = QCheckBox('Phase')
         self.slice_checkbox = QCheckBox('Slice')
 
         self.cosbell_order_label = QLabel('Order')
-
         self.cosbell_order_field = QLineEdit()
         self.cosbell_order_field.setText('1')
 
@@ -57,12 +57,9 @@ class PreProcessingTabWidget(QTabWidget):
         self.cosbell_group.setLayout(self.cosbell_layout)
 
         # Zero Padding
-
         self.zero_padding_order_label = QLabel('Order')
-
         self.zero_padding_order_field = QLineEdit()
         self.zero_padding_order_field.setPlaceholderText("Readout, Phase, Slice")
-        # self.zero_padding_order_field.setText('2,2,2')
 
         self.zero_padding_order_layout = QHBoxLayout()
         self.zero_padding_order_layout.addWidget(self.zero_padding_order_label)
@@ -79,7 +76,6 @@ class PreProcessingTabWidget(QTabWidget):
 
         # FOV change
         self.change_fov_label = QLabel('New FOV (mm)')
-
         self.change_fov_field = QLineEdit()
         self.change_fov_field.setPlaceholderText("Readout, Phase, Slice")
 
@@ -97,9 +93,7 @@ class PreProcessingTabWidget(QTabWidget):
         self.new_fov_group.setLayout(self.new_fov_layout)
 
         # Partial Reconstruction
-
         self.partial_reconstruction_label = QLabel('Percentage')
-
         self.partial_reconstruction_field = QLineEdit()
         self.partial_reconstruction_field.setText('65')
 
@@ -117,7 +111,6 @@ class PreProcessingTabWidget(QTabWidget):
         self.partial_reconstruction_group.setLayout(self.partial_reconstruction_layout)
 
         # Phase center
-
         self.extra_lines_label = QLabel('Number of extra lines')
         self.extra_lines_text_field = QLineEdit()
         self.extra_lines_text_field.setText('6')

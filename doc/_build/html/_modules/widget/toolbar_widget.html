@@ -154,9 +154,14 @@
 <span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ToolBarWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># The &#39;main&#39; attribute represents the parent widget, which is used to access the main window or controller.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span>
 
+        <span class="c1"># Create a button for image loading</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_loading_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;File&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Add the image loading button to the toolbar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_loading_button</span><span class="p">)</span></div>
 </pre></div>
 

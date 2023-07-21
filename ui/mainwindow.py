@@ -1,7 +1,6 @@
 import sys
 import qdarkstyle
 from PyQt5.QtCore import QThreadPool
-
 from PyQt5.QtWidgets import QMainWindow, QWidget, QHBoxLayout, QVBoxLayout, QApplication, QStatusBar, QMenuBar, \
     QSplitter
 
@@ -29,7 +28,7 @@ class MainWindow(QMainWindow):
         main_layout (QHBoxLayout): Main layout for the main window.
         left_layout (QVBoxLayout): Layout for the left side of the main window.
         right_layout (QVBoxLayout): Layout for the right side of the main window.
-        image_view_layout (QVBoxLayout): Layout for the image view widgets.
+        image_view_layout (QHBoxLayout): Layout for the image view widgets.
         image_view_splitter (QSplitter): Splitter widget for the image view widgets.
         image_view_widget (ImageViewController): Image view widget for displaying images.
         history_layout (QHBoxLayout): Layout for the history list and history controller.

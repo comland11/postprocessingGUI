@@ -185,12 +185,12 @@
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.cosbellFilter">
 <span class="sig-name descname"><span class="pre">cosbellFilter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.cosbellFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.cosbellFilter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply the Cosbell filter operation using threading.</p>
-<p>Starts a new thread to execute the RunCosbellFilter method.</p>
+<p>Starts a new thread to execute the runCosbellFilter method.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.fovChange">
-<span class="sig-name descname"><span class="pre">fovChange</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.fovChange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.fovChange" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.fovShifting">
+<span class="sig-name descname"><span class="pre">fovShifting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.fovShifting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.fovShifting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the FOV change operation using threading.</p>
 <p>Starts a new thread to execute the runFovChange method.</p>
 </dd></dl>
@@ -198,6 +198,13 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.partialReconstruction">
 <span class="sig-name descname"><span class="pre">partialReconstruction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.partialReconstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.partialReconstruction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the partial reconstruction operation using threading.</p>
+<p>Starts a new thread to execute the runPartialReconstruction method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.phaseCenter">
+<span class="sig-name descname"><span class="pre">phaseCenter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.phaseCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.phaseCenter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform the partial reconstruction operation using threading.</p>
 <p>Starts a new thread to execute the runPartialReconstruction method.</p>
 </dd></dl>
@@ -212,8 +219,8 @@ and updates the operations history.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.runFovChange">
-<span class="sig-name descname"><span class="pre">runFovChange</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.runFovChange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runFovChange" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.runFovShifting">
+<span class="sig-name descname"><span class="pre">runFovShifting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.runFovShifting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runFovShifting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the FOV change operation.</p>
 <p>Retrieves the necessary parameters and performs the FOV change on the loaded image.
 Updates the main matrix of the image view widget with the new FOV image, adds the operation to the history
@@ -230,12 +237,17 @@ the history widget, and updates the operations history.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter">
+<span class="sig-name descname"><span class="pre">runPhaseCenter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.runPhaseCenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="controller.preprocessing_tab_controller.PreProcessingTabController.runZeroPadding">
 <span class="sig-name descname"><span class="pre">runZeroPadding</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/preprocessing_tab_controller.html#PreProcessingTabController.runZeroPadding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runZeroPadding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the zero-padding operation.</p>
 <p>Retrieves the necessary parameters and performs the zero-padding on the loaded image.
 Updates the main matrix of the image view widget with the padded image, adds the operation to the history
-widget,and updates the operations history.</p>
+widget, and updates the operations history.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -270,11 +282,13 @@ widget,and updates the operations history.</p>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.image_padding_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.image_padding_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.new_fov_button"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.new_fov_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.cosbellFilter"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.cosbellFilter()</span></code></a></li>
-<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.fovChange"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.fovChange()</span></code></a></li>
+<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.fovShifting"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.fovShifting()</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.partialReconstruction"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.partialReconstruction()</span></code></a></li>
+<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.phaseCenter"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.phaseCenter()</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runCosbellFilter"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.runCosbellFilter()</span></code></a></li>
-<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runFovChange"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.runFovChange()</span></code></a></li>
+<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runFovShifting"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.runFovShifting()</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runPartialReconstruction"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.runPartialReconstruction()</span></code></a></li>
+<li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runPhaseCenter"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.runPhaseCenter()</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.runZeroPadding"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.runZeroPadding()</span></code></a></li>
 <li><a class="reference internal" href="#controller.preprocessing_tab_controller.PreProcessingTabController.zeroPadding"><code class="docutils literal notranslate"><span class="pre">PreProcessingTabController.zeroPadding()</span></code></a></li>
 </ul>

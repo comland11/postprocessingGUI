@@ -190,9 +190,38 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fft_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s1">&#39;FFT&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fft_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fft_layout</span><span class="p">)</span>
 
+        <span class="c1"># POCS</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Number of points&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points_text_field</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points_text_field</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Correlation threshold&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_text_field</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_text_field</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Run POCS&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pocs_button</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s2">&quot;POCS&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pocs_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pocs_layout</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">art_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fft_group</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pocs_group</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reconstruction_layout</span><span class="p">)</span></div>
 </pre></div>

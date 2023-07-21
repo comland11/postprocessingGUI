@@ -59,7 +59,7 @@ class MainWindow(QMainWindow):
 
         # Set window parameters
         self.setWindowTitle('Test')
-        self.setGeometry(0, 0, 1100, 800)
+        self.setGeometry(0, 0, 1300, 925)
 
         # Threadpool for parallel running
         self.threadpool = QThreadPool()

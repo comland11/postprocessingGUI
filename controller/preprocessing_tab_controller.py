@@ -30,6 +30,7 @@ class PreProcessingTabController(PreProcessingTabWidget):
         self.partial_reconstruction_button.clicked.connect(self.partialReconstruction)
         self.image_cosbell_button.clicked.connect(self.cosbellFilter)
         self.image_padding_button.clicked.connect(self.zeroPadding)
+        self.phase_center_button.clicked.connect(self.phaseCenter)
         self.new_fov_button.clicked.connect(self.fovShifting)
 
     def cosbellFilter(self):
@@ -285,3 +286,48 @@ class PreProcessingTabController(PreProcessingTabWidget):
         self.main.history_controller.operations_dict[self.main.history_controller.matrix_infos] = ["Partial "
                                                                                                    "Reconstruction - "
                                                                                                    + str(percentage)]
+
+    def phaseCenter(self):
+        """
+        Perform the partial reconstruction operation using threading.
+
+        Starts a new thread to execute the runPartialReconstruction method.
+        """
+        thread = threading.Thread(target=self.runPhaseCenter)
+        thread.start()
+
+    def runPhaseCenter (self):
+        mat_data = self.main.toolbar_controller.mat_data
+
+        # Number of extra lines which has been taken past the center of k-space
+        m = int(self.extra_lines_text_field.text())
+        self.m = m
+
+        nPoints = mat_data['nPoints']
+        nPoints_divide = nPoints / 2.0  # Divide the data per 2
+        middle = nPoints_divide[len(nPoints_divide) // 2]  # calcul of n
+        n = int(middle[0])
+        self.n = n
+
+        self.kSpace_ref = 10 ** self.main.image_view_widget.main_matrix
+
+        self.kSpace_center = self.kSpace_ref.copy()  # Create a copy of the signal obtained from the reference image
+        self.kSpace_center[:, :, 0:n - m] = 0.0  # Set the values of the first 'n-m' columns in 'sig_center' to 0.0
+        self.kSpace_center[:, :, n + m::] = 0.0  # Set the values of the columns after 'n+m' in 'sig_center' to 0.0
+
+        # Calculate logarithmic scale
+        small_value = 1e-10
+        kSpace_center_log = np.log10(self.kSpace_center + small_value)
+
+        # Update the main matrix of the image view widget with the interpolated image
+        self.main.image_view_widget.main_matrix = kSpace_center_log
+
+        # Add the "Interpolation" operation to the history widget
+        self.main.history_controller.addItemWithTimestamp("Phase center")
+
+        # Update the history dictionary with the new main matrix for the current matrix info
+        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
+            self.main.image_view_widget.main_matrix
+
+        # Update the operations history
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Phase center")

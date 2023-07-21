@@ -116,10 +116,30 @@ class PreProcessingTabWidget(QTabWidget):
         self.partial_reconstruction_group = QGroupBox("Partial Reconstruction")
         self.partial_reconstruction_group.setLayout(self.partial_reconstruction_layout)
 
+        # Phase center
+
+        self.extra_lines_label = QLabel('Number of extra lines')
+        self.extra_lines_text_field = QLineEdit()
+        self.extra_lines_text_field.setText('6')
+
+        self.extra_lines_layout = QHBoxLayout()
+        self.extra_lines_layout.addWidget(self.extra_lines_label)
+        self.extra_lines_layout.addWidget(self.extra_lines_text_field)
+
+        self.phase_center_button = QPushButton('Center phase')
+
+        self.phase_center_layout = QVBoxLayout()
+        self.phase_center_layout.addLayout(self.extra_lines_layout)
+        self.phase_center_layout.addWidget(self.phase_center_button)
+
+        self.phase_center_group = QGroupBox("Phase Center")
+        self.phase_center_group.setLayout(self.phase_center_layout)
+
         # Main layout
         self.preprocessing_layout = QVBoxLayout()
         self.preprocessing_layout.addWidget(self.zero_padding_group)
         self.preprocessing_layout.addWidget(self.cosbell_group)
         self.preprocessing_layout.addWidget(self.new_fov_group)
         self.preprocessing_layout.addWidget(self.partial_reconstruction_group)
+        self.preprocessing_layout.addWidget(self.phase_center_group)
         self.setLayout(self.preprocessing_layout)

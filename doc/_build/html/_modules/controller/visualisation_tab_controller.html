@@ -174,7 +174,6 @@
         <span class="n">slices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">range_text_field</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
         <span class="n">n0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">slices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">n_end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">slices</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="c1"># slices_number = n_end - n0 + 1</span>
         <span class="n">selected_slices</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n_end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
 
         <span class="n">rows_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_text_field</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>

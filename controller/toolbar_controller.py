@@ -1,3 +1,4 @@
+import os
 import time
 import subprocess
 import scipy as sp
@@ -62,7 +63,7 @@ class ToolBarController(ToolBarWidget):
             eng.workspace['nPoints'] = matlab.double(self.nPoints.tolist(), is_complex=True)
 
             # Chemin vers votre script MATLAB
-            matlab_script_path = 'C:/Users/Portatil PC 6/PycharmProjects/postprocessingGUI/scripts/test.m'
+            matlab_script_path = self.getPath()
 
             # Exécuter le script MATLAB
             eng.run(matlab_script_path, nargout=0)
@@ -129,3 +130,16 @@ class ToolBarController(ToolBarWidget):
                                                    options=options)
 
         return file_name
+
+
+    def getPath(self):
+        # Obtenir le chemin absolu du dossier du script Python en cours d'exécution
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Chemin relatif vers le dossier "scripts" dans votre projet
+        scripts_dir = os.path.join(current_dir, '..', 'scripts')
+
+        # Chemin absolu vers le fichier regridding.m
+        matlab_script_path = os.path.join(scripts_dir, 'regridding.m')
+
+        return matlab_script_path

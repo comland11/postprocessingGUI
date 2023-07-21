@@ -1,5 +1,5 @@
-import threading
 import bm4d
+import threading
 import numpy as np
 
 from scipy.ndimage import gaussian_filter
@@ -31,7 +31,6 @@ class PostProcessingTabController(PostProcessingTabWidget):
 
         self.run_filter_button.clicked.connect(self.bm4dFilter)
         self.gaussian_button.clicked.connect(self.gaussianFilter)
-        self.image_resizing_button.clicked.connect(self.runInterpolation)
         self.image_data = None
         self.denoised_image = None
 
@@ -119,24 +118,3 @@ class PostProcessingTabController(PostProcessingTabWidget):
         self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Gaussian - Standard "
                                                                                                      "deviation : " +
                                                           str(sigma))
-
-    def runInterpolation(self):
-        """
-        Performs interpolation on the 3D image with the specified new dimensions.
-        """
-
-        image = 10 ** self.main.image_view_widget.main_matrix
-
-
-        # Update the main matrix of the image view widget with the interpolated image
-        self.main.image_view_widget.main_matrix = image
-
-        # Add the "Interpolation" operation to the history widget
-        self.main.history_controller.addItemWithTimestamp("Interpolation")
-
-        # Update the history dictionary with the new main matrix for the current matrix info
-        self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
-            self.main.image_view_widget.main_matrix
-
-        # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "Interpolation")

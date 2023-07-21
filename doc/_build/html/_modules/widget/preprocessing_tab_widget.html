@@ -249,12 +249,32 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s2">&quot;Partial Reconstruction&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_layout</span><span class="p">)</span>
 
+        <span class="c1"># Phase center</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Number of extra lines&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_text_field</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;6&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_text_field</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Center phase&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phase_center_button</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s2">&quot;Phase Center&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span><span class="p">)</span>
+
         <span class="c1"># Main layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cosbell_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_fov_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_group</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phase_center_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="p">)</span></div>
 </pre></div>
 

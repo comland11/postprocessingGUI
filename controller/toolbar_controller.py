@@ -1,8 +1,29 @@
+import os
+import time
 import scipy as sp
 import numpy as np
+import matlab.engine
 from PyQt5.QtWidgets import QFileDialog
-from scipy.interpolate import griddata
 from widget.toolbar_widget import ToolBarWidget
+
+
+def getPath():
+    """
+    Get the absolute path to the MATLAB script file.
+
+    Returns:
+        str: Absolute path to the MATLAB script file.
+    """
+    # Get the absolute path of the current Python script directory
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Relative path to the "scripts" directory in your project
+    scripts_dir = os.path.join(current_dir, '..', 'scripts')
+
+    # Absolute path to the "regridding.m" file
+    matlab_script_path = os.path.join(scripts_dir, 'regridding.m')
+
+    return matlab_script_path
 
 
 class ToolBarController(ToolBarWidget):
@@ -45,50 +66,68 @@ class ToolBarController(ToolBarWidget):
         self.mat_data = sp.io.loadmat(file_path)
         self.nPoints = np.reshape(self.mat_data['nPoints'], -1)
 
+        start_time = time.time()
+
         if self.mat_data['seqName'] == 'PETRA':
             kCartesian = self.mat_data['kCartesian']
             self.k_space_raw = self.mat_data['kSpaceRaw']
 
-            kxOriginal = np.reshape(np.real(self.k_space_raw[:, 0]), -1)
-            kyOriginal = np.reshape(np.real(self.k_space_raw[:, 1]), -1)
-            kzOriginal = np.reshape(np.real(self.k_space_raw[:, 2]), -1)
-            kxTarget = np.reshape(kCartesian[:, 0], -1)
-            kyTarget = np.reshape(kCartesian[:, 1], -1)
-            kzTarget = np.reshape(kCartesian[:, 2], -1)
-            valCartesian = griddata((kxOriginal, kyOriginal, kzOriginal), np.reshape(self.k_space_raw[:, 3], -1),
-                                    (kxTarget, kyTarget, kzTarget), method="linear", fill_value=0, rescale=False)
+            eng = matlab.engine.start_matlab()
 
-            self.k_space = np.reshape(valCartesian, (self.nPoints[2], self.nPoints[1], self.nPoints[0]))
+            eng.workspace['kSpaceRaw'] = matlab.double(self.k_space_raw.tolist(), is_complex=True)
+            eng.workspace['kCartesian'] = matlab.double(kCartesian.tolist(), is_complex=True)
+            eng.workspace['nPoints'] = matlab.double(self.nPoints.tolist(), is_complex=True)
+
+            # Path to your MATLAB script
+            matlab_script_path = getPath()
+
+            # Run the MATLAB script
+            eng.run(matlab_script_path, nargout=0)
+
+            k_space = eng.workspace['k_space']
+
+            # Close the MATLAB engine
+            eng.quit()
+
+            k_space = np.array(k_space)
+            self.k_space = k_space
 
         else:  # Cartesian
             # Extract the k-space data from the loaded .mat file
             self.k_space_raw = self.mat_data['sampled']
             self.k_space = np.reshape(self.k_space_raw[:, 3], self.nPoints[-1::-1])
 
-            # Clear the console, history widget, history controller, and history dictionaries
-            self.main.history_widget.clear()
-            self.main.console.console.clear()
-            self.main.history_controller.clear()
-            self.main.history_controller.hist_dict.clear()
-            self.main.visualisation_controller.clear2DImage()
-            self.main.history_controller.clearSecondImageView()
-            self.main.history_controller.operations_dict.clear()
+        # Clear the console, history widget, history controller, and history dictionaries
+        self.main.history_widget.clear()
+        self.main.console.console.clear()
+        self.main.history_controller.clear()
+        self.main.history_controller.hist_dict.clear()
+        self.main.history_controller.clearSecondImageView()
+        self.main.history_controller.operations_dict.clear()
+
+        # Calculate logarithmic scale
+        small_value = 1e-10
+        k_space_log = np.log10(self.k_space + small_value)
 
         # Update the main matrix of the image view widget with the k-space data
-        self.main.image_view_widget.main_matrix = self.k_space
+        self.main.image_view_widget.main_matrix = k_space_log
 
         # Update the image view widget to display the new main matrix
         self.main.image_view_widget.setImage(np.abs(self.main.image_view_widget.main_matrix))
 
         # Add the "KSpace" operation to the history
-        self.main.history_controller.addItemWithTimestamp("KSpace")
+        self.main.history_controller.addItemWithTimestamp("K Space")
 
         # Update the history dictionary with the new main matrix for the current matrix info
         self.main.history_controller.hist_dict[self.main.history_controller.matrix_infos] = \
             self.main.image_view_widget.main_matrix
 
         # Update the operations history
-        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "KSpace")
+        self.main.history_controller.updateOperationsHist(self.main.history_controller.matrix_infos, "K Space")
+
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print("Time :", execution_time, "s")
 
     def loadFile(self):
         """

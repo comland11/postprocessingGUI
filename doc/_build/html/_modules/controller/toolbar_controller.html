@@ -131,11 +131,32 @@
           <div class="body" role="main">
             
   <h1>Source code for controller.toolbar_controller</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># import matlab.engine</span>
 <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QFileDialog</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
 <span class="kn">from</span> <span class="nn">widget.toolbar_widget</span> <span class="kn">import</span> <span class="n">ToolBarWidget</span>
+
+
+<div class="viewcode-block" id="getPath"><a class="viewcode-back" href="../../controller.toolbar_controller.html#controller.toolbar_controller.getPath">[docs]</a><span class="k">def</span> <span class="nf">getPath</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the absolute path to the MATLAB script file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Absolute path to the MATLAB script file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get the absolute path of the current Python script directory</span>
+    <span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+
+    <span class="c1"># Relative path to the &quot;scripts&quot; directory in your project</span>
+    <span class="n">scripts_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;scripts&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Absolute path to the &quot;regridding.m&quot; file</span>
+    <span class="n">matlab_script_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">scripts_dir</span><span class="p">,</span> <span class="s1">&#39;regridding.m&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">matlab_script_path</span></div>
 
 
 <div class="viewcode-block" id="ToolBarController"><a class="viewcode-back" href="../../controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController">[docs]</a><span class="k">class</span> <span class="nc">ToolBarController</span><span class="p">(</span><span class="n">ToolBarWidget</span><span class="p">):</span>
@@ -178,50 +199,68 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">mat_data</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nPoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;nPoints&#39;</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;seqName&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PETRA&#39;</span><span class="p">:</span>
             <span class="n">kCartesian</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;kCartesian&#39;</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;kSpaceRaw&#39;</span><span class="p">]</span>
 
-            <span class="n">kxOriginal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">kyOriginal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">kzOriginal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">kxTarget</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">kCartesian</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">kyTarget</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">kCartesian</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">kzTarget</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">kCartesian</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">valCartesian</span> <span class="o">=</span> <span class="n">griddata</span><span class="p">((</span><span class="n">kxOriginal</span><span class="p">,</span> <span class="n">kyOriginal</span><span class="p">,</span> <span class="n">kzOriginal</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
-                                    <span class="p">(</span><span class="n">kxTarget</span><span class="p">,</span> <span class="n">kyTarget</span><span class="p">,</span> <span class="n">kzTarget</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rescale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start_matlab</span><span class="p">()</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">k_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">valCartesian</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nPoints</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nPoints</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nPoints</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s1">&#39;kSpaceRaw&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">is_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s1">&#39;kCartesian&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">kCartesian</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">is_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s1">&#39;nPoints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nPoints</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">is_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># Path to your MATLAB script</span>
+            <span class="n">matlab_script_path</span> <span class="o">=</span> <span class="n">getPath</span><span class="p">()</span>
+
+            <span class="c1"># Run the MATLAB script</span>
+            <span class="n">eng</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">matlab_script_path</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="n">k_space</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s1">&#39;k_space&#39;</span><span class="p">]</span>
+
+            <span class="c1"># Close the MATLAB engine</span>
+            <span class="n">eng</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+
+            <span class="n">k_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k_space</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">k_space</span> <span class="o">=</span> <span class="n">k_space</span>
 
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># Cartesian</span>
             <span class="c1"># Extract the k-space data from the loaded .mat file</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat_data</span><span class="p">[</span><span class="s1">&#39;sampled&#39;</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">k_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space_raw</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nPoints</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-            <span class="c1"># Clear the console, history widget, history controller, and history dictionaries</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_widget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">visualisation_controller</span><span class="o">.</span><span class="n">clear2DImage</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">clearSecondImageView</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="c1"># Clear the console, history widget, history controller, and history dictionaries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_widget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="n">console</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">clearSecondImageView</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">operations_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+        <span class="c1"># Calculate logarithmic scale</span>
+        <span class="n">small_value</span> <span class="o">=</span> <span class="mf">1e-10</span>
+        <span class="n">k_space_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k_space</span> <span class="o">+</span> <span class="n">small_value</span><span class="p">)</span>
 
         <span class="c1"># Update the main matrix of the image view widget with the k-space data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_space</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="n">k_space_log</span>
 
         <span class="c1"># Update the image view widget to display the new main matrix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span><span class="p">))</span>
 
         <span class="c1"># Add the &quot;KSpace&quot; operation to the history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;KSpace&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">addItemWithTimestamp</span><span class="p">(</span><span class="s2">&quot;K Space&quot;</span><span class="p">)</span>
 
         <span class="c1"># Update the history dictionary with the new main matrix for the current matrix info</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">]</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
         <span class="c1"># Update the operations history</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">updateOperationsHist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">,</span> <span class="s2">&quot;KSpace&quot;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">updateOperationsHist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">,</span> <span class="s2">&quot;K Space&quot;</span><span class="p">)</span>
+
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">execution_time</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time :&quot;</span><span class="p">,</span> <span class="n">execution_time</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ToolBarController.loadFile"><a class="viewcode-back" href="../../controller.toolbar_controller.html#controller.toolbar_controller.ToolBarController.loadFile">[docs]</a>    <span class="k">def</span> <span class="nf">loadFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>

@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="2D matrix for comparison">
+    <list default="true" id="6be57326-0c8e-4244-a736-72dcbeaf160b" name="Changes" comment="docstring + comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/history_list_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/history_list_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.history_list_controller.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.reconstruction_tab_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.reconstruction_tab_controller.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/controller.toolbar_controller.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/history_list_controller.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/widget/preprocessing_tab_widget.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.history_list_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/doctrees/ui.mainwindow.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/doctrees/ui.mainwindow.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/reconstruction_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/reconstruction_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/controller/toolbar_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/_modules/ui/mainwindow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.reconstruction_tab_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.reconstruction_tab_controller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/controller.toolbar_controller.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/genindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/py-modindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/ui.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/ui.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/_build/html/ui.mainwindow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/_build/html/ui.mainwindow.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="image_comparison" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,6 +57,13 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/controller/console_controller.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/controller/history_list_controller.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/controller/reconstruction_tab_controller.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/controller/toolbar_controller.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/controller/visualisation_tab_controller.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -58,15 +72,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;image__comparison&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Portatil PC 6/PycharmProjects/pythonProject&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "image__comparison",
+    "last_opened_file_path": "C:/Users/Portatil PC 6/Downloads/postprocessingGUI-main",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.mainwindow">
     <configuration name="history_list_controller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="postprocessingGUI" />
@@ -176,10 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.mainwindow" />
-        <item itemvalue="Python.history_list_controller" />
-        <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.toolbar_controller" />
+        <item itemvalue="Python.visualisation_tab_controller" />
         <item itemvalue="Python.postpocessing_tab_controller" />
+        <item itemvalue="Python.history_list_controller" />
       </list>
     </recent_temporary>
   </component>
@@ -465,7 +479,63 @@
       <option name="project" value="LOCAL" />
       <updated>1688381843555</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="phase + log scale">
+      <created>1689065823420</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1689065823420</updated>
+    </task>
+    <task id="LOCAL-00041" summary="updates">
+      <created>1689165734433</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1689165734433</updated>
+    </task>
+    <task id="LOCAL-00042" summary="set docstring and zero padding">
+      <created>1689258458606</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1689258458606</updated>
+    </task>
+    <task id="LOCAL-00043" summary="matlab script">
+      <created>1689607845813</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1689607845813</updated>
+    </task>
+    <task id="LOCAL-00044" summary="matlab script">
+      <created>1689607870783</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1689607870783</updated>
+    </task>
+    <task id="LOCAL-00045" summary="gaussian filter and reorganization">
+      <created>1689694989051</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1689694989051</updated>
+    </task>
+    <task id="LOCAL-00046" summary="pocs + matlab script for art">
+      <created>1689949002820</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1689949002820</updated>
+    </task>
+    <task id="LOCAL-00047" summary="docstring + comments">
+      <created>1689959217509</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1689959217509</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -549,12 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="The bm4d filter is apply when the checkbox is checked" />
-    <MESSAGE value="Two ways to run the bm4d filter : manually or automatically &#10;The image is resize between 0 et 100 before applying the bm4d filter &#10;Slider added to see 3d image" />
-    <MESSAGE value="comments added" />
-    <MESSAGE value="Get k-space from radial acquisitions (PETRA)" />
-    <MESSAGE value="Console adding" />
-    <MESSAGE value="Context menu" />
     <MESSAGE value="Cosbell filter + tab reorganisation ( new files : preprocessing_tab_controller et widget)" />
     <MESSAGE value="Cosbell filter + set comments + multiplot" />
     <MESSAGE value="set image view, double clic and RARE file loading" />
@@ -565,7 +629,6 @@
     <MESSAGE value="partial acquisition" />
     <MESSAGE value="console clearing when a new file is loaded" />
     <MESSAGE value="zero padding" />
-    <MESSAGE value="updates" />
     <MESSAGE value="order for zero padding" />
     <MESSAGE value="change the fov" />
     <MESSAGE value="documentation" />
@@ -574,7 +637,14 @@
     <MESSAGE value="docstring addition" />
     <MESSAGE value="2D matrix for comparison, group box for reconstruction tab" />
     <MESSAGE value="2D matrix for comparison" />
-    <option name="LAST_COMMIT_MESSAGE" value="2D matrix for comparison" />
+    <MESSAGE value="phase + log scale" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="set docstring and zero padding" />
+    <MESSAGE value="matlab script" />
+    <MESSAGE value="gaussian filter and reorganization" />
+    <MESSAGE value="pocs + matlab script for art" />
+    <MESSAGE value="docstring + comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="docstring + comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

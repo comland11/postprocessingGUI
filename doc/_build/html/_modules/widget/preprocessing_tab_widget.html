@@ -154,17 +154,17 @@
 <span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PreProcessingTabWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># The &#39;main&#39; attribute represents the parent widget, which is used to access the main window or controller.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span>
 
         <span class="c1"># Cosbell</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">readout_checkbox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s1">&#39;Readout&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">readout_checkbox</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phase_checkbox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s1">&#39;Phase&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">slice_checkbox</span> <span class="o">=</span> <span class="n">QCheckBox</span><span class="p">(</span><span class="s1">&#39;Slice&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cosbell_order_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">cosbell_order_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cosbell_order_field</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
 
@@ -190,12 +190,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cosbell_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cosbell_layout</span><span class="p">)</span>
 
         <span class="c1"># Zero Padding</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Order&#39;</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_field</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Readout, Phase, Slice&quot;</span><span class="p">)</span>
-        <span class="c1"># self.zero_padding_order_field.setText(&#39;2,2,2&#39;)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_order_label</span><span class="p">)</span>
@@ -212,7 +209,6 @@
 
         <span class="c1"># FOV change</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_fov_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;New FOV (mm)&#39;</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">change_fov_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">change_fov_field</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Readout, Phase, Slice&quot;</span><span class="p">)</span>
 
@@ -230,9 +226,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">new_fov_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_fov_layout</span><span class="p">)</span>
 
         <span class="c1"># Partial Reconstruction</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Percentage&#39;</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_field</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;65&#39;</span><span class="p">)</span>
 
@@ -249,12 +243,31 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s2">&quot;Partial Reconstruction&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_layout</span><span class="p">)</span>
 
+        <span class="c1"># Phase center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Number of extra lines&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_text_field</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;6&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_text_field</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Center phase&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_lines_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phase_center_button</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s2">&quot;Phase Center&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phase_center_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phase_center_layout</span><span class="p">)</span>
+
         <span class="c1"># Main layout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zero_padding_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cosbell_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_fov_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_reconstruction_group</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phase_center_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocessing_layout</span><span class="p">)</span></div>
 </pre></div>
 

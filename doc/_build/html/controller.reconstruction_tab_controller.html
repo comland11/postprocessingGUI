@@ -158,6 +158,12 @@
 <p>Controller class for the ReconstructionTabWidget.</p>
 <p>Inherits from ReconstructionTabWidget to provide additional functionality for image reconstruction.</p>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="controller.reconstruction_tab_controller.ReconstructionTabController.pocs_button">
+<span class="sig-name descname"><span class="pre">pocs_button</span></span><a class="headerlink" href="#controller.reconstruction_tab_controller.ReconstructionTabController.pocs_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>QPushButton for performing POCS.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="controller.reconstruction_tab_controller.ReconstructionTabController.image_fft_button">
 <span class="sig-name descname"><span class="pre">image_fft_button</span></span><a class="headerlink" href="#controller.reconstruction_tab_controller.ReconstructionTabController.image_fft_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>QPushButton for performing FFT reconstruction.</p>
@@ -184,6 +190,13 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="controller.reconstruction_tab_controller.ReconstructionTabController.pocsReconstruction">
+<span class="sig-name descname"><span class="pre">pocsReconstruction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/reconstruction_tab_controller.html#ReconstructionTabController.pocsReconstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.reconstruction_tab_controller.ReconstructionTabController.pocsReconstruction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform POCS reconstruction in a separate thread.</p>
+<p>Creates a new thread and runs the runPocsReconstruction method in that thread.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="controller.reconstruction_tab_controller.ReconstructionTabController.runArtReconstruction">
 <span class="sig-name descname"><span class="pre">runArtReconstruction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/reconstruction_tab_controller.html#ReconstructionTabController.runArtReconstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.reconstruction_tab_controller.ReconstructionTabController.runArtReconstruction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform ART reconstruction.</p>
@@ -204,6 +217,76 @@ Updates the main matrix of the image view widget with the reconstructed image.
 Adds the “FFT” operation to the history widget and updates the history dictionary and operations history.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="controller.reconstruction_tab_controller.ReconstructionTabController.runPocsReconstruction">
+<span class="sig-name descname"><span class="pre">runPocsReconstruction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/reconstruction_tab_controller.html#ReconstructionTabController.runPocsReconstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.reconstruction_tab_controller.ReconstructionTabController.runPocsReconstruction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform POCS reconstruction.</p>
+<p>Retrieves the number of points before m+n where reconstruction begins to go to zero.
+Retrieves the correlation threshold for stopping the iterations.
+Computes the partial image and full image for POCS reconstruction.
+Applies the iterative reconstruction with phase correction.
+Updates the main matrix of the image view widget with the interpolated image.
+Adds the “POCS” operation to the history widget and updates the history dictionary and operations history.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="controller.reconstruction_tab_controller.getPath">
+<span class="sig-prename descclassname"><span class="pre">controller.reconstruction_tab_controller.</span></span><span class="sig-name descname"><span class="pre">getPath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/reconstruction_tab_controller.html#getPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.reconstruction_tab_controller.getPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the absolute path to the MATLAB script file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Absolute path to the MATLAB script file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="controller.reconstruction_tab_controller.hanningFilter">
+<span class="sig-prename descclassname"><span class="pre">controller.reconstruction_tab_controller.</span></span><span class="sig-name descname"><span class="pre">hanningFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kSpace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/reconstruction_tab_controller.html#hanningFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.reconstruction_tab_controller.hanningFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a Hanning filter to the k-space data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kSpace</strong> (<em>ndarray</em>) – K-space data.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Number of zero-filled points in k-space.</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Number of acquired points in k-space.</p></li>
+<li><p><strong>nb_point</strong> (<em>int</em>) – Number of points before m+n where reconstruction begins to go to zero.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>K-space data with the Hanning filter applied.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="controller.reconstruction_tab_controller.ramp">
+<span class="sig-prename descclassname"><span class="pre">controller.reconstruction_tab_controller.</span></span><span class="sig-name descname"><span class="pre">ramp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kSpace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller/reconstruction_tab_controller.html#ramp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controller.reconstruction_tab_controller.ramp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a ramp filter to the k-space data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kSpace</strong> (<em>ndarray</em>) – K-space data.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – Number of zero-filled points in k-space.</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Number of acquired points in k-space.</p></li>
+<li><p><strong>nb_point</strong> (<em>int</em>) – Number of points before m+n where reconstruction begins to go to zero.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>K-space data with the ramp filter applied.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -224,14 +307,20 @@ Adds the “FFT” operation to the history widget and updates the history dicti
                 <ul>
 <li><a class="reference internal" href="#">controller.reconstruction_tab_controller module</a><ul>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController</span></code></a><ul>
+<li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.pocs_button"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.pocs_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.image_fft_button"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.image_fft_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.image_art_button"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.image_art_button</span></code></a></li>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.artReconstruction"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.artReconstruction()</span></code></a></li>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.fftReconstruction"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.fftReconstruction()</span></code></a></li>
+<li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.pocsReconstruction"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.pocsReconstruction()</span></code></a></li>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.runArtReconstruction"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.runArtReconstruction()</span></code></a></li>
 <li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.runFftReconstruction"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.runFftReconstruction()</span></code></a></li>
+<li><a class="reference internal" href="#controller.reconstruction_tab_controller.ReconstructionTabController.runPocsReconstruction"><code class="docutils literal notranslate"><span class="pre">ReconstructionTabController.runPocsReconstruction()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#controller.reconstruction_tab_controller.getPath"><code class="docutils literal notranslate"><span class="pre">getPath()</span></code></a></li>
+<li><a class="reference internal" href="#controller.reconstruction_tab_controller.hanningFilter"><code class="docutils literal notranslate"><span class="pre">hanningFilter()</span></code></a></li>
+<li><a class="reference internal" href="#controller.reconstruction_tab_controller.ramp"><code class="docutils literal notranslate"><span class="pre">ramp()</span></code></a></li>
 </ul>
 </li>
 </ul>

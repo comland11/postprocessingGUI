@@ -131,11 +131,29 @@
           <div class="body" role="main">
             
   <h1>Source code for controller.history_list_controller</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
 <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMenu</span>
 <span class="kn">from</span> <span class="nn">widget.imageview_widget</span> <span class="kn">import</span> <span class="n">ImageViewWidget</span>
 <span class="kn">from</span> <span class="nn">widget.history_list_widget</span> <span class="kn">import</span> <span class="n">HistoryListWidget</span>
+
+
+<div class="viewcode-block" id="moveKeyAndValuesToEnd"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.moveKeyAndValuesToEnd">[docs]</a><span class="k">def</span> <span class="nf">moveKeyAndValuesToEnd</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Move the given key and its associated values to the end of the dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dictionary (dict): The dictionary containing the key and values.</span>
+<span class="sd">        key (str): The key to be moved to the end of the dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if the key exists in the dictionary</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+        <span class="c1"># Get the values associated with the key</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="c1"># Delete the key from the dictionary</span>
+        <span class="k">del</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="c1"># Add the key back to the dictionary with its associated values at the end</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span></div>
 
 
 <div class="viewcode-block" id="HistoryListController"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController">[docs]</a><span class="k">class</span> <span class="nc">HistoryListController</span><span class="p">(</span><span class="n">HistoryListWidget</span><span class="p">):</span>
@@ -145,11 +163,10 @@
 <span class="sd">    Inherits from HistoryListWidget.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        hist_dict: Dictionary to store images.</span>
-<span class="sd">        operations_dict: Dictionary to store operations&#39; history.</span>
-<span class="sd">        matrix_infos: Information about the matrix.</span>
-<span class="sd">        image_view: Reference to the ImageViewWidget.</span>
-
+<span class="sd">        hist_dict (dict): Dictionary to store historical images.</span>
+<span class="sd">        operations_dict (dict): Dictionary to store operations&#39; history.</span>
+<span class="sd">        matrix_infos (str): Information about the matrix.</span>
+<span class="sd">        image_view (ImageViewWidget): Reference to the ImageViewWidget.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -160,14 +177,15 @@
 <span class="sd">            *args: Variable length argument list.</span>
 <span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
+        <span class="c1"># Call the constructor of the parent class (HistoryListWidget)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">HistoryListController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Initialize dictionaries and attributes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dictionary to store historical images</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Dictionary to store operations history</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix_infos</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="c1"># Connect methods to item click</span>
+        <span class="c1"># Connect methods to item click events in the history list widget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">itemDoubleClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateHistoryFigure</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">itemClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">updateHistoryTable</span><span class="p">)</span>
 
@@ -178,8 +196,11 @@
 <span class="sd">        Args:</span>
 <span class="sd">            text (str): The text to be added to the history list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the current timestamp in the format &quot;dd-mm-yyyy HH:mm:ss&quot;</span>
         <span class="n">current_time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%Y %H:%M:%S&quot;</span><span class="p">)</span>
+        <span class="c1"># Combine the timestamp and the provided text and store it in matrix_infos attribute</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix_infos</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="c1"># Add the combined text to the history list</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix_infos</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="HistoryListController.updateHistoryFigure"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateHistoryFigure">[docs]</a>    <span class="k">def</span> <span class="nf">updateHistoryFigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
@@ -189,14 +210,19 @@
 <span class="sd">        Args:</span>
 <span class="sd">            item (QListWidgetItem): The selected item in the history list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the text of the selected item</span>
         <span class="n">selected_text</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="c1"># Check if the selected_text exists in the hist_dict dictionary</span>
         <span class="k">if</span> <span class="n">selected_text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="c1"># Update the main image view with the selected historical image</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">selected_text</span><span class="p">)</span>
+            <span class="c1"># Display the absolute value of the image in the image view</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span><span class="p">))</span>
 
+        <span class="c1"># Clear the second image view</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clearSecondImageView</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">visualisation_controller</span><span class="o">.</span><span class="n">clear2DImage</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moveKeyAndValuesToEnd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">,</span> <span class="n">selected_text</span><span class="p">)</span></div>
+        <span class="c1"># Move the selected item and its associated values to the end of operations_dict</span>
+        <span class="n">moveKeyAndValuesToEnd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">,</span> <span class="n">selected_text</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="HistoryListController.updateOperationsHist"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateOperationsHist">[docs]</a>    <span class="k">def</span> <span class="nf">updateOperationsHist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infos</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -206,12 +232,17 @@
 <span class="sd">            infos (str): Information for the operations&#39; history.</span>
 <span class="sd">            text (str): Text to be added to the operations&#39; history.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if the operations_dict is empty</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># If empty, add the new information as a key and the text as a value in a list</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="n">infos</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If not empty, retrieve the last value (list) from operations_dict</span>
             <span class="n">list1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
             <span class="n">new_value</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="c1"># Append the new text to the list of values</span>
             <span class="n">new_value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+            <span class="c1"># Update the operations_dict with the new list of values</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="n">infos</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span></div>
 
 <div class="viewcode-block" id="HistoryListController.updateHistoryTable"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.updateHistoryTable">[docs]</a>    <span class="k">def</span> <span class="nf">updateHistoryTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
@@ -221,25 +252,15 @@
 <span class="sd">        Args:</span>
 <span class="sd">            item (QListWidgetItem): The selected item in the history list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Clear the history table widget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_widget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="c1"># Get the text of the selected item</span>
         <span class="n">selected_text</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+        <span class="c1"># Get the values (list of texts) associated with the selected_text from operations_dict</span>
         <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">selected_text</span><span class="p">,</span> <span class="p">[])</span>
-
+        <span class="c1"># Add each value to the history table widget</span>
         <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_widget</span><span class="o">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="HistoryListController.moveKeyAndValuesToEnd"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.moveKeyAndValuesToEnd">[docs]</a>    <span class="k">def</span> <span class="nf">moveKeyAndValuesToEnd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Move the given key and its associated values to the end of the dictionary.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            dictionary (dict): The dictionary containing the key and values.</span>
-<span class="sd">            key (str): The key to be moved to the end of the dictionary.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
-            <span class="n">values</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-            <span class="k">del</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-            <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span></div>
 
 <div class="viewcode-block" id="HistoryListController.contextMenuEvent"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.contextMenuEvent">[docs]</a>    <span class="k">def</span> <span class="nf">contextMenuEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -248,12 +269,17 @@
 <span class="sd">        Args:</span>
 <span class="sd">            event (QContextMenuEvent): The context menu event.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Create a context menu for the widget</span>
         <span class="n">context_menu</span> <span class="o">=</span> <span class="n">QMenu</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Check if any items are selected in the history list</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">():</span>
+            <span class="c1"># Add actions (options) to the context menu</span>
             <span class="n">delete_action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="s1">&#39;Delete&#39;</span><span class="p">)</span>
             <span class="n">add_action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="s1">&#39;New image&#39;</span><span class="p">)</span>
             <span class="n">phase_action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="s1">&#39;Plot phase&#39;</span><span class="p">)</span>
+            <span class="c1"># Display the context menu at the position of the right-click event</span>
             <span class="n">action</span> <span class="o">=</span> <span class="n">context_menu</span><span class="o">.</span><span class="n">exec_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapToGlobal</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()))</span>
+            <span class="c1"># Based on the selected action, perform the appropriate action</span>
             <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">delete_action</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">deleteSelectedItem</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">add_action</span><span class="p">:</span>
@@ -265,56 +291,92 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Delete the selected item from the history list.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the selected items in the history list widget</span>
         <span class="n">selected_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+        <span class="c1"># Check if there is any selected item</span>
         <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+            <span class="c1"># Get the first selected item</span>
             <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Remove the selected item from the history list</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">takeItem</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">selected_item</span><span class="p">))</span>
 
+        <span class="c1"># Check if the selected item text exists in hist_dict</span>
         <span class="k">if</span> <span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">:</span>
+            <span class="c1"># If yes, remove the corresponding image from hist_dict</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">[</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()]</span>
+            <span class="c1"># Clear the history widget and the main image view</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_widget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="c1"># Clear the second image view</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">clearSecondImageView</span><span class="p">()</span>
 
+        <span class="c1"># Check if the selected item text exists in operations_dict</span>
         <span class="k">if</span> <span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">:</span>
+            <span class="c1"># If yes, remove the corresponding operations from operations_dict</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">operations_dict</span><span class="p">[</span><span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()]</span></div>
 
 <div class="viewcode-block" id="HistoryListController.addImage"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.addImage">[docs]</a>    <span class="k">def</span> <span class="nf">addImage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add an image to a new image view.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the selected items in the history list widget</span>
         <span class="n">selected_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+        <span class="c1"># Check if there is any selected item</span>
         <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+            <span class="c1"># Get the first selected item</span>
             <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Get the text of the selected item</span>
             <span class="n">text</span> <span class="o">=</span> <span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="c1"># Check if the text exists in hist_dict</span>
             <span class="k">if</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">:</span>
+                <span class="c1"># Get the image corresponding to the text from hist_dict</span>
                 <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 
+                <span class="c1"># Check if the image view is not yet created</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># If not, create a new image view widget</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="n">ImageViewWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
+                    <span class="c1"># Add the new image view widget to the main image view splitter</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_splitter</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="p">)</span>
 
+                <span class="c1"># Display the absolute value of the image in the new image view</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">image</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="HistoryListController.clearSecondImageView"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.clearSecondImageView">[docs]</a>    <span class="k">def</span> <span class="nf">clearSecondImageView</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clear the second image view.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check if the image view exists</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># If yes, close the image view</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="c1"># Set the image view reference to None</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="HistoryListController.plotPhase"><a class="viewcode-back" href="../../controller.history_list_controller.html#controller.history_list_controller.HistoryListController.plotPhase">[docs]</a>    <span class="k">def</span> <span class="nf">plotPhase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the phase of the selected image in a new image view.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the selected items in the history list widget</span>
         <span class="n">selected_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+        <span class="c1"># Check if there is any selected item</span>
         <span class="k">if</span> <span class="n">selected_items</span><span class="p">:</span>
+            <span class="c1"># Get the first selected item</span>
             <span class="n">selected_item</span> <span class="o">=</span> <span class="n">selected_items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Get the text of the selected item</span>
             <span class="n">text</span> <span class="o">=</span> <span class="n">selected_item</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="c1"># Check if the text exists in hist_dict</span>
             <span class="k">if</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="p">:</span>
+                <span class="c1"># Get the image corresponding to the text from hist_dict</span>
                 <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hist_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+                <span class="c1"># Check if the image view is not yet created</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># If not, create a new image view widget</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="n">ImageViewWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
+                    <span class="c1"># Add the new image view widget to the main image view splitter</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_splitter</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">image</span><span class="p">))</span></div></div>
+                <span class="c1"># Display the phase of the image in the new image view</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">image</span><span class="p">))</span></div></div>
 </pre></div>
 
             <div class="clearer"></div>

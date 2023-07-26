@@ -131,7 +131,7 @@
           <div class="body" role="main">
             
   <h1>Source code for widget.visualisation_tab_widget</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QTabWidget</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QHBoxLayout</span><span class="p">,</span> <span class="n">QVBoxLayout</span>
+<span></span><span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QTabWidget</span><span class="p">,</span> <span class="n">QPushButton</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QLineEdit</span><span class="p">,</span> <span class="n">QHBoxLayout</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QGroupBox</span>
 
 
 <div class="viewcode-block" id="VisualisationTabWidget"><a class="viewcode-back" href="../../widget.visualisation_tab_widget.html#widget.visualisation_tab_widget.VisualisationTabWidget">[docs]</a><span class="k">class</span> <span class="nc">VisualisationTabWidget</span><span class="p">(</span><span class="n">QTabWidget</span><span class="p">):</span>
@@ -156,34 +156,46 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">VisualisationTabWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main</span> <span class="o">=</span> <span class="n">parent</span>
 
-        <span class="c1"># Button</span>
+        <span class="c1"># Multiplot settings</span>
+        <span class="c1"># Button for showing slices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_button</span> <span class="o">=</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Show slices&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Labels</span>
+        <span class="c1"># Labels for input fields</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">range_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Slices&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="s1">&#39;Rows and columns&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Text Fields</span>
+        <span class="c1"># Text Fields for input</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">range_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">range_text_field</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s1">&#39;First, Last&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">column_text_field</span> <span class="o">=</span> <span class="n">QLineEdit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_text_field</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s1">&#39;Rows, Columns&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Layouts</span>
+        <span class="c1"># Layout for the input fields related to the number of slices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">number_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">range_text_field</span><span class="p">)</span>
 
+        <span class="c1"># Layout for the input fields related to the number of rows and columns</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_label</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_text_field</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_layout</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualisation_button</span><span class="p">)</span>
+        <span class="c1"># Main layout for the Multiplot settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplot_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplot_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplot_layout</span><span class="o">.</span><span class="n">addLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_layout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplot_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualisation_button</span><span class="p">)</span>
 
+        <span class="c1"># Group Box for Multiplot settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplot_group</span> <span class="o">=</span> <span class="n">QGroupBox</span><span class="p">(</span><span class="s2">&quot;Multiplot&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplot_group</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">multiplot_layout</span><span class="p">)</span>
+
+        <span class="c1"># Main layout for the Visualisation tab</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span> <span class="o">=</span> <span class="n">QVBoxLayout</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">multiplot_group</span><span class="p">)</span>
+
+        <span class="c1"># Set the layout for the VisualisationTabWidget</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualisation_layout</span><span class="p">)</span></div>
 </pre></div>
 

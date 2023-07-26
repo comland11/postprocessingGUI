@@ -134,7 +134,6 @@
 <span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">qdarkstyle</span>
 <span class="kn">from</span> <span class="nn">PyQt5.QtCore</span> <span class="kn">import</span> <span class="n">QThreadPool</span>
-
 <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QMainWindow</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QHBoxLayout</span><span class="p">,</span> <span class="n">QVBoxLayout</span><span class="p">,</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QStatusBar</span><span class="p">,</span> <span class="n">QMenuBar</span><span class="p">,</span> \
     <span class="n">QSplitter</span>
 
@@ -162,7 +161,7 @@
 <span class="sd">        main_layout (QHBoxLayout): Main layout for the main window.</span>
 <span class="sd">        left_layout (QVBoxLayout): Layout for the left side of the main window.</span>
 <span class="sd">        right_layout (QVBoxLayout): Layout for the right side of the main window.</span>
-<span class="sd">        image_view_layout (QVBoxLayout): Layout for the image view widgets.</span>
+<span class="sd">        image_view_layout (QHBoxLayout): Layout for the image view widgets.</span>
 <span class="sd">        image_view_splitter (QSplitter): Splitter widget for the image view widgets.</span>
 <span class="sd">        image_view_widget (ImageViewController): Image view widget for displaying images.</span>
 <span class="sd">        history_layout (QHBoxLayout): Layout for the history list and history controller.</span>
@@ -192,7 +191,7 @@
 
         <span class="c1"># Set window parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1100</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="mi">925</span><span class="p">)</span>
 
         <span class="c1"># Threadpool for parallel running</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">threadpool</span> <span class="o">=</span> <span class="n">QThreadPool</span><span class="p">()</span>

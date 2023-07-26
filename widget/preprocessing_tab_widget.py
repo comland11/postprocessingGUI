@@ -21,17 +21,17 @@ class PreProcessingTabWidget(QTabWidget):
             **kwargs: Arbitrary keyword arguments.
         """
         super(PreProcessingTabWidget, self).__init__(*args, **kwargs)
+
+        # The 'main' attribute represents the parent widget, which is used to access the main window or controller.
         self.main = parent
 
         # Cosbell
-
         self.readout_checkbox = QCheckBox('Readout')
         self.readout_checkbox.setChecked(True)
         self.phase_checkbox = QCheckBox('Phase')
         self.slice_checkbox = QCheckBox('Slice')
 
         self.cosbell_order_label = QLabel('Order')
-
         self.cosbell_order_field = QLineEdit()
         self.cosbell_order_field.setText('1')
 
@@ -57,12 +57,9 @@ class PreProcessingTabWidget(QTabWidget):
         self.cosbell_group.setLayout(self.cosbell_layout)
 
         # Zero Padding
-
         self.zero_padding_order_label = QLabel('Order')
-
         self.zero_padding_order_field = QLineEdit()
         self.zero_padding_order_field.setPlaceholderText("Readout, Phase, Slice")
-        # self.zero_padding_order_field.setText('2,2,2')
 
         self.zero_padding_order_layout = QHBoxLayout()
         self.zero_padding_order_layout.addWidget(self.zero_padding_order_label)
@@ -79,7 +76,6 @@ class PreProcessingTabWidget(QTabWidget):
 
         # FOV change
         self.change_fov_label = QLabel('New FOV (mm)')
-
         self.change_fov_field = QLineEdit()
         self.change_fov_field.setPlaceholderText("Readout, Phase, Slice")
 
@@ -97,9 +93,7 @@ class PreProcessingTabWidget(QTabWidget):
         self.new_fov_group.setLayout(self.new_fov_layout)
 
         # Partial Reconstruction
-
         self.partial_reconstruction_label = QLabel('Percentage')
-
         self.partial_reconstruction_field = QLineEdit()
         self.partial_reconstruction_field.setText('65')
 
@@ -116,10 +110,29 @@ class PreProcessingTabWidget(QTabWidget):
         self.partial_reconstruction_group = QGroupBox("Partial Reconstruction")
         self.partial_reconstruction_group.setLayout(self.partial_reconstruction_layout)
 
+        # Phase center
+        self.extra_lines_label = QLabel('Number of extra lines')
+        self.extra_lines_text_field = QLineEdit()
+        self.extra_lines_text_field.setText('6')
+
+        self.extra_lines_layout = QHBoxLayout()
+        self.extra_lines_layout.addWidget(self.extra_lines_label)
+        self.extra_lines_layout.addWidget(self.extra_lines_text_field)
+
+        self.phase_center_button = QPushButton('Center phase')
+
+        self.phase_center_layout = QVBoxLayout()
+        self.phase_center_layout.addLayout(self.extra_lines_layout)
+        self.phase_center_layout.addWidget(self.phase_center_button)
+
+        self.phase_center_group = QGroupBox("Phase Center")
+        self.phase_center_group.setLayout(self.phase_center_layout)
+
         # Main layout
         self.preprocessing_layout = QVBoxLayout()
         self.preprocessing_layout.addWidget(self.zero_padding_group)
         self.preprocessing_layout.addWidget(self.cosbell_group)
         self.preprocessing_layout.addWidget(self.new_fov_group)
         self.preprocessing_layout.addWidget(self.partial_reconstruction_group)
+        self.preprocessing_layout.addWidget(self.phase_center_group)
         self.setLayout(self.preprocessing_layout)

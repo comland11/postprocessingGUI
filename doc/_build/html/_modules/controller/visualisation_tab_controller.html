@@ -132,8 +132,6 @@
             
   <h1>Source code for controller.visualisation_tab_controller</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QGridLayout</span>
-<span class="kn">from</span> <span class="nn">widget.imageview_widget</span> <span class="kn">import</span> <span class="n">ImageViewWidget</span>
 <span class="kn">from</span> <span class="nn">widget.visualisation_tab_widget</span> <span class="kn">import</span> <span class="n">VisualisationTabWidget</span>
 
 
@@ -157,10 +155,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VisualisationTabController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">()</span>
         <span class="c1"># Connect the visualisation_button clicked signal to the imageVisualisation method</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visualisation_button</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imageVisualisation</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="VisualisationTabController.imageVisualisation"><a class="viewcode-back" href="../../controller.visualisation_tab_controller.html#controller.visualisation_tab_controller.VisualisationTabController.imageVisualisation">[docs]</a>    <span class="k">def</span> <span class="nf">imageVisualisation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -169,48 +165,49 @@
 <span class="sd">        Display the selected slices as images using a grid layout.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># Get the main matrix containing the image data</span>
         <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">main_matrix</span>
 
+        <span class="c1"># Get the selected range of slices to display</span>
         <span class="n">slices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">range_text_field</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
         <span class="n">n0</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">slices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">n_end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">slices</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="c1"># slices_number = n_end - n0 + 1</span>
         <span class="n">selected_slices</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">n0</span><span class="p">:</span><span class="n">n_end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
 
+        <span class="c1"># Get the number of rows and columns for the grid layout</span>
         <span class="n">rows_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_text_field</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
         <span class="n">rows_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rows_columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">columns_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rows_columns</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
+        <span class="c1"># Get the height and width of each slice</span>
         <span class="n">slice_height</span><span class="p">,</span> <span class="n">slice_width</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 
+        <span class="c1"># Create an empty image matrix to hold the visualized slices</span>
         <span class="n">image_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">slice_height</span> <span class="o">*</span> <span class="n">columns_number</span><span class="p">,</span> <span class="n">slice_width</span> <span class="o">*</span> <span class="n">rows_number</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_slices</span><span class="p">):</span>
+            <span class="c1"># Calculate the row and column indices for the current slice in the grid layout</span>
             <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">columns_number</span>
             <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">columns_number</span>
+
+            <span class="c1"># Calculate the start and end indices for the rows and columns in the image matrix</span>
             <span class="n">row_start</span> <span class="o">=</span> <span class="n">row</span> <span class="o">*</span> <span class="n">slice_height</span>
             <span class="n">row_end</span> <span class="o">=</span> <span class="n">row_start</span> <span class="o">+</span> <span class="n">slice_height</span>
             <span class="n">col_start</span> <span class="o">=</span> <span class="n">col</span> <span class="o">*</span> <span class="n">slice_width</span>
             <span class="n">col_end</span> <span class="o">=</span> <span class="n">col_start</span> <span class="o">+</span> <span class="n">slice_width</span>
 
-            <span class="n">image_matrix</span><span class="p">[</span><span class="n">col_start</span><span class="p">:</span><span class="n">col_end</span><span class="p">,</span> <span class="n">row_start</span><span class="p">:</span><span class="n">row_end</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="c1"># Copy the current slice (selected_slices[i]) to its corresponding position in the image matrix</span>
+            <span class="n">image_matrix</span><span class="p">[</span><span class="n">col_start</span><span class="p">:</span><span class="n">col_end</span><span class="p">,</span> <span class="n">row_start</span><span class="p">:</span><span class="n">row_end</span><span class="p">]</span> <span class="o">=</span> <span class="n">selected_slices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
+            <span class="c1"># Move to the next slice</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="n">ImageViewWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_layout</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="p">)</span>
+        <span class="c1"># Update the main image view widget with the visualized image matrix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">image_view_widget</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">image_matrix</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">setImage</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">image_matrix</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="VisualisationTabController.clear2DImage"><a class="viewcode-back" href="../../controller.visualisation_tab_controller.html#controller.visualisation_tab_controller.VisualisationTabController.clear2DImage">[docs]</a>    <span class="k">def</span> <span class="nf">clear2DImage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clear the second image view.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_view</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+        <span class="c1"># Clear the second image view</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">history_controller</span><span class="o">.</span><span class="n">clearSecondImageView</span><span class="p">()</span></div></div>
 </pre></div>
 
             <div class="clearer"></div>
